@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+
+    <div class="col-12 d-flex flex-column justify-items-center align-items-center">
+
+      <h1 class="fw-bolder text-center">CONVERSOR DE VSL</h1>
+
+      <p class="fw-normal text-center mb-0">
+        Cole sua copy no espaço abaixo para gerar slides de Power Point para sua VSL.
+      </p>
+
+      <p class="fw-normal fwBolde text-center mb-0 mt-4">
+        Configuração padrão: fonte Arial, tamanho 40.
+      </p>
+
+    </div>
+
+
+    <div class="col-12 mt-3">
+      <form action="/autenticar">
+        <div class="row d-flex justify-content-center">
+
+          <div id="divCheck" class="d-flex justify-content-center ">
+            <input type="checkbox" id="check1">
+            <p class="p-0 m-0 ms-1">Enviar por e-mail</p>
+          </div>
+
+          <div id="checkEmail" class="col-12 ocult flex-column
+                          align-content-center justify-content-center mb-3 mx-5
+                          ">
+            <p class="text-center m-0 p-0">Digite os emails
+              da sua equipe separado por virgula: </p>
+            <input type="text" name="email" id="text" class="mx-auto" style="width: 400px">
+          </div>
+
+          <div class="col-12 d-flex justify-content-center">
+            <textarea type="text" style="resize: none; background-color: #ebebeb; border: none" name="vsl" id="text" class="textareaLong"
+              ></textarea>
+          </div>
+          <div class="col-3 d-flex flex-column justify-content-center mt-3">
+            <button type="submit" class="btn btn-lg text-white fw-bolder contentW"
+              style="background-color: rgb(255,93,94)">
+              CONVERTER!
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if data.count%}
+      <h5 class="text-center mb-0 mt-4">Converções restantes {{data.count}}</h5>
+    {% endif %} 
+
+  </div>
+  <script>
+    document.getElementById('check1').addEventListener('click', showDiv)
+
+
+    function showDiv(){
+        document.getElementById('divCheck').classList.add('ocult')
+        document.getElementById('divCheck').classList.remove('d-flex')
+
+        document.getElementById('checkEmail').classList.remove('ocult')
+        document.getElementById('checkEmail').classList.add('d-flex')
+    }
+   
+  </script>
+{% endblock %}

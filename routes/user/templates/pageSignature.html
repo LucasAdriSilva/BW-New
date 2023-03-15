@@ -1,0 +1,56 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<div class="row line mx-lg-5 mx-3">
+    <div class="col-4 respon">
+        <div class="card text-center cardWidth">
+            <div class="card-body fw-bolder">
+                <p class="reset text-uppercase text-nowrap text-white">Converções Disponiveis</p>
+            </div>
+        </div>
+        <p class="reset textCard text-center fw-bolder ">{{data.count}}</p>
+    </div>
+    <div class="col-4 respon">
+        <div class=" card text-center cardWidth">
+            <div class="card-body fw-bolder">
+                <p class="reset text-uppercase text-nowrap text-white">Plano atual</p>
+            </div>
+        </div>
+        <p class="reset textCard text-center fw-bolder">{{data.info.plan}}</p>
+    </div>
+    <div class="col-4 respon">
+        <div class=" card text-center cardWidth">
+            <div class="card-body fw-bolder">
+                <p class="reset text-uppercase text-nowrap text-white">Data da assinatura</p>
+            </div>
+        </div>
+        <p class="reset textCard text-center fw-bolder">{{data.info.datePurchase}}</p>
+    </div>
+</div>
+
+{% if data.info.media %}
+    <div class="row mt-3 response-02">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="fw-light response-01">Parabens <spam class="fw-bold">{{data.info.name}}</spam> , sua conta está
+                    ativa e
+                    pronto para uso!</h5>
+                <!-- <h5 class="fw-light response-01">Veja só, você ainda tem <spam class="fw-bold">{{data.info.porcent}}%</spam>
+                    do seu plano mensal, isso da em média <spam class="fw-bold">{{data.info.media}}</spam>
+                    VSL criadas por dia</h5> -->
+                    <h5 class="fw-light response-01">Aproveite nossa versão beta e adiquira converções ILIMITADAS </h5>
+            </div>
+        </div>
+</div>
+{% endif %}
+
+<div class="row d-flex justify-content-center">
+    <!-- <button onclick="window.location.href= '/signature'" class=" btn-convercao text-white fw-bolder mt-2 px-2 py-3 btnConvercao">
+        <h6 class="reset">COMPRAR MAIS CONVERÇÕES</h6>
+    </button> -->
+    <button onclick="window.location.href= '/add'" class=" btn-convercao text-white fw-bolder mt-2 px-2 py-3 btnConvercao">
+        <h6 class="reset">ADIQUITIR MAIS CONVERÇÕES</h6>
+    </button>
+</div>
+{% endblock %}

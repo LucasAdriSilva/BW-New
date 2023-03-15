@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Conversor de VSL</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "fub3s0zx95");
+    </script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVNTLGXCL5"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-GVNTLGXCL5');
+</script>
+<style>
+    :root {
+        /* --font: "Poppins", "Arial", 'sans-serif';
+        --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+        --font-primary: "Inter", sans-serif;
+        --font-secondary: "Poppins", sans-serif;
+        --color-default: rgb(181, 41, 133);
+        --color-primary: rgb(255, 93, 94);
+        --color-secondary: #272727;
+        --color-font-default: #1f1e1e;
+        --color-font-secondary: #7c7c7c;
+        --color-move: #c5c5c5;
+        scroll-behavior: smooth;
+    }
+
+    @font-face {
+        font-family: 'Flama Extrabold';
+        src: url('assets/font/Flama-Extrabold.otf');
+    }
+
+    @font-face {
+        font-family: 'Flama Book';
+        src: url('assets/font/flamabook.otf');
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #272727;
+        font-size: small;
+        font-family: 'Flama Book', sans-serif !important;
+    }
+
+    .reset {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .bg-purple-square {
+        width: 100%;
+        background-color: rgb(153, 34, 111);
+    }
+
+    .purple-square {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 250px;
+        width: 100%;
+        min-height: 150px;
+        height: 50%;
+        background-color: rgb(153, 34, 111);
+        z-index: -1;
+    }
+
+    video {
+        min-width: 150px;
+        width: 100%;
+        height: 100%;
+        margin: 0px auto
+    }
+
+    .algin-video {
+        width: 65%;
+        margin: 0px auto
+    }
+
+    svg {
+        max-width: 40px;
+    }
+
+    .card {
+        background-color: rgb(255, 255, 255);
+        min-width: fit-content;
+    }
+
+    .algin-card {
+        justify-content: center;
+    }
+
+    .center-video {
+        margin-top: 5vh;
+    }
+
+    .space {
+        margin-top: 15vh;
+        width: 80%;
+    }
+
+    .space-btn {
+        margin-top: 15px;
+        margin-bottom: 40px;
+    }
+
+    .display-subtitle-6 {
+        font-size: 1.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .font-title {
+        font-size: calc(1rem + 1vw)
+    }
+
+    .font-subtitle {
+        font-size: 1rem;
+    }
+
+    .font-lead {
+        font-size: 1.5rem;
+    }
+
+    .display-6 {
+        font-size: calc(1rem + 1vw);
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .font-bg-white,
+    .font-bg-white2 {
+        font-size: 3rem;
+    }
+
+    .cards {
+        width: 300px;
+        height: 310px;
+    }
+
+    .icon {
+        font-size: 4rem;
+        padding-top: -20px;
+        color: #99226f;
+    }
+
+    .font-card {
+        font-size: calc(1.3rem + .6vw) !important;
+    }
+
+    .title-proposta {
+        font-size: calc(1.325rem + .9vw) !important;
+    }
+
+    .lead-title-proposta {
+        font-size: calc(1.3rem + .6vw) !important;
+    }
+
+    .lead-proposta {
+        font-size: 1rem !important;
+    }
+
+    .subtitle-proposta {
+        font-size: calc(1.3rem + .6vw) !important;
+    }
+
+    @media (max-width: 1000px) {}
+
+    @media (max-width: 800px) {
+        .display-6 {
+            font-size: calc(1rem + 1.5vw);
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .font-lead {
+            font-size: 1rem;
+        }
+
+        .lead {
+            font-size: 1.15rem !important;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .title-proposta {
+            font-size: calc(1rem + .9vw) !important;
+        }
+
+        .lead-proposta {
+            font-size: .9rem !important;
+        }
+
+        .lead-title-proposta {
+            font-size: calc(1rem + .7vw) !important;
+        }
+
+        .subtitle-proposta {
+            font-size: calc(1rem + .8vw) !important;
+        }
+
+        .cards {
+            width: 190px;
+            height: 180px;
+        }
+
+        .font-card {
+            font-size: calc(1rem + .6vw) !important;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+        }
+
+        .font-bg-white2 {
+            font-size: 1.2rem;
+        }
+
+        .display-6 {
+            font-size: calc(.5rem + 1vw);
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .font-lead {
+            font-size: .7rem;
+        }
+
+        .font-title {
+            font-size: 1rem;
+        }
+
+        .font-bg-white {
+            font-size: 1rem;
+        }
+
+        .algin-video {
+            width: 75%;
+            margin: 0px auto
+        }
+
+        .display-subtitle-6 {
+            font-size: 0.7rem;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .space {
+            margin-top: 10vh;
+        }
+
+        .purple-square {
+            min-height: 150px;
+            height: 35%;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .title-proposta {
+            font-size: calc(1rem + .5vw) !important;
+        }
+
+        .lead-proposta {
+            font-size: .7rem !important;
+        }
+
+        .lead-title-proposta {
+            font-size: calc(.8rem + .2vw) !important;
+        }
+
+        .subtitle-proposta {
+            font-size: calc(1rem + .4vw) !important;
+        }
+
+        .cards {
+            width: 170px;
+            height: 170px;
+        }
+
+        .font-card {
+            font-size: calc(.8rem + .5vw) !important;
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+
+        .font-bg-white2 {
+            font-size: 1rem;
+        }
+
+        .font-title {
+            font-size: 0.9rem;
+        }
+
+        .font-bg-white {
+            font-size: 0.9rem;
+        }
+
+        .font-lead {
+            font-size: .6rem;
+        }
+
+        .font-subtitle {
+            font-size: .8rem;
+        }
+
+        .lead {
+            font-size: 0.9rem !important;
+        }
+
+        /* .display-6 {
+            font-size: calc(.4rem + 1vw) !important;
+            font-weight: 300;
+            line-height: 1.2;
+        } */
+
+        .display-subtitle-6 {
+            font-size: 0.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .algin-video {
+            width: 85%;
+            margin: 0px auto
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .purple-square {
+            min-height: 150px;
+            height: 30%;
+        }
+
+        .space {
+            margin-top: 10vh;
+        }
+    }
+
+    .btn-default {
+        background-color: #ff5d5e;
+        width: 100%;
+        margin: auto;
+        /* height: 30px; */
+        border: none;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn-default:hover {
+        background-color: #99226f;
+        border: none;
+        margin: auto;
+        color: white;
+        transform: scale3d(.9, .9, .9);
+    }
+
+    .btn-default-mini-100w {
+        background-color: #ff5d5e;
+        border: none;
+        margin: auto;
+        color: white;
+        font-size: 1.5rem;
+        padding: 5px 0px;
+        width: 100px;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn-default-mini-100w:hover {
+        background-color: #272727;
+        border: none;
+        margin: auto;
+        color: white;
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    .btn-default-mini {
+        background-color: #ff5d5e;
+        border: none;
+        margin: auto;
+        color: white;
+        font-size: 1.5rem;
+        padding: 15px 20px;
+        min-width: 100px;
+        transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn-default-mini:hover {
+        background-color: #99226f;
+        border: none;
+        margin: auto;
+        color: white;
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    .bg-black {
+        background-color: #272727 !important;
+    }
+
+    .font-bolder {
+        font-family: 'Flama Extrabold', sans-serif !important;
+    }
+
+    .margin-algin {
+        margin-top: 50px;
+    }
+
+    .reset-padding {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+</style>
+
+
+<body>
+    <div class="purple-square"></div>
+
+    <div class="row algin-video">
+        <!-- Header -->
+        <div class="col-12 my-lg-5 mb-3 center-video reset-padding">
+            <!------------------------------------------------------------------------------Desktop --------------------------------------------------------------->
+            <h1 class="text-center reset text-white display-6 text-uppercase px-lg-5 d-none d-lg-block font-bolder">
+                A maneira mais fácil de criar vídeos </h1>
+            <h1 class="text-center reset text-white display-6 text-uppercase px-lg-5 d-none d-lg-block font-bolder">
+                a partir de seu texto.</h1>
+
+            <h5
+                class="text-center mt-lg-3 reset text-white display-subtitle-6 d-none d-lg-block text-uppercase fw-light">
+                Vídeos de qualidade em pouco tempo e sem esforço
+            </h5>
+            <!------------------------------------------------------------------------------Mobile --------------------------------------------------------------->
+            <h1 class="text-center reset text-white text-uppercase d-block d-lg-none font-bolder font-title">
+                A maneira mais fácil de criar </h1>
+            <h1 class="text-center reset text-white text-uppercase d-block d-lg-none font-bolder font-title">
+                vídeos a partir de seu texto.</h1>
+
+            <h5
+                class="text-center  mt-2 reset text-white display-subtitle-6 d-block d-lg-none font-subtitle text-uppercase fw-light">
+                Vídeos de qualidade em pouco tempo e sem esforço
+            </h5>
+
+
+        </div>
+
+        <!-- Video -->
+        <div class="col-12" style="padding-left: 0;padding-right: 0;  ">
+
+            <video class="d-flex justify-content-center" controls poster="assets\img\capa2.jpg">
+                <source src="assets\video\vsl.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Botão -->
+        <div class="col-12 d-flex flex-column justify-content-center align-items-center my-4 my-lg-5 mb-1"
+            style="padding-left: 0; padding-right: 0;">
+
+            <button class="btn-default rounded-3 py-2 py-lg-3" onclick="window.location.href='/login'">
+                <span class="reset font-bolder font-title text-white text-uppercase "> Teste Grátis </span>
+            </button>
+
+            <span class="text-white font-lead mt-lg-3 mt-2 mb-4 text-center">
+                Teste nosso gerador e veja a praticidade para PLR, VSL e anúncios!
+            </span>
+        </div>
+    </div>
+
+    <!-- background White -->
+    <div class="row algin-video bg-white" style="background-color: white; width: 100% !important;">
+        <div class="col-12 d-flex rounded-5 algin-video my-lg-5 p-3">
+            <div class="row">
+                <div class="col-12 px-lg-5 px-2 d-flex justify-content-center order-lg-0 order-0">
+                    <span
+                        class="display-6 text-lg-start text-center fw-bolder text-start text-uppercase mt-3 font-bolder pb-2 mb-lg-1 font-bg-white">
+                        Aumente suas vendas sem perder tempo editando as suas VSL
+                    </span>
+
+                </div>
+
+                <div class="col-12 col-lg-6 d-flex flex-column align-items-center order-lg-last order-lg-1 order-2">
+                    <!---------------------------------------------------- Desktop ---------------------------------------------------->
+                    <p class="lead p-lg-5 px-1 pb-lg-3 d-none d-lg-block">
+                        O Gerador de VSL é uma ferramenta que vai facilitar a sua vida e aumentar as suas
+                        vendas. Com ela, você pode criar uma VSL de 40 minutos com mais de 550 slides em tempo recorde,
+                        sem precisar fazer tudo manualmente. Com controle total para personalizar a sua VSL da forma que
+                        desejar, você pode focar em outras tarefas importantes do seu negócio e atrair e convencer seus
+                        clientes a comprar mais. Comece a usar o Gerador de VSL agora mesmo para aumentar suas vendas e
+                        lucrar ainda mais.
+                    </p>
+                    <!---------------------------------------------------- Mobile ---------------------------------------------------->
+                    <p class="font-lead mt-3 p-lg-5 px-1 pb-lg-3 d-block d-lg-none">
+                        O Gerador de VSL é uma ferramenta que vai facilitar a sua vida e aumentar as suas
+                        vendas. Com ela, você pode criar uma VSL de 40 minutos com mais de 550 slides em tempo recorde,
+                        sem precisar fazer tudo manualmente. Com controle total para personalizar a sua VSL da forma que
+                        desejar, você pode focar em outras tarefas importantes do seu negócio e atrair e convencer seus
+                        clientes a comprar mais. Comece a usar o Gerador de VSL agora mesmo para aumentar suas vendas e
+                        lucrar ainda mais.
+                    </p>
+                </div>
+
+                <div class="col-12 col-lg-6 order-lg-2 order-1">
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_ru7ln5bx.json"
+                        background="transparent" speed="1" loop autoplay></lottie-player>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="row algin-video bg-black">
+        <div class="col-12 my-lg-5 my-4">
+            <div class="row d-flex justify-content-center gap-lg-5 gap-3">
+
+                <div class="col-12 d-flex justify-content-center mb-3">
+                    <p
+                        class="display-3 reset text-white text-center font-bolder text-uppercase font-bg-white2 mt-4 mt-lg-0">
+                        Vantagens da Ferramenta</p>
+                </div>
+
+                <div class="col-md-3 card cards text-center reset-padding">
+                    <div class="card-body d-flex justify-content-center align-items-center" style="margin-top: -10px;">
+                        <div>
+                            <i class="bi bi-alarm icon"></i>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset">Otimização de </p>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset">tempo</p>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 card cards text-center reset-padding">
+                    <div class="card-body d-flex justify-content-center align-items-center" style="margin-top: -10px;">
+                        <div>
+                            <i class="bi bi-speedometer icon"></i>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset "> Maior </p>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset "> Produtividade </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 card cards text-center reset-padding">
+                    <div class="card-body d-flex justify-content-center align-items-center" style="margin-top: -10px;">
+                        <div>
+                            <i class="bi bi-magic icon"></i>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset">Facilidade </p>
+                            <p class="text-nowrap font-card font-bolder text-uppercase reset">na edição</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Proposta -->
+    <div class="row bg-purple-square reset-padding" style="margin-left: 0; margin-right:0;">    
+        <div class="col-12 algin-video d-flex flex-column justify-content-center align-items-center my-5">
+            <p class="reset title-proposta font-bolder text-uppercase text-white">ferramenta gratuita!</p>
+            <p class="reset subtitle-proposta fw-light text-uppercase text-white">VERSÃO BETA</p>
+
+            <div class="row w-100">
+                <!------------------------------------------------------------------------------Desktop Content --------------------------------------------------------------->
+                <div
+                    class="col-12 p-5 d-flex flex-column justify-content-center align-items-center algin-video d-none d-lg-block">
+                    <p class="fs-3 text-white text-center mb-2">Nossa versão beta é completamente gratuita!</p>
+
+                    <p class="fs-6 fw-light text-white text-center mt-lg-3" style="max-width: 1000px;">
+                        Isso mesmo, nenhum custo envolvido. Experimente todas as ferramentas e recursos que oferecemos
+                        sem gastar nada. Além disso, ao usar nosso site, você economizará tempo e poderá se concentrar
+                        em alcançar seus objetivos. Não perca a oportunidade de aproveitar ao máximo essa oferta
+                        exclusiva!
+                    </p>
+                </div>
+                <!------------------------------------------------------------------------------Mobile Content--------------------------------------------------------------->
+                <div
+                    class="col-12 py-4 d-flex flex-column justify-content-center align-items-center d-block d-lg-none reset-padding">
+
+                    <span class="lead-title-proposta text-white text-center mb-4">
+                        Nossa versão beta é completamente gratuita!
+                    </span>
+
+                    <span class="lead-proposta fw-light text-white text-center">
+                        Isso mesmo, nenhum custo envolvido. Experimente todas as ferramentas e recursos que oferecemos
+                        sem gastar nada. Além disso, ao usar nosso site, você economizará tempo e poderá se concentrar
+                        em alcançar seus objetivos. Não perca a oportunidade de aproveitar ao máximo essa oferta
+                        exclusiva!
+                    </span>
+                </div>
+
+                <!------------------------------------------------------------------------------Desktop Button--------------------------------------------------------------->
+                <div class="col-lg-12 text-center algin-video d-none d-lg-block">
+                    <button class="btn btn-default-mini-100w px-lg-5 w-100" onclick="window.location.href='/login'">
+                        <p class="reset">QUERO APROVEITAR</p>
+                    </button>
+                </div>
+
+                <!------------------------------------------------------------------------------Mobile Button--------------------------------------------------------------->
+                <div class="col-12 text-center d-block d-lg-none" style="padding-left: 0 !important; padding-right: 0 !important;">
+                    <button class="btn-default rounded-3 py-2 py-lg-3" onclick="window.location.href='/login'">
+                        <span class="reset font-bolder font-title text-white text-uppercase "> Quero Aproveitar </span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+<script></script>
+
+</html>

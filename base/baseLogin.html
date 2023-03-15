@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Conversor de VSL</title>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "fub3s0zx95");
+  </script>
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GVNTLGXCL5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GVNTLGXCL5');
+</script>
+
+<body>
+  <header id="header" class="header bgColor-defaul d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/" class="logo d-flex align-items-center">
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Conversor</h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/" class="active">Principal</a></li>
+          <li><a href="/convert">Conversor</a></li>
+         
+          <li class="dropdown"><a href="#"><span>Usuário</span> <i
+                class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="/togglePassword">Trocar senha</a></li>
+              <li><a href="/shortly">Trocar E-mail (Em Breve)</a></li>
+              {% if data.logout %}
+                <li><a href="/logout">Logout</a></li>
+              {% endif %}
+            </ul>
+          </li>
+          <li><a class="get-a-quote" href="{{data.url}}">{{data.text}}</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main >
+
+  <section class="about ">
+    <div class="container d-flex justify-content-center" data-aos="fade-up">
+      {% block content %} {% endblock %}
+    </div>
+  </section>
+
+  </main>
+
+  <footer id="footer" class="footer fixed-bottom teste">
+    <div class="container">
+
+      <div class="copyright teste">
+        &copy;Copyright <strong><span>AgenciaMKT+</span></strong>. All Rights Reserved -- <a style="color: #1f1e1e;" href="/priPol">Política de Privacidade</a>
+      </div>
+
+      <div class="credits teste">
+        Designed by <a href="https://instagram.com/aleafa.r?igshid=ZDdkNTZiNTM=">@aleafar</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+   <!-- Vendor JS Files -->
+  <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script> -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // VALIDAÇÂO FORM
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+            var forms = document.getElementsByClassName('needs-validation');
+            // Faz um loop neles e evita o envio
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+        })();
+
+
+    //TEMPO DE MSG
+    setTimeout(function () {
+    document.getElementById("msg_valided").style.display = "none";
+    }, 3000);
+</script>
+</body>
+
+</html>

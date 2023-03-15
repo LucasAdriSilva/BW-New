@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center bg-title">
+  <h1 class="text-white reset" style="margin-top: 5px; margin-bottom: 5px;">GERADOR DE TREINOS</h1>
+</div>
+
+<!-- Botão Modal -->
+<div class="row">
+  <div class="col-12 text-center mt-4 mb-4">
+      <h5>Não sabe qual o seu nivel? </h5>
+      <!-- Button modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          CLIQUE AQUI E DESCUBRA
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade modal-xl" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Teste para iniciante</h1>
+                      <div>
+                          <button id="knowNumber" class="rounded-2 bg-orange p-2" style="border: none">
+                              Já sei meus numeros
+                          </button>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                              aria-label="Close"></button>
+                      </div>
+                  </div>
+
+                  <div class="modal-body">
+
+                      <div class="row">
+                          <div class="col-12 mb-2">
+                              Escolha a opção que mais te agrada
+                          </div>
+                      </div>
+
+                      <!-- Dropdown -->
+                      <div class="dropdown-center mb-5">
+
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                              Opções
+                          </button>
+
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item text-center" href="#">Treino de Musculação</a></li>
+                              <li><a class="dropdown-item text-center" href="#">Treino com o peso do corpo</a>
+                              </li>
+                              <li><a class="dropdown-item text-center" href="#">Hibrido</a></li>
+                          </ul>
+                      </div>
+
+                      <!-- Primeira Aba -->
+                      <div id="div1"
+                          class="row pt-3 pt-3 rounded-3 d-flex justify-content-center align-content-center bg-nav-active d-none">
+                          <div class="col-12  p-3 d-flex flex-column">
+                              <!-- <h2>Treino de Musculação</h2> -->
+                              <h2>Em Breve</h2>
+                          </div>
+                      </div>
+
+                      <!-- Segunda Aba -->
+                      <div id="div2"
+                          class="row pt-3 pb-3 pt-3 rounded-3 d-flex justify-content-center align-content-center d-none">
+                          <div class="col-12">
+                              <h2>Treino com o peso do corpo</h2>
+                          </div>
+
+                          <div class="col-12 p-3 d-flex flex-column">
+                              <span>Utilize esse treino pronto para saber seu nivel.</span>
+                              <span>Faça o maximo de repetições que conseguir fazer</span>
+                              <span>E adicione as informações abaixo</span>
+                          </div>
+
+                          <!-- <div id="exer1" class="col-lg-5 col-11 position-relative rounded-3 m-2 bg-white"
+                              style="border: 1px solid rgb(20, 20, 20);">
+                              <div class="row reset-Padding h-100">
+                                  <div class="col-6 d-flex justify-content-center img-card reset-Padding"><img
+                                          class="img-fluid img-resolution" id="img1" width="150" height="150"
+                                          src="https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg"
+                                          alt=""></div>
+                                  <div class="col-6 d-flex flex-column justify-content-around align-items-start reset-Padding"
+                                      style="height: 200px;">
+                                      <div style="width: fit-content;">
+                                          <h6 class="reset text-start" id="category1">(Push Horizontal)</h6>
+                                          <h5 class="reset text-start text-uppercase" id="ValidTitle1">Flexões
+                                              Padrão</h5>
+                                      </div>
+                                      <div class="d-flex flex-column align-items-start justify-content-start">
+                                          <span>Num. maximo de repet.</span>
+                                          <input id="ValidExer1" class="input-exer text-start" type="number"
+                                              required="true">
+                                      </div>
+                                      <span class="text-capitalize bg-danger">Add valores</span>
+                                  </div>
+                                  <div id="toggleExer1" class="d-none mb-4"><button id="btn1"
+                                          onclick="filter(1, 'Push', 'Horizontal')" class="btn btn-primary"
+                                          type="button">Trocar Exercicío</button></div>
+                              </div>
+                          </div> -->
+
+                          <!-- Sugestões de troca -->
+                          <div class="row d-none d-flex justify-content-center toggle-exer" id="divToggle">
+                              <!-- <div class="col-12 d-flex justify-content-between mb-5"
+                                  style="border-bottom: 1px solid rgb(20, 20, 20); height: 30px !important;">
+
+
+                                  <h4 class="mb-0">Sugestão de troca</h4>
+                                  <i class="bi bi-x-lg "
+                                      style="color:black; font-size: large; right: 0; cursor: pointer;"
+                                      onclick="closer()"></i>
+                              </div>
+
+                              <div class=" col-6 rounded-3 bg-white my-5" style="border: 1px solid rgb(20, 20, 20);">
+
+                                  <h3 class="reset" id="ValidTitle8">name</h3>
+                                  <h4>category</h4>
+                                  <div class="d-flex justify-content-center">
+                                      <img width="150px" height="150px"
+                                          src="https://cdn.w600.comps.canstockphoto.com.br/trabalhando-dela-joelho-femininas-vetor-clip-arte_csp89802369.jpg">
+                                  </div>
+                                  <button onclick="subs(8, 'name', 'category', 'img')"
+                                      class="btn btn-primary mt-2">Trocar</button>
+                              </div> -->
+                          </div>
+
+                      </div>
+
+                      <!-- Terceira Aba -->
+                      <div id="div3"
+                          class="row pt-3 rounded-3 d-flex justify-content-center align-content-center d-none">
+                          <div class="col-12 p-3 d-flex flex-column">
+                              <!-- <span>Utilize esse treino pronto para saber seu nivel.</span>
+                              <span>Faça o maximo de Repet. que você consegue fazer</span>
+                              <span>E adiciona as informações abaixo</span> -->
+                              <h2>Em Breve</h2>
+                          </div>
+                      </div>
+
+                  </div>
+
+                  <div class="modal-footer ">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" id="saveTraining" onclick="enviarTreino()"
+                          class="btn btn-primary">Gerar Treino</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-12" style="padding: 0;">
+      <div class="row"></div>
+      <h4 id="txtTitle" class="text-center d-none bg-title text-white reset pt-2 pb-2">SEU TREINO</h4>
+      <div class="row d-flex justify-content-center" id="trainingGenerated">
+
+          <!-- <div class="col-lg-6 col-12 position-relative rounded-3 p-3 bg-white">
+
+              <h3 class="reset text-center" id="ValidTitle8">Dips na paralela</h3>
+
+              <div class="d-flex rounded-3 p-3 bg-white w-100" style="border: 1px solid rgb(20, 20, 20);">
+
+                  <div class="d-flex justify-content-center img-card reset-Padding">
+                      <img class="img-fluid img-resolution" id="img1" width="150" height="150"
+                          src="https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg"
+                          alt="">
+                  </div>
+
+                  <div class="d-flex flex-column justify-content-center align-content-center"
+                      style="width: 350px;">
+                      <div class=" d-flex text-center justify-content-between align-items-center">
+                          <span>Serie: </span>
+                          <span>3x</span>
+                      </div>
+                      <div class=" d-flex text-center align-items-center justify-content-between">
+                          <span>Num de repetição: </span>
+                          <span>4</span>
+                      </div>
+                      <div class=" d-flex text-center align-items-center justify-content-between">
+                          <span>Descanso: </span>
+                          <span>3 Minutos</span>
+                      </div>
+                  </div>
+
+              </div>
+          </div> -->
+      </div>
+  </div>
+</div>
+{% endblock %}
