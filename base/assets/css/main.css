@@ -99,15 +99,15 @@ body {
 }
 
 .btn-primary {
-  background-color: orange;
+  background-color: #eebc3b;
   color: white;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: rgb(255, 230, 0);
+  background-color: #ebc25c;
   color: white;
-  border: rgb(0, 0, 0);
+  /* border: rgb(0, 0, 0); */
 
 }
 
@@ -179,8 +179,8 @@ body {
 }
 
 .reset-Padding {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .selected {
@@ -193,4 +193,8 @@ body {
 
 .text-gray1{
   color: #929191;
+}
+
+.input-danger{
+  border: 1px solid rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important;;
 }

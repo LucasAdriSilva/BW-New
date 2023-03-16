@@ -135,90 +135,66 @@ function creatExercisesBase() {
   const divPai2 = document.getElementById('div2')
   var x = 1
   exercisesBase.forEach(exer => {
-    const div = document.createElement('div');
-    div.setAttribute('id', 'exer' + x);
-    div.setAttribute('class', 'col-lg-5 col-11 position-relative rounded-3 m-2 bg-white');
-    div.setAttribute('style', 'border: 1px solid rgb(20, 20, 20);');
 
-    const rowDiv = document.createElement('div');
-    rowDiv.setAttribute('class', 'row reset-Padding h-100');
+    // Criação da nova div
+    var novaDiv = document.createElement("div");
+    novaDiv.id = "exer"+x;
+    novaDiv.className = "col-lg-5 position-relative col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white";
+    novaDiv.style.border = "1px solid rgb(163, 163, 163)";
 
-    const imgDiv = document.createElement('div');
-    imgDiv.setAttribute('class', 'col-6 d-flex justify-content-center img-card reset-Padding');
+    // Criação do conteúdo da div
+    novaDiv.innerHTML = `
+      <div class="row position-relative">
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <img class="rounded-4" id="${'img'+x}" width="68" height="68"
+            src="${exer.url}"
+            alt="">
+        </div>
 
-    const img = document.createElement('img');
-    img.setAttribute('class', 'img-fluid img-resolution');
-    img.setAttribute('id', 'img' + x);
-    img.setAttribute('width', '150');
-    img.setAttribute('height', '150');
-    img.setAttribute('src', exer.url);
-    img.setAttribute('alt', '');
+        <div class="col-9 d-flex align-items-center ps-3 pe-5">
+          <div class="row">
+            <div class="col-12 reset-Padding">
+              <span class="reset text-uppercase" style="font-size: 18px;">${exer.name}</span>
+            </div>
 
-    imgDiv.appendChild(img);
+            <div class="col-4 d-flex flex-column justify-content-center align-items-start my-2 reset-Padding">
+              <p class="reset text-uppercase text-gray1">SÉRIE</p>
+              <input class="w-75 text-center rounded-3" type="text" placeholder="1" disabled>
+            </div>
 
-    const textDiv = document.createElement('div');
-    textDiv.setAttribute('class', 'col-6 d-flex flex-column justify-content-around align-items-start reset-Padding');
-    textDiv.setAttribute('style', 'height: 200px;');
+            <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
+              <p id="${'repts'+x}" class="reset text-uppercase text-gray1">REPS</p>
+              <input required="true" id="${'ValidExer'+x}" class="w-75 input-value text-center rounded-3"
+                type="text">
+            </div>
 
-    const titleDiv = document.createElement('div');
-    titleDiv.setAttribute('style', 'width: fit-content;');
+            <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
+              <p class="reset text-uppercase text-gray1">RESET</p>
+              <input required="true" disabled placeholder="3min"
+                class="w-75 input-value text-center rounded-3" type="text">
+            </div>
+          </div>
 
-    const category = document.createElement('h6');
-    category.setAttribute('class', 'reset text-start');
-    category.setAttribute('id', 'category' + x);
-    category.innerText = "(" + exer.category + " " + exer.type + ")";
+          <i class="bi bi-three-dots-vertical position-absolute top-0 end-0 "></i>
+        </div>
 
-    const title = document.createElement('h5');
-    title.setAttribute('class', 'reset text-start text-uppercase');
-    title.setAttribute('id', 'ValidTitle' + x);
-    title.innerText = exer.name;
+        <div id="${'toggleExer'+x}"class="col-12 d-none d-flex flex-column justify-content-center">
+          <button id="${'btn'+1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100"
+            type="button">Trocar Exercicío</button>
 
-    titleDiv.appendChild(category);
-    titleDiv.appendChild(title);
+            <span id="${'heavy'+x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+                    *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
+                </span>
 
-    const inputDiv = document.createElement('div');
-    inputDiv.setAttribute('class', 'd-flex flex-column align-items-start justify-content-start');
-
-    const label = document.createElement('span');
-    label.innerText = 'Num. maximo de repet.';
-
-    const input = document.createElement('input');
-    input.setAttribute('id', 'ValidExer' + x);
-    input.setAttribute('class', 'input-exer text-start');
-    input.setAttribute('type', 'number');
-    input.setAttribute('required', true);
-
-    inputDiv.appendChild(label);
-    inputDiv.appendChild(input);
-
-    textDiv.appendChild(titleDiv);
-    textDiv.appendChild(inputDiv);
-
-    const toggleDiv = document.createElement('div');
-    toggleDiv.setAttribute('id', 'toggleExer' + x);
-    toggleDiv.setAttribute('class', 'd-none mb-4');
-
-    const button = document.createElement('button');
-    button.setAttribute('id', 'btn' + x);
-    // button.setAttribute('onclick', "filter(" + x + ", '" + exer.category + "', '" + exer.type + "')");
-    button.setAttribute('onclick', `filter(${x} , '${exer.category}', '${exer.type}', ${exer.nivel} )`);
-    button.setAttribute('class', 'btn btn-primary');
-    button.setAttribute('type', 'button');
-    button.innerText = 'Trocar Exercicío';
-
-    toggleDiv.appendChild(button);
-
-    rowDiv.appendChild(imgDiv);
-    rowDiv.appendChild(textDiv);
-    rowDiv.appendChild(toggleDiv);
-
-    div.appendChild(rowDiv);
-
-    // Adicione o elemento ao DOM
-    divPai2.appendChild(div);
-    x += 1
+                 <span id="${'light'+x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+                    *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
+                </span> 
+        </div>
+      </div>`;
+      x += 1
+      divPai2.appendChild(novaDiv)
   })
-  
+
 }
 
 function subs(id, name, category, type, img) {
@@ -368,13 +344,39 @@ function filter(id, category, type, nivel) {
 function openToggleExer(id, Title, Input) {
   const input = document.getElementById('ValidExer' + id);
   const btn = document.getElementById('toggleExer' + id)
+  const light = document.getElementById('light' + id)
+  const heavy = document.getElementById('heavy' + id)
+  const repts = document.getElementById('repts' + id)
 
   if (input.value < 5) {
+    console.log('pesado')
     // Mostra o botão de trocar o exercicio
     btn.classList.add('d-block')
     btn.classList.remove('d-none')
+
+    //Mostra a obs de exer pesado
+    heavy.classList.add('d-block')
+    heavy.classList.remove('d-none')
+
+    //Oculta a obs de exer leve
+    light.classList.add('d-none')
+    light.classList.remove('d-block')
+
+    //Add visuald e erro
+    input.classList.add('text-danger')
+    input.classList.add('input-danger')
+
+    repts.classList.add('text-danger')
+    repts.classList.remove('text-gray1')
+
   }
   if (input.value > 4 && input.value < 16) {
+    input.classList.remove('text-danger')
+    input.classList.remove('input-danger')
+
+    repts.classList.remove('text-danger')
+    repts.classList.add('text-gray1')
+
     btn.classList.add('d-none')
     btn.classList.remove('d-block')
     gerarTreino(Title, Input, id)
@@ -388,9 +390,25 @@ function openToggleExer(id, Title, Input) {
     }
   }
   if (input.value > 15) {
+    console.log('leve')
     // Mostra o botão de trocar o exercicio
     btn.classList.add('d-block')
     btn.classList.remove('d-none')
+
+    //Mostra a obs de exer leve
+    light.classList.add('d-block')
+    light.classList.remove('d-none')
+
+    //Oculta a obs de exer pesado
+    heavy.classList.add('d-none')
+    heavy.classList.remove('d-block')
+
+    //Add visuald e erro
+    input.classList.add('text-danger')
+    input.classList.add('input-danger')
+
+    repts.classList.add('text-danger')
+    repts.classList.remove('text-gray1')
   }
 }
 

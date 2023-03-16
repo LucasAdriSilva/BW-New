@@ -19,49 +19,56 @@
         <span class="text-center">E adicione as informações abaixo</span>
     </div>
 
-    <div id="exer1" class="col-lg-5 col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white"
-        style="border: 1px solid rgb(163, 163, 163);">
-        <div class="row">
+    <!-- <div id="exer1" class="col-lg-5 position-relative col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white" style="border: 1px solid rgb(163, 163, 163);">
 
+        <div class="row position-relative">
+            
             <div class="col-3 d-flex justify-content-center align-items-center">
                 <img class="rounded-4" id="img1" width="68" height="68"
                     src="https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg"
                     alt="">
             </div>
 
-            <div class="col-9 d-flex align-items-center">
-                <div class="row">
-
-                    <div class="col-10">
-                        <span class="reset fw-bolder" style="font-size: 18px;">Nome do exercicio exercicio exercicio</span>
+            <div class="col-9 d-flex align-items-center ps-3 pe-5" >
+                <div class="row" >
+                    <div class="col-12 reset-Padding">
+                        <span class="reset text-uppercase" style="font-size: 18px;">Nome do exercicio 
+                            exercicio</span>
                     </div>
 
-                    <div class="col-2 d-flex justify-content-start align-items-start">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </div>
-
-                    <div class="col-4 d-flex flex-column justify-content-center align-items-center my-2">
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-start my-2 reset-Padding">
                         <p class="reset text-uppercase text-gray1">SÉRIE</p>
-                        <input class="w-100 text-center rounded-3" type="text" placeholder="1" disabled>
+                        <input class="w-75 text-center rounded-3" type="text" placeholder="1" disabled>
                     </div>
 
-                    <div class="col-4 d-flex flex-column justify-content-center align-items-center">
-                        <p class="reset text-uppercase text-gray1">REPS</p>
-                        <input required="true" id="ValidExer1" class="w-100 input-value text-center rounded-3" type="text">
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
+                        <p id="rept1" class="reset text-uppercase text-gray1">REPS</p>
+                        <input required="true" id="ValidExer1" class=" w-75 input-value text-center rounded-3"
+                            type="text">
                     </div>
 
-                    <div class="col-4 d-flex flex-column justify-content-center align-items-center">
-                        <p class="reset text-uppercase text-gray1">RESET</p>
-                        <input required="true" disabled placeholder="3min" class="w-100 input-value text-center rounded-3" type="text">
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
+                        <p  class="reset text-uppercase text-gray1">RESET</p>
+                        <input required="true" disabled placeholder="3min"
+                            class="w-75 input-value text-center rounded-3" type="text">
                     </div>
-
                 </div>
+                
+                <i class="bi bi-three-dots-vertical position-absolute top-0 end-0 "></i>
             </div>
+            
+            <div id="toggleExer1" class="col-12 d-none d-flex flex-column justify-content-center">
+                <button id="btn1" onclick="filter(1, 'Push', 'Horizontal')" class="btn btn-primary w-100" type="button">Trocar Exercicío</button>
 
-            <div id="toggleExer1" class="d-none mb-4"><button id="btn1" onclick="filter(1, 'Push', 'Horizontal')"
-                    class="btn btn-primary" type="button">Trocar Exercicío</button></div>
+                <span id="heavy1" class="reset text-center d-none" style="font-size: 10px;">
+                    *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
+                </span>
+                 <span id="light1" class="reset text-center d-none" style="font-size: 10px;">
+                    *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
+                </span> 
+            </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div id="exer1" class="col-lg-5 col-11 position-relative rounded-3 m-2 bg-white"
         style="border: 1px solid rgb(20, 20, 20);">
