@@ -107,80 +107,15 @@ const exercises = [
 
 const exercisesBase = exercises.filter(e => e.default == true)
 
-// Event listener para cada opção da lista suspensa
-const dropdownOptions = document.querySelectorAll(".dropdown-menu li");
-dropdownOptions.forEach((option) => {
-  option.addEventListener("click", function () {
-    const optionText = option.textContent.trim();
-
-    if (optionText === "Treino de Musculação") {
-      // Renderize div1
-      toggleShowDiv1()
-    } else if (optionText === "Treino com o peso do corpo") {
-      // Renderize div2
-      toggleShowDiv2()
-    } else if (optionText === "Hibrido") {
-      // Renderize div3
-      toggleShowDiv3()
-    }
-  });
-});
-
-const div1 = document.getElementById('div1');
 const div2 = document.getElementById('div2');
-const div3 = document.getElementById('div3');
 
-function toggleShowDiv1() {
-  div2.classList.add('d-none')
-  div2.classList.remove('bg-nav-active')
-  div3.classList.add('d-none')
-  div3.classList.remove('bg-nav-active')
-
-  div1.classList.remove('d-none')
-  div1.classList.add('d-block');
-  div1.classList.add('bg-nav-active')
-
-  for (let i = 1; i < 9; i++) {
-    creatStruct(i)
-  }
-
-  const know = document.getElementById('knowNumber')
-  know.classList.add('d-none')
-}
 function toggleShowDiv2() {
-  div1.classList.add('d-none')
-  div1.classList.remove('bg-nav-active')
-  div3.classList.add('d-none')
-  div3.classList.remove('bg-nav-active')
-
   div2.classList.remove('d-none')
   div2.classList.add('d-block');
-  div2.classList.add('bg-nav-active')
-
-  // Montamos a estrutura para capturar os Inputs e TEXT usando uma estrutura de repetição
-  for (let i = 1; i < 9; i++) {
-    creatStruct(i)
-  }
-
-  const know = document.getElementById('knowNumber')
-  know.classList.add('d-none')
-}
-function toggleShowDiv3() {
-  div2.classList.add('d-none')
-  div2.classList.remove('bg-nav-active')
-  div1.classList.add('d-none')
-  div1.classList.remove('bg-nav-active')
-
-  div3.classList.remove('d-none')
-  div3.classList.add('d-block');
-  div3.classList.add('bg-nav-active')
 
   for (let i = 1; i < 9; i++) {
     creatStruct(i)
   }
-
-  const know = document.getElementById('knowNumber')
-  know.classList.add('d-none')
 }
 
 window.addEventListener("load", function () {
@@ -283,6 +218,7 @@ function creatExercisesBase() {
     divPai2.appendChild(div);
     x += 1
   })
+  
 }
 
 function subs(id, name, category, type, img) {

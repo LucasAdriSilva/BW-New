@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from methods import getUrl
 from methods import deletpath
 
@@ -6,22 +6,22 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
 @basicScreens.route("/")
 def index():
-  return getUrl("principal.html", "principal.html")
+  data = {
+    'nav': '1'
+  }
+  return render_template("home.html", data = data)
 
-@basicScreens.route("/shortly")
-def shortly():
-  return getUrl("emBreve.html","emBreve.html")
+@basicScreens.route("/2")
+def idenx2():
+  data = {
+    'nav': '2'
+  }
+  return render_template("home2.html", data = data)
 
-@basicScreens.route("/del")
-def deletField():
-  deletpath()
-  return getUrl("principal.html")
-
-@basicScreens.route('/priPol')
-def priPol():
-  return getUrl('privacyPolicy.html', 'privacyPolicy.html')
-
-@basicScreens.route('/termsUse')
-def termsUse():
-  return getUrl('termsUse.html', 'termsUse.html')
+@basicScreens.route("/3")
+def index3():
+  data = {
+    'nav': '3'
+  }
+  return render_template("home3.html", data = data)
 

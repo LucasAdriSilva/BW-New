@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+<div id="div2" class="row  mt-5 rounded-3 d-flex justify-content-center align-content-center d-none">
+
+    <div class="col-12">
+        <h1 class="reset text-center">Crie seu treino</h1>
+        <h3 class="reset text-center">Com o peso do corpo</h3>
+    </div>
+
+    <div class="col-12 p-3 d-flex flex-column">
+        <span class="text-center">Utilize esse treino pronto para saber seu nivel.</span>
+        <span class="text-center">Faça o maximo de repetições que conseguir fazer</span>
+        <span class="text-center">E adicione as informações abaixo</span>
+    </div>
+
+    <div id="exer1" class="col-lg-5 col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white"
+        style="border: 1px solid rgb(163, 163, 163);">
+        <div class="row">
+
+            <div class="col-3 d-flex justify-content-center align-items-center">
+                <img class="rounded-4" id="img1" width="68" height="68"
+                    src="https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg"
+                    alt="">
+            </div>
+
+            <div class="col-9 d-flex align-items-center">
+                <div class="row">
+
+                    <div class="col-10">
+                        <span class="reset fw-bolder" style="font-size: 18px;">Nome do exercicio exercicio exercicio</span>
+                    </div>
+
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </div>
+
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-center my-2">
+                        <p class="reset text-uppercase text-gray1">SÉRIE</p>
+                        <input class="w-100 text-center rounded-3" type="text" placeholder="1" disabled>
+                    </div>
+
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                        <p class="reset text-uppercase text-gray1">REPS</p>
+                        <input required="true" id="ValidExer1" class="w-100 input-value text-center rounded-3" type="text">
+                    </div>
+
+                    <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                        <p class="reset text-uppercase text-gray1">RESET</p>
+                        <input required="true" disabled placeholder="3min" class="w-100 input-value text-center rounded-3" type="text">
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="toggleExer1" class="d-none mb-4"><button id="btn1" onclick="filter(1, 'Push', 'Horizontal')"
+                    class="btn btn-primary" type="button">Trocar Exercicío</button></div>
+        </div>
+    </div>
+
+    <!-- <div id="exer1" class="col-lg-5 col-11 position-relative rounded-3 m-2 bg-white"
+        style="border: 1px solid rgb(20, 20, 20);">
+        <div class="row reset-Padding h-100">
+            <div class="col-6 d-flex justify-content-center img-card reset-Padding"><img
+                    class="img-fluid img-resolution" id="img1" width="150" height="150"
+                    src="https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg"
+                    alt=""></div>
+            <div class="col-6 d-flex flex-column justify-content-around align-items-start reset-Padding"
+                style="height: 200px;">
+                <div style="width: fit-content;">
+                    <h6 class="reset text-start" id="category1">(Push Horizontal)</h6>
+                    <h5 class="reset text-start text-uppercase" id="ValidTitle1">Flexões
+                        Padrão</h5>
+                </div>
+                <div class="d-flex flex-column align-items-start justify-content-start">
+                    <span>Num. maximo de repet.</span>
+                    <input id="ValidExer1" class="input-exer text-start" type="number"
+                        required="true">
+                </div>
+            </div>
+            <div id="toggleExer1" class="d-none mb-4"><button id="btn1"
+                    onclick="filter(1, 'Push', 'Horizontal')" class="btn btn-primary"
+                    type="button">Trocar Exercicío</button></div>
+        </div>
+    </div> -->
+
+    <!-- Sugestões de troca -->
+    <div class="row d-none d-flex justify-content-center toggle-exer" id="divToggle">
+
+        <!-- <div class="col-12 d-flex justify-content-between mb-5"
+            style="border-bottom: 1px solid rgb(20, 20, 20); height: 30px !important;">
+
+
+            <h4 class="mb-0">Sugestão de troca</h4>
+            <i class="bi bi-x-lg "
+                style="color:black; font-size: large; right: 0; cursor: pointer;"
+                onclick="closer()"></i>
+        </div>
+
+        <div class=" col-6 rounded-3 bg-white my-5" style="border: 1px solid rgb(20, 20, 20);">
+
+            <h3 class="reset" id="ValidTitle8">name</h3>
+            <h4>category</h4>
+            <div class="d-flex justify-content-center">
+                <img width="150px" height="150px"
+                    src="https://cdn.w600.comps.canstockphoto.com.br/trabalhando-dela-joelho-femininas-vetor-clip-arte_csp89802369.jpg">
+            </div>
+            <button onclick="subs(8, 'name', 'category', 'img')"
+                class="btn btn-primary mt-2">Trocar</button>
+        </div> -->
+    </div>
+
+
+
+</div>
+
+<div class="row my-4">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <button type="button" id="saveTraining" onclick="enviarTreino()" class="btn btn-primary">Gerar Treino</button>
+    </div>
+</div>
+
+{% endblock %}
