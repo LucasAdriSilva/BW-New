@@ -127,9 +127,25 @@
 </div>
 
 <div class="row my-4">
-    <div class="col-12 d-flex justify-content-center align-items-center">
+    <!-- <div class="col-12 d-flex justify-content-center align-items-center">
         <button type="button" id="saveTraining" onclick="enviarTreino()" class="btn btn-primary">Gerar Treino</button>
-    </div>
+    </div> -->
+
+    <!-- <form id="form-treino" method="POST" action="/teste">
+        <input class="d-none" id="check" type="button"  name="treino" value="{{treino}}">
+        <button type="submit" class="btn btn-primary">Enviar Treino</button>
+    </form>  -->
+
+    <!-- <form method="POST" action="/teste">
+        <input type="hidden" name="try" value="{{treino}}">
+        <button type="submit">Enviar</button>
+    </form> -->
+
+
+    <button type="button" class="btn btn-primary" onclick="enviarTreino2()">Enviar Treino</button>
+
+
 </div>
+
 
 {% endblock %}

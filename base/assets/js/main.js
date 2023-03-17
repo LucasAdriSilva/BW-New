@@ -1,4 +1,6 @@
 
+
+
 const exercises = [
   { name: "Knee Push Ups (de joelho)", url: "https://cdn.w600.comps.canstockphoto.com.br/trabalhando-dela-joelho-femininas-vetor-clip-arte_csp89802369.jpg", category: "Push", nivel: 0, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal" },
   { name: "Flexões Padrão", url: "https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg", category: "Push", nivel: 1, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", default: true },
@@ -138,7 +140,7 @@ function creatExercisesBase() {
 
     // Criação da nova div
     var novaDiv = document.createElement("div");
-    novaDiv.id = "exer"+x;
+    novaDiv.id = "exer" + x;
     novaDiv.className = "col-lg-5 position-relative col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white";
     novaDiv.style.border = "1px solid rgb(163, 163, 163)";
 
@@ -146,7 +148,7 @@ function creatExercisesBase() {
     novaDiv.innerHTML = `
       <div class="row position-relative">
         <div class="col-3 d-flex justify-content-center align-items-center">
-          <img class="rounded-4" id="${'img'+x}" width="68" height="68"
+          <img class="rounded-4" id="${'img' + x}" width="68" height="68"
             src="${exer.url}"
             alt="">
         </div>
@@ -154,7 +156,7 @@ function creatExercisesBase() {
         <div class="col-9 d-flex align-items-center ps-3 pe-5">
           <div class="row">
             <div class="col-12 reset-Padding">
-              <span class="reset text-uppercase" style="font-size: 18px;">${exer.name}</span>
+              <span id=${'ValidTitle' + x} class="reset text-uppercase" style="font-size: 18px;">${exer.name}</span>
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-start my-2 reset-Padding">
@@ -163,8 +165,8 @@ function creatExercisesBase() {
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
-              <p id="${'repts'+x}" class="reset text-uppercase text-gray1">REPS</p>
-              <input required="true" id="${'ValidExer'+x}" class="w-75 input-value text-center rounded-3"
+              <p id="${'repts' + x}" class="reset text-uppercase text-gray1">REPS</p>
+              <input required="true" id="${'ValidExer' + x}" class="w-75 input-value text-center rounded-3"
                 type="text">
             </div>
 
@@ -178,21 +180,21 @@ function creatExercisesBase() {
           <i class="bi bi-three-dots-vertical position-absolute top-0 end-0 "></i>
         </div>
 
-        <div id="${'toggleExer'+x}"class="col-12 d-none d-flex flex-column justify-content-center">
-          <button id="${'btn'+1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100"
+        <div id="${'toggleExer' + x}"class="col-12 d-none d-flex flex-column justify-content-center">
+          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100"
             type="button">Trocar Exercicío</button>
 
-            <span id="${'heavy'+x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+            <span id="${'heavy' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
                     *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
                 </span>
 
-                 <span id="${'light'+x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+                 <span id="${'light' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
                     *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
                 </span> 
         </div>
       </div>`;
-      x += 1
-      divPai2.appendChild(novaDiv)
+    x += 1
+    divPai2.appendChild(novaDiv)
   })
 
 }
@@ -250,9 +252,9 @@ function filter(id, category, type, nivel) {
 
   // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
   if (nivel) {
-    input == 0 && input > 3 ? nivel = nivel - 2 : null;
+    input == 0 && input >= 3 ? nivel = nivel = 0 : null;
 
-    input < 3 && input > 2 ? nivel = nivel - 1 : null;
+    input == 4 && input == 5 ? nivel = nivel = 1 : null;
 
     input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
 
@@ -265,15 +267,23 @@ function filter(id, category, type, nivel) {
     nivel < 0 ? nivel = 0 : nivel = nivel
   }
 
-  // if (category != null && category != "" && category != undefined) {
-  //     var filterType = exercises.filter(f => f.category === category)
+  // if (nivel) {
+  //   input == 0 && input > 3 ? nivel = nivel - 2 : null;
+
+  //   input < 3 && input > 2 ? nivel = nivel - 1 : null;
+
+  //   input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
+
+  //   input > 15 && input <= 25 ? nivel = nivel + 1 : null;
+
+  //   input > 25 && input <= 40 ? nivel = nivel + 2 : null;
+
+  //   nivel > 6 ? nivel = 6 : nivel = nivel
+
+  //   nivel < 0 ? nivel = 0 : nivel = nivel
   // }
-  // if (nivel != null && nivel >= 0 && nivel != undefined) {
-  //     filterType = filterType.filter(f => f.nivel === nivel)
-  // }
-  // if (type != null && type != "" && type != undefined) {
-  //     filterType = filterType.filter(f => f.type === type)
-  // }
+
+
   if (category) {
     filterType = exercises.filter(exercise => exercise.category === category);
   }
@@ -385,8 +395,8 @@ function openToggleExer(id, Title, Input) {
     divPai.innerHTML = ''
     if (treino.length === 8) {
       // fechar model
-      const button = document.getElementById('saveTraining')
-      button.setAttribute('data-bs-dismiss', 'modal')
+      // const button = document.getElementById('saveTraining')
+      // button.setAttribute('data-bs-dismiss', 'modal')
     }
   }
   if (input.value > 15) {
@@ -415,7 +425,7 @@ function openToggleExer(id, Title, Input) {
 function creatStruct(id) {
   const input = document.getElementById('ValidExer' + id)
   const title = document.getElementById('ValidTitle' + id)
-
+  const repts = document.getElementById('repts' + id)
   input.addEventListener('blur', function () {
     if (input.value == NaN ||
       input.value == null ||
@@ -424,7 +434,9 @@ function creatStruct(id) {
 
       input.classList.remove('input-exer')
       input.classList.add('input-exer-fail')
+      repts.classList.add('text-danger')
     } else {
+      repts.classList.remove('text-danger')
       input.classList.remove('input-exer-fail')
       input.classList.add('input-exer')
       openToggleExer(id, title, input)
@@ -469,112 +481,139 @@ function gerarTreino(title, input, id) {
   }
 }
 
-function enviarTreino() {
+// function enviarTreino() {
 
-  if (treino.length === 8) {
-    const divPai = document.getElementById('trainingGenerated')
-    divPai.innerHTML = ''
-    treino.forEach(exer => {
+//   if (treino.length === 8) {
+//     const divPai = document.getElementById('trainingGenerated')
+//     divPai.innerHTML = ''
+//     treino.forEach(exer => {
 
-      const title = document.getElementById('txtTitle')
-      title.classList.remove('d-none')
-      title.classList.add('d-block')
+//       const title = document.getElementById('txtTitle')
+//       title.classList.remove('d-none')
+//       title.classList.add('d-block')
 
-      const div = document.createElement('div');
-      // adicionar as classes à div
-      div.classList.add('col-lg-6', 'col-12', 'position-relative', 'rounded-3', 'p-3', 'bg-white');
+//       const div = document.createElement('div');
+//       // adicionar as classes à div
+//       div.classList.add('col-lg-6', 'col-12', 'position-relative', 'rounded-3', 'p-3', 'bg-white');
 
-      // criar o elemento h3 e adicionar o texto
-      const h3 = document.createElement('h3');
-      h3.classList.add('reset', 'text-center');
-      h3.setAttribute('id', 'ValidTitle8');
-      h3.textContent = exer.name;
+//       // criar o elemento h3 e adicionar o texto
+//       const h3 = document.createElement('h3');
+//       h3.classList.add('reset', 'text-center');
+//       h3.setAttribute('id', 'ValidTitle8');
+//       h3.textContent = exer.name;
 
-      // adicionar o elemento h3 à div
-      div.appendChild(h3);
+//       // adicionar o elemento h3 à div
+//       div.appendChild(h3);
 
-      // criar o elemento div
-      const div2 = document.createElement('div');
-      div2.classList.add('d-flex', 'rounded-3', 'p-3', 'bg-white', 'w-100');
-      div2.style.border = '1px solid rgb(20, 20, 20)';
+//       // criar o elemento div
+//       const div2 = document.createElement('div');
+//       div2.classList.add('d-flex', 'rounded-3', 'p-3', 'bg-white', 'w-100');
+//       div2.style.border = '1px solid rgb(20, 20, 20)';
 
-      // criar o elemento div com a imagem e adicionar a imagem
-      const imgDiv = document.createElement('div');
-      imgDiv.classList.add('d-flex', 'justify-content-center', 'img-card', 'reset-Padding');
-      const img = document.createElement('img');
-      img.classList.add('img-fluid', 'img-resolution');
-      img.setAttribute('id', 'img1');
-      img.setAttribute('width', '150');
-      img.setAttribute('height', '150');
-      img.setAttribute('src', exer.url);
-      img.setAttribute('alt', '');
-      imgDiv.appendChild(img);
+//       // criar o elemento div com a imagem e adicionar a imagem
+//       const imgDiv = document.createElement('div');
+//       imgDiv.classList.add('d-flex', 'justify-content-center', 'img-card', 'reset-Padding');
+//       const img = document.createElement('img');
+//       img.classList.add('img-fluid', 'img-resolution');
+//       img.setAttribute('id', 'img1');
+//       img.setAttribute('width', '150');
+//       img.setAttribute('height', '150');
+//       img.setAttribute('src', exer.url);
+//       img.setAttribute('alt', '');
+//       imgDiv.appendChild(img);
 
-      // criar o elemento div com as informações da série e adicionar as informações
-      const infoDiv = document.createElement('div');
-      infoDiv.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-content-center');
-      infoDiv.style.width = '350px';
+//       // criar o elemento div com as informações da série e adicionar as informações
+//       const infoDiv = document.createElement('div');
+//       infoDiv.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-content-center');
+//       infoDiv.style.width = '350px';
 
-      const serieDiv = document.createElement('div');
-      serieDiv.classList.add('d-flex', 'text-center', 'justify-content-between', 'align-items-center');
+//       const serieDiv = document.createElement('div');
+//       serieDiv.classList.add('d-flex', 'text-center', 'justify-content-between', 'align-items-center');
 
-      const serieSpan1 = document.createElement('span');
-      serieSpan1.textContent = 'Serie: ';
+//       const serieSpan1 = document.createElement('span');
+//       serieSpan1.textContent = 'Serie: ';
 
-      const serieSpan2 = document.createElement('span');
-      serieSpan2.textContent = exer.rept + 'x';
-      serieDiv.appendChild(serieSpan1);
-      serieDiv.appendChild(serieSpan2);
+//       const serieSpan2 = document.createElement('span');
+//       serieSpan2.textContent = exer.rept + 'x';
+//       serieDiv.appendChild(serieSpan1);
+//       serieDiv.appendChild(serieSpan2);
 
-      const repDiv = document.createElement('div');
-      repDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
+//       const repDiv = document.createElement('div');
+//       repDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
 
-      const repSpan1 = document.createElement('span');
-      repSpan1.textContent = 'Num de repetição: ';
+//       const repSpan1 = document.createElement('span');
+//       repSpan1.textContent = 'Num de repetição: ';
 
-      const repSpan2 = document.createElement('span');
-      repSpan2.textContent = exer.count;
+//       const repSpan2 = document.createElement('span');
+//       repSpan2.textContent = exer.count;
 
-      repDiv.appendChild(repSpan1);
-      repDiv.appendChild(repSpan2);
-      const descDiv = document.createElement('div');
-      descDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
-      const descSpan1 = document.createElement('span');
-      descSpan1.textContent = 'Descanso: ';
-      const descSpan2 = document.createElement('span');
-      descSpan2.textContent = exer.rest + ' Minutos';
-      descDiv.appendChild(descSpan1);
-      descDiv.appendChild(descSpan2);
-      infoDiv.appendChild(serieDiv);
-      infoDiv.appendChild(repDiv);
-      infoDiv.appendChild(descDiv);
+//       repDiv.appendChild(repSpan1);
+//       repDiv.appendChild(repSpan2);
+//       const descDiv = document.createElement('div');
+//       descDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
+//       const descSpan1 = document.createElement('span');
+//       descSpan1.textContent = 'Descanso: ';
+//       const descSpan2 = document.createElement('span');
+//       descSpan2.textContent = exer.rest + ' Minutos';
+//       descDiv.appendChild(descSpan1);
+//       descDiv.appendChild(descSpan2);
+//       infoDiv.appendChild(serieDiv);
+//       infoDiv.appendChild(repDiv);
+//       infoDiv.appendChild(descDiv);
 
-      // adicionar os elementos à segunda div
-      div2.appendChild(imgDiv);
-      div2.appendChild(infoDiv);
+//       // adicionar os elementos à segunda div
+//       div2.appendChild(imgDiv);
+//       div2.appendChild(infoDiv);
 
-      // adicionar a segunda div à primeira div
-      div.appendChild(div2);
-      divPai.appendChild(div);
-    })
-  } else {
-    for (let i = 1; i < 9; i++) {
-      const input = document.getElementById('ValidExer' + i)
+//       // adicionar a segunda div à primeira div
+//       div.appendChild(div2);
+//       divPai.appendChild(div);
+//     })
+//   } else {
+//     for (let i = 1; i < 9; i++) {
+//       const input = document.getElementById('ValidExer' + i)
 
 
-      if (input.value == NaN ||
-        input.value == null ||
-        input.value == undefined ||
-        input.value == "") {
+//       if (input.value == NaN ||
+//         input.value == null ||
+//         input.value == undefined ||
+//         input.value == "") {
 
-        input.classList.remove('input-exer')
-        input.classList.add('input-exer-fail')
-      } else {
-        input.classList.remove('input-exer-fail')
-        input.classList.add('input-exer')
-      }
+//         input.classList.remove('input-exer')
+//         input.classList.add('input-exer-fail')
+//       } else {
+//         input.classList.remove('input-exer-fail')
+//         input.classList.add('input-exer')
+//       }
 
+//     }
+//   }
+// }
+
+function enviarTreino2() {
+  fetch('/teste', {
+    method: 'POST',
+    body: JSON.stringify(treino),
+    headers: {
+      'Content-Type': 'application/json'
     }
-  }
-}
+  });
 
+  fetch('/sendTraining', {
+    method: 'POST',
+    body: JSON.stringify(treino),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      if (response.redirected) {
+        window.location.replace(response.url);
+      } else {
+        
+      }
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+    });
+}
