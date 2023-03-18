@@ -170,8 +170,10 @@ function creatExercisesBase() {
         </div>
 
         <div id="${'toggleExer' + x}"class="col-12 d-none d-flex flex-column justify-content-center">
-          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100"
-            type="button">Trocar Exercicío</button>
+
+          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
+            
+          </button>
 
             <span id="${'heavy' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
                     *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
@@ -182,7 +184,7 @@ function creatExercisesBase() {
                 </span> 
 
                 </div>
-                <span id="${'success'+x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
+                <span id="${'success' + x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
                     Perfeito, só aguardar o tempo do pause para prosseguir!
                 </span> 
       </div>`;
@@ -198,26 +200,36 @@ function creatExercisesBase() {
 }
 
 function subs(id, name, category, type, img) {
+  debugger
   const Name = document.getElementById('ValidTitle' + id)
-  const Category = document.getElementById('category' + id)
   const Img = document.getElementById('img' + id)
   const div = document.getElementById('divToggle')
-  Name.innerHTML = name
-  Category.innerHTML = "(" + category + " " + type + ")"
-  Img.src = img
+  const input = document.getElementById('ValidExer' + id)
+  const repts = document.getElementById('repts' + id)
 
-  // Esconde a div de troca de exercicio
-  div.classList.remove('d-block')
-  div.classList.add('d-none')
+  // Trocando o exercicio
+  Name.innerHTML = name
+  Img.src = img
 
   // Esconde o button
   const btn = document.getElementById('toggleExer' + id)
   btn.classList.add('d-none')
   btn.classList.remove('d-block')
-
+  
   // Zerar input
-  const input = document.getElementById('ValidExer' + id)
   input.value = ''
+  
+  input.classList.remove('text-danger')
+  input.classList.remove('input-exer')
+  input.classList.remove('input-danger')
+  input.classList.remove('input-exer-fail')
+  
+  input.classList.add('input-exer')
+  input.classList.add('input-value')
+  
+  repts.classList.remove('text-danger')
+  repts.classList.add('text-gray1')
+
 
 }
 
@@ -297,54 +309,98 @@ function filter(id, category, type, nivel) {
   const divPai = document.getElementById('divToggle')
   divPai.innerHTML = ''
 
-  const divheader = document.createElement('div')
-  divheader.classlist = 'col-12 d-flex justify-content-between mb-5'
-  divheader.style = 'border-bottom: 1px solid rgb(20, 20, 20); height: 30px !important;'
-
-  const text = document.createElement('h4')
-  text.classList = 'mb-0'
-  text.innerHTML = 'Exercicios de sugestão'
-  divheader.appendChild(text)
-
-  const i = document.createElement('i')
-  i.classList = 'bi bi-x-lg position-absolute m-2'
-  i.style = 'color:black; font-size: large;top: 0; right: 0; cursor: pointer;'
-  i.onclick = function () { closer() };
-  divheader.appendChild(i)
-  divPai.appendChild(divheader)
-
   filterType.forEach(e => {
-    const div = document.createElement('div');
-    div.className = 'col-lg-5 col-12 rounded-3 bg-white m-3';
-    div.style.border = '1px solid rgb(20, 20, 20)';
 
-    const h3 = document.createElement('h3');
-    h3.className = 'reset';
-    h3.innerText = e.name;
+    // divPai.appendChild(div)
+    const parent = document.querySelector('.parent');
 
-    const h4 = document.createElement('h4');
-    h4.innerText = "(" + e.category + " " + e.type + ")";
+    // cria o primeiro elemento
+    const div1 = document.createElement('div');
+    div1.classList.add('row', 'reset-Padding', 'my-3');
 
-    const imgContainer = document.createElement('div');
-    imgContainer.className = 'd-flex justify-content-center';
+    // cria o segundo elemento
+    const div2s = document.createElement('div');
+    div2s.classList.add('col-5', 'reset-Padding', 'd-flex', 'justify-content-center', 'align-items-center');
 
+    // cria o terceiro elemento
     const img = document.createElement('img');
-    img.width = 150;
-    img.height = 150;
-    img.src = e.url;
+    img.setAttribute('width', '125');
+    img.setAttribute('height', 'auto');
+    img.setAttribute('src', e.url);
 
+    // adiciona o terceiro elemento ao segundo elemento
+    div2s.appendChild(img);
+
+    // cria o quarto elemento
+    const div3 = document.createElement('div');
+    div3.classList.add('col-7', 'd-flex', 'align-items-center', 'reset-Padding');
+
+    // cria o quinto elemento
+    const div4 = document.createElement('div');
+    div4.classList.add('row', 'reset-Padding');
+
+    // cria o sexto elemento
+    const div5 = document.createElement('div');
+    div5.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+
+    // cria o sétimo elemento
+    const span1 = document.createElement('span');
+    span1.classList.add('reset');
+    span1.textContent = e.name;
+
+    // adiciona o sétimo elemento ao sexto elemento
+    div5.appendChild(span1);
+
+    // adiciona o sexto elemento ao quinto elemento
+    div4.appendChild(div5);
+
+    // cria o oitavo elemento
+    const div6 = document.createElement('div');
+    div6.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+
+    // cria o nono elemento
+    const span2 = document.createElement('span');
+    span2.classList.add('reset');
+    span2.textContent = `(${e.category} ${e.type})`;
+
+    // adiciona o nono elemento ao oitavo elemento
+    div6.appendChild(span2);
+
+    // adiciona o oitavo elemento ao quinto elemento
+    div4.appendChild(div6);
+
+    // cria o décimo elemento
+    const div7 = document.createElement('div');
+    div7.classList.add('col-12', 'd-flex', 'justify-content-center', 'align-items-center', 'reset-Padding', 'W-100');
+
+    // cria o décimo primeiro elemento
     const button = document.createElement('button');
     button.onclick = function () { subs(id, e.name, e.category, e.type, e.url) };
     button.className = 'btn btn-primary mt-2';
     button.innerText = 'Trocar';
+    button.classList.add('btn', 'btn-primary', 'mt-2');
+    button.setAttribute('data-bs-dismiss', 'modal');
+    button.setAttribute('style', 'width: 100%');
+    button.textContent = 'Trocar';
 
-    imgContainer.appendChild(img);
-    div.appendChild(h3);
-    div.appendChild(h4);
-    div.appendChild(imgContainer);
-    div.appendChild(button);
+    // adiciona o décimo primeiro elemento ao décimo elemento
+    div7.appendChild(button);
 
-    divPai.appendChild(div)
+    // adiciona o quinto e o décimo elemento ao quarto elemento
+    div4.appendChild(div5);
+    div4.appendChild(div6);
+    div4.appendChild(div7);
+
+    // adiciona o segundo e o quarto elemento ao terceiro elemento
+    div3.appendChild(div4);
+
+    // adiciona o segundo e o terceiro elemento ao primeiro elemento
+    div1.appendChild(div2s);
+    div1.appendChild(div3);
+
+    // adiciona o primeiro elemento ao elemento pai
+    divPai.appendChild(div1);
+
   })
 
 }
@@ -385,9 +441,9 @@ function openToggleExer(id, Title, Input) {
   if (input.value > 4 && input.value < 16) {
     success.classList.remove('d-none')
     // Tempo da message de sucesso
-    setTimeout(function() { 
+    setTimeout(function () {
       success.classList.add("d-none");
-    }, 10000); 
+    }, 10000);
     input.classList.remove('text-danger')
     input.classList.remove('input-danger')
 
@@ -452,7 +508,7 @@ function addColorError() {
       input.classList.remove('input-exer-fail')
       repts.classList.remove('text-danger')
       // title.classList.remove('text-danger')
-      
+
 
       openToggleExer(i, title, input)
     }

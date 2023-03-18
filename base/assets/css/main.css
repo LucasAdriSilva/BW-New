@@ -121,8 +121,8 @@ body {
 }
 
 .input-exer {
-  border-radius: 5px;
-  max-width: 100px;
+  border-radius: 5px !important;
+  max-width: 100px !important;
   border-color: rgb(0, 0, 0);
 }
 
