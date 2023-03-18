@@ -111,18 +111,8 @@ const exercisesBase = exercises.filter(e => e.default == true)
 
 const div2 = document.getElementById('div2');
 
-function toggleShowDiv2() {
-  div2.classList.remove('d-none')
-  div2.classList.add('d-block');
-
-  for (let i = 1; i < 9; i++) {
-    creatStruct(i)
-  }
-}
-
 window.addEventListener("load", function () {
   creatExercisesBase()
-  toggleShowDiv2();
 });
 
 var treino = []
@@ -133,11 +123,10 @@ function getImgUrl(name) {
 }
 
 function creatExercisesBase() {
-  // Divi onde sera add os exercicios
+  // Div onde sera add os exercicios
   const divPai2 = document.getElementById('div2')
   var x = 1
   exercisesBase.forEach(exer => {
-
     // Criação da nova div
     var novaDiv = document.createElement("div");
     novaDiv.id = "exer" + x;
@@ -171,7 +160,7 @@ function creatExercisesBase() {
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
-              <p class="reset text-uppercase text-gray1">RESET</p>
+              <p class="reset text-uppercase text-gray1">PAUSE</p>
               <input required="true" disabled placeholder="3min"
                 class="w-75 input-value text-center rounded-3" type="text">
             </div>
@@ -191,11 +180,20 @@ function creatExercisesBase() {
                  <span id="${'light' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
                     *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
                 </span> 
-        </div>
+
+                </div>
+                <span id="${'success'+x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
+                    Perfeito, só aguardar o tempo do pause para prosseguir!
+                </span> 
       </div>`;
     x += 1
     divPai2.appendChild(novaDiv)
   })
+
+  // Criando as verificações "Blur"
+  for (let i = 1; i < 9; i++) {
+    creatStruct(i)
+  }
 
 }
 
@@ -357,9 +355,13 @@ function openToggleExer(id, Title, Input) {
   const light = document.getElementById('light' + id)
   const heavy = document.getElementById('heavy' + id)
   const repts = document.getElementById('repts' + id)
+  const success = document.getElementById('success' + id)
+
 
   if (input.value < 5) {
-    console.log('pesado')
+    // Texto de sucesso some
+    success.classList.add('d-none')
+
     // Mostra o botão de trocar o exercicio
     btn.classList.add('d-block')
     btn.classList.remove('d-none')
@@ -381,6 +383,11 @@ function openToggleExer(id, Title, Input) {
 
   }
   if (input.value > 4 && input.value < 16) {
+    success.classList.remove('d-none')
+    // Tempo da message de sucesso
+    setTimeout(function() { 
+      success.classList.add("d-none");
+    }, 10000); 
     input.classList.remove('text-danger')
     input.classList.remove('input-danger')
 
@@ -400,7 +407,9 @@ function openToggleExer(id, Title, Input) {
     }
   }
   if (input.value > 15) {
-    console.log('leve')
+    // Texto de sucesso some
+    success.classList.add('d-none')
+
     // Mostra o botão de trocar o exercicio
     btn.classList.add('d-block')
     btn.classList.remove('d-none')
@@ -422,10 +431,51 @@ function openToggleExer(id, Title, Input) {
   }
 }
 
+function addColorError() {
+  for (let i = 1; i < 9; i++) {
+    const input = document.getElementById('ValidExer' + i)
+    const title = document.getElementById('ValidTitle' + i)
+    const repts = document.getElementById('repts' + i)
+    const light = document.getElementById('light' + i)
+    const heavy = document.getElementById('heavy' + i)
+
+
+    if (input.value == NaN || input.value == null || input.value == undefined || input.value == "") {
+      // Se o input estiver vazio add as classes 
+      input.classList.remove('input-exer')
+      input.classList.add('input-exer-fail')
+      repts.classList.add('text-danger')
+      // title.classList.add('text-danger')
+    } else {
+      // Se estiver preenchido
+      input.classList.add('input-exer')
+      input.classList.remove('input-exer-fail')
+      repts.classList.remove('text-danger')
+      // title.classList.remove('text-danger')
+      
+
+      openToggleExer(i, title, input)
+    }
+
+  }
+}
+
+function removeColorError() {
+  const input = document.getElementById('ValidExer' + id)
+  const title = document.getElementById('ValidTitle' + id)
+  const repts = document.getElementById('repts' + id)
+
+  input.classList.add('input-exer')
+  input.classList.remove('input-exer-fail')
+  repts.classList.remove('text-danger')
+  title.classList.remove('text-danger')
+}
+
 function creatStruct(id) {
   const input = document.getElementById('ValidExer' + id)
   const title = document.getElementById('ValidTitle' + id)
   const repts = document.getElementById('repts' + id)
+
   input.addEventListener('blur', function () {
     if (input.value == NaN ||
       input.value == null ||
@@ -591,29 +641,27 @@ function gerarTreino(title, input, id) {
 // }
 
 function enviarTreino2() {
-  fetch('/teste', {
-    method: 'POST',
-    body: JSON.stringify(treino),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-
-  fetch('/sendTraining', {
-    method: 'POST',
-    body: JSON.stringify(treino),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-    .then(response => {
-      if (response.redirected) {
-        window.location.replace(response.url);
-      } else {
-        
+  if (treino.length == 8) {
+    fetch('/sendTraining', {
+      method: 'POST',
+      body: JSON.stringify(treino),
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
-    .catch(error => {
-      console.error('Erro na requisição:', error);
-    });
+      .then(response => {
+        if (response.redirected) {
+          window.location.replace(response.url);
+        } else {
+
+        }
+      })
+      .catch(error => {
+        console.error('Erro na requisição:', error);
+      });
+  } else {
+    addColorError()
+  }
+
+
 }

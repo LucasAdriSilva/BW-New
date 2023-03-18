@@ -21,17 +21,21 @@ def teste():
     return render_template("home.html")
 
 
-@basicScreens.route("/2")
+@basicScreens.route("/2" , methods=["GET", "POST"])
 def index2():
     res = request.args.get('data')
-    
-    teste = json.loads(res.replace("'", "\""))
-    
-    data = {
-      'nav': 'creat',
-      'treino': teste['treino'] 
-    }
-    return render_template("home2.html", data=data)
+    if res != None:
+      teste = json.loads(res.replace("'", "\""))
+      data = {
+        'nav': 'creat',
+        'treino': teste['treino'] 
+      }
+      return render_template("home2.html", data=data)
+    else: 
+      data = {
+        'nav': 'creat'
+      }
+      return render_template("home2.html", data=data)
 
 
 @basicScreens.route("/3")
