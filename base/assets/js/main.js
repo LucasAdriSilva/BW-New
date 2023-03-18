@@ -200,7 +200,6 @@ function creatExercisesBase() {
 }
 
 function subs(id, name, category, type, img) {
-  debugger
   const Name = document.getElementById('ValidTitle' + id)
   const Img = document.getElementById('img' + id)
   const div = document.getElementById('divToggle')
