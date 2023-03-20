@@ -145,6 +145,7 @@ function creatExercisesBase() {
         <div class="col-9 d-flex align-items-center ps-3 pe-5">
           <div class="row">
             <div class="col-12 reset-Padding">
+              <input type="hidden" id=${'nivel' + x} name="nivel" value="${exer.nivel}">
               <span id=${'ValidTitle' + x} class="reset text-uppercase" style="font-size: 18px;">${exer.name}</span>
             </div>
 
@@ -171,7 +172,7 @@ function creatExercisesBase() {
 
         <div id="${'toggleExer' + x}"class="col-12 d-none d-flex flex-column justify-content-center">
 
-          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.category}', '${exer.type}')" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
+          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.name}', '${exer.category}', '${exer.type}', ${exer.nivel})" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
             
           </button>
 
@@ -199,46 +200,7 @@ function creatExercisesBase() {
 
 }
 
-function subs(id, name, category, type, img) {
-  const Name = document.getElementById('ValidTitle' + id)
-  const Img = document.getElementById('img' + id)
-  const div = document.getElementById('divToggle')
-  const input = document.getElementById('ValidExer' + id)
-  const repts = document.getElementById('repts' + id)
-
-  // Trocando o exercicio
-  Name.innerHTML = name
-  Img.src = img
-
-  // Esconde o button
-  const btn = document.getElementById('toggleExer' + id)
-  btn.classList.add('d-none')
-  btn.classList.remove('d-block')
-  
-  // Zerar input
-  input.value = ''
-  
-  input.classList.remove('text-danger')
-  input.classList.remove('input-exer')
-  input.classList.remove('input-danger')
-  input.classList.remove('input-exer-fail')
-  
-  input.classList.add('input-exer')
-  input.classList.add('input-value')
-  
-  repts.classList.remove('text-danger')
-  repts.classList.add('text-gray1')
-
-
-}
-
-function closer() {
-  const divHidden = document.getElementById('divToggle')
-  divHidden.classList.remove('d-block')
-  divHidden.classList.add('d-none')
-}
-
-function filter(id, category, type, nivel) {
+function filter(id, name, category, type, nivel) {
   const divHidden = document.getElementById('divToggle')
   divHidden.classList.remove('d-none')
   divHidden.classList.add('d-block')
@@ -247,50 +209,27 @@ function filter(id, category, type, nivel) {
   const inputValue = document.getElementById('ValidExer' + id)
   var input = parseInt(inputValue.value)
 
-  if (nivel == undefined) {
-    input == 0 ? nivel = 0 : null;
+  var level = exercises.filter(e => e.name == name)
+  nivel = level[0].nivel
 
-    input < 5 && input > 0 ? nivel = 0 : null;
-
-    input > 15 && input <= 30 ? nivel = 2 : null;
-
-    input > 30 && input <= 40 ? nivel = 3 : null;
-
-
-  } else { nivel == 0 }
-
+  debugger
   // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
-  if (nivel) {
-    input == 0 && input >= 3 ? nivel = nivel = 0 : null;
+  if (input != null) {
+    input == 0 || input <= 3 ? nivel -= 2 : null;
 
-    input == 4 && input == 5 ? nivel = nivel = 1 : null;
+    input == 4 || input == 5 ? nivel -= 1 : null;
 
     input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
 
-    input > 15 && input <= 25 ? nivel = nivel + 1 : null;
+    input > 15 && input <= 25 ? nivel += 1 : null;
 
-    input > 25 && input <= 40 ? nivel = nivel + 2 : null;
+    input > 25 && input <= 40 ? nivel += 2 : null;
 
     nivel > 6 ? nivel = 6 : nivel = nivel
 
     nivel < 0 ? nivel = 0 : nivel = nivel
   }
 
-  // if (nivel) {
-  //   input == 0 && input > 3 ? nivel = nivel - 2 : null;
-
-  //   input < 3 && input > 2 ? nivel = nivel - 1 : null;
-
-  //   input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
-
-  //   input > 15 && input <= 25 ? nivel = nivel + 1 : null;
-
-  //   input > 25 && input <= 40 ? nivel = nivel + 2 : null;
-
-  //   nivel > 6 ? nivel = 6 : nivel = nivel
-
-  //   nivel < 0 ? nivel = 0 : nivel = nivel
-  // }
 
 
   if (category) {
@@ -307,9 +246,8 @@ function filter(id, category, type, nivel) {
 
   const divPai = document.getElementById('divToggle')
   divPai.innerHTML = ''
-
+  var x = 1
   filterType.forEach(e => {
-
     // divPai.appendChild(div)
     const parent = document.querySelector('.parent');
 
@@ -323,7 +261,7 @@ function filter(id, category, type, nivel) {
 
     // cria o terceiro elemento
     const img = document.createElement('img');
-    img.setAttribute('width', '125');
+    img.setAttribute('width', '115');
     img.setAttribute('height', 'auto');
     img.setAttribute('src', e.url);
 
@@ -337,7 +275,7 @@ function filter(id, category, type, nivel) {
     // cria o quinto elemento
     const div4 = document.createElement('div');
     div4.classList.add('row', 'reset-Padding');
-
+    div4.id = 'row' + x
     // cria o sexto elemento
     const div5 = document.createElement('div');
     div5.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
@@ -374,7 +312,8 @@ function filter(id, category, type, nivel) {
 
     // cria o décimo primeiro elemento
     const button = document.createElement('button');
-    button.onclick = function () { subs(id, e.name, e.category, e.type, e.url) };
+    button.onclick = function () { subs(id, e.name, e.category, e.type, e.url, e.nivel) };
+    button.id = 'toggle' + x
     button.className = 'btn btn-primary mt-2';
     button.innerText = 'Trocar';
     button.classList.add('btn', 'btn-primary', 'mt-2');
@@ -399,8 +338,59 @@ function filter(id, category, type, nivel) {
 
     // adiciona o primeiro elemento ao elemento pai
     divPai.appendChild(div1);
-
+    x++
   })
+
+}
+
+function subs(id, name, category, type, img, nivel) {
+  const Name = document.getElementById('ValidTitle' + id)
+  const Img = document.getElementById('img' + id)
+  const div = document.getElementById('toggleExer' + id)
+  const input = document.getElementById('ValidExer' + id)
+  const repts = document.getElementById('repts' + id)
+
+  // zerar a div do botão
+  div.innerHTML = ''
+
+  div.innerHTML = `<button id="${'btn' + id}" onclick="filter(${id}, '${name}', '${category}', '${type}', ${nivel})" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
+  <span id="${'heavy' + id}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+  *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
+  </span>
+
+  <span id="${'light' + id}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
+    *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
+  </span> 
+
+  </div>
+  <span id="${'success' + id}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
+    Perfeito, só aguardar o tempo do pause para prosseguir!
+  </span> 
+  `
+
+  // Trocando o exercicio
+  Name.innerHTML = name
+  Img.src = img
+
+  // Esconde o button
+  const btn = document.getElementById('toggleExer' + id)
+  btn.classList.add('d-none')
+  btn.classList.remove('d-block')
+
+  // Zerar input
+  input.value = ''
+
+  input.classList.remove('text-danger')
+  input.classList.remove('input-exer')
+  input.classList.remove('input-danger')
+  input.classList.remove('input-exer-fail')
+
+  input.classList.add('input-exer')
+  input.classList.add('input-value')
+
+  repts.classList.remove('text-danger')
+  repts.classList.add('text-gray1')
+
 
 }
 
