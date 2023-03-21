@@ -169,8 +169,8 @@
                         </label>
                     </div>
                 </div>
-                 <!-- 5 -->
-                 <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
+                <!-- 5 -->
+                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
                     <div class="form-check form-check-square">
                         <input class="form-check-input" type="radio" name="qtdTreino" id="radio3Quiz5" value="5">
                         <label class="form-check-label" for="radio3Quiz5">
@@ -516,6 +516,40 @@
             const divErr = document.getElementById('msgErr')
             divErr.classList.remove('d-none')
         }
+ 
+        if (superband == 'true') {
+            var aux = exercises.filter(e => e.required == 'superband')
+            aux.forEach(e => {
+                newExercises.push(e)
+            })
+        }
+        if (paralelas == 'true') {
+            var aux = exercises.filter(e => e.required == 'paralelas')
+            aux.forEach(e => {
+                newExercises.push(e)
+            })
+        }
+        if (barraFixa == 'true') {
+            var aux = exercises.filter(e => e.required == 'barraFixa')
+            aux.forEach(e => {
+                newExercises.push(e)
+            })
+        }
+        if (argolas == 'true') {
+            var aux = exercises.filter(e => e.required == 'argolas')
+            aux.forEach(e => {
+                newExercises.push(e)
+            })
+        }
+        if (trx == 'true') {
+            var aux = exercises.filter(e => e.required == 'trx')
+            aux.forEach(e => {
+                newExercises.push(e)
+            })
+        }
+
+        console.log(newExercises)
+
     }
 
 
