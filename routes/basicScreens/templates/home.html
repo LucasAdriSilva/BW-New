@@ -480,8 +480,8 @@
         // Se não tiver minutos no arrai nao cria os exercicios
         if (find.length >= 8) {
             console.log(requireds)
-            // creatExercisesBase()
             verificationRequireds()
+            creatExercisesBase()
         }
     })
 
@@ -492,13 +492,9 @@
         var find = requireds.filter(e => e.hours != 'horas')
         if (find.length >= 8) {
             console.log(requireds)
-
             verificationRequireds()
-
-            // creatExercisesBase()
+            creatExercisesBase()
         }
-
-
     })
 
     function verificationRequireds() {
