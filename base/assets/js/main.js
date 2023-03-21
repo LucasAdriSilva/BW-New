@@ -112,7 +112,7 @@ const exercisesBase = exercises.filter(e => e.default == true)
 const div2 = document.getElementById('div2');
 
 window.addEventListener("load", function () {
-  creatExercisesBase()
+  // creatExercisesBase()
 });
 
 var treino = []
@@ -123,9 +123,17 @@ function getImgUrl(name) {
 }
 
 function creatExercisesBase() {
+  //Esconde
+  const quiz = document.getElementById('quiz')
+  quiz.classList.add('d-none')
+
+
+  const btnGera = document.getElementById('btnGera')
+  btnGera.classList.remove('d-none')
   // Div onde sera add os exercicios
   const divPai2 = document.getElementById('div2')
   var x = 1
+  divPai2.classList.remove('d-none')
   exercisesBase.forEach(exer => {
     // Criação da nova div
     var novaDiv = document.createElement("div");
