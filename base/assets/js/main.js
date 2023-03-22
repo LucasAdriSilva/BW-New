@@ -3,14 +3,14 @@
 
 const exercises = [
   { name: "Knee Push Ups (de joelho)", url: "https://cdn.w600.comps.canstockphoto.com.br/trabalhando-dela-joelho-femininas-vetor-clip-arte_csp89802369.jpg", category: "Push", nivel: 0, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
-  { name: "Flexões Padrão", url: "https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg", category: "Push", nivel: 1, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", default: true, required:"" },
+  { name: "Flexão Padrão", url: "https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg", category: "Push", nivel: 1, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", default: true, required:"" },
   { name: "Diamond Push Ups", url: "https://weighttraining.guide/wp-content/uploads/2017/07/diamond-push-up-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4", category: "Push", nivel: 2, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
   { name: "Archer Push Ups ", url: "https://images.squarespace-cdn.com/content/v1/5db20c73f80047725e83b73c/1605191028463-69TG5D2LHACZDGBUSVOX/service_1589888550_3778.jpg", category: "Push", nivel: 3, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
   { name: "Rings Push Ups", url: "https://www.fitstream.com/images/ring-training/exercises/ring-push-up.png?w=80&h=80", category: "Push", nivel: 4, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"argolas" },
   { name: "One Arm Push Ups Elevada", url: "https://static.strengthlevel.com/images/illustrations/one-arm-push-ups-1000x1000.jpg", category: "Push", nivel: 5, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
   { name: "One Arm Push Ups/Tuck Planche", url: "https://post.healthline.com/wp-content/uploads/2019/07/Man-Exercising-1200x628-facebook.jpg", category: "Push", nivel: 6, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
   { name: "Bench Dips (Dips no banco)", url: "https://media.istockphoto.com/id/1277965681/pt/vetorial/bench-triceps-dips-female-exercise-guide-colorful-illustration.jpg?s=170667a&w=0&k=20&c=rys1gAWR29rv2zQL21jzAxKAmUhOaobuUjYkKQkOqj8=", category: "Push", nivel: 0, type: "Vertical", division: 'Dips - Vertical', required:"" },
-  { name: "Dips com ajuda ou elastico", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Dips.png/330px-Dips.png", category: "Push", nivel: 1, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
+  { name: "Dips com ajuda ou elastico", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Dips.png/330px-Dips.png", category: "Push", nivel: 1, type: "Vertical", division: 'Dips - Vertical', required:['paralelas', 'superband'] },
   { name: "Dips negativo", url: "https://julienquaglierini.com/wp-content/uploads/2018/08/dips-768x432.jpg.webp", category: "Push", nivel: 3, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
   { name: "Dips na paralela", url: "https://static.netshoes.com.br/produtos/barra-paralela-dip-de-parede-calistenia-(parafusos-e-buchas-plasticas)/06/06O-0003-006/06O-0003-006_zoom3.jpg?ts=1601643646", category: "Push", nivel: 4, type: "Vertical", division: 'Dips - Vertical', default: true, required:"paralelas" },
   { name: "Dips em L-sit", url: "https://www.shutterstock.com/image-vector/male-athlete-silhouette-doing-calisthenics-600w-1348704965.jpg", category: "Push", nivel: 5, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
@@ -31,13 +31,13 @@ const exercises = [
   { name: "Wall HSPU (Handstand Push Ups)", url: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt2c3e741ea4156df4/5dee7c59d03adf37d49cc286/Florian_HSPU_ES_HEAD.jpg?format=pjpg&auto=webp&quality=76&width=716", category: "Push", nivel: 4, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
   { name: "Wall HSPU c/ Paralela de frente | de costas", url: "https://elemento.ag/blog/wp-content/uploads/2022/02/image6.jpg", category: "Push", nivel: 5, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
   { name: "HSPU Livre", url: "https://http2.mlstatic.com/D_NQ_NP_2X_813656-MLB46427391074_062021-F.webp", category: "Push", nivel: 6, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
-  { name: "Negativas de Remada", url: "https://treinomestre.com.br/wp-content/uploads/2021/11/remada-articulada.jpg", category: "Pull", nivel: 1, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:"" },
-  { name: "Rows/Barra Australiana", url: "https://www.sport.es/labolsadelcorredor/wp-content/uploads/2018/05/Australian-pull-up.jpg", category: "Pull", nivel: 2, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", default: true, required: ['argolas', 'paralelas', 'barra', 'barraFixa', 'trx'] },
-  { name: "Wide Rows (pegada aberta)", url: "https://www.spotebi.com/wp-content/uploads/2015/04/wide-row-exercise-illustration.jpg", category: "Pull", nivel: 3, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:"" },
+  { name: "Negativas de Remada", url: "https://treinomestre.com.br/wp-content/uploads/2021/11/remada-articulada.jpg", category: "Pull", nivel: 1, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
+  { name: "Rows/Barra Australiana", url: "https://www.sport.es/labolsadelcorredor/wp-content/uploads/2018/05/Australian-pull-up.jpg", category: "Pull", nivel: 2, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", default: true, required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
+  { name: "Wide Rows (pegada aberta)", url: "https://www.spotebi.com/wp-content/uploads/2015/04/wide-row-exercise-illustration.jpg", category: "Pull", nivel: 3, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
   { name: "Archer Rows Braços Dobrados ou Alta", url: "https://cdn.vectorstock.com/i/1000x1000/36/80/woman-doing-upper-back-exercise-archer-with-long-r-vector-43113680.webp", category: "Pull", nivel: 4, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:"" },
-  { name: "Archer Rows (braço esticado)/Tuck Front Lever", url: "https://cdn.vectorstock.com/i/1000x1000/36/80/woman-doing-upper-back-exercise-archer-with-long-r-vector-43113680.webp", category: "Pull", nivel: 5, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:"" },
-  { name: "Straddle One Arm Rows", url: "https://www.shutterstock.com/image-vector/man-doing-single-arm-bent-600w-2101536073.jpg", category: "Pull", nivel: 6, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:"" },
-  { name: "Pull Ups com ajuda ou elastico", url: "https://network.grupoabril.com.br/wp-content/uploads/sites/2/2017/01/xxxx.jpg?quality=85&strip=all&w=1024", category: "Pull", nivel: 0, type: "Vertical", division: "Barra Fixa (Pull Ups) - Vertical", required:"barraFixa" },
+  { name: "Archer Rows (braço esticado)/Tuck Front Lever", url: "https://cdn.vectorstock.com/i/1000x1000/36/80/woman-doing-upper-back-exercise-archer-with-long-r-vector-43113680.webp", category: "Pull", nivel: 5, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
+  { name: "Straddle One Arm Rows", url: "https://www.shutterstock.com/image-vector/man-doing-single-arm-bent-600w-2101536073.jpg", category: "Pull", nivel: 6, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required:['argolas', 'paralelas', 'barraFixa', 'trx'] },
+  { name: "Pull Ups com ajuda ou elastico", url: "https://network.grupoabril.com.br/wp-content/uploads/sites/2/2017/01/xxxx.jpg?quality=85&strip=all&w=1024", category: "Pull", nivel: 0, type: "Vertical", division: "Barra Fixa (Pull Ups) - Vertical", required: ['barraFixa', 'superband'] },
   { name: "Pull Ups negativo", url: "https://www.fitstream.com/images/bodyweight-training/bodyweight-exercises/negative-pull-up-main.png", category: "Pull", nivel: 2, type: "Vertical", division: "Barra Fixa (Pull Ups) - Vertical", required:"barraFixa" },
   { name: "Pull Ups", url: "http://2.bp.blogspot.com/-kKolopOtBl8/UDvUdp8cDTI/AAAAAAAABw8/KwV1AzFxPsE/s400/FITNESS_proradicalskate.jpg", category: "Pull", nivel: 3, type: "Vertical", division: "Barra Fixa (Pull Ups) - Vertical", default: true, required:"barraFixa" },
   { name: "Pull Ups em L-sit", url: "https://i.pinimg.com/564x/f3/b2/eb/f3b2eb20fc9472333072dab45e4140a6.jpg", category: "Pull", nivel: 4, type: "Vertical", division: "Barra Fixa (Pull Ups) - Vertical", required:"barraFixa" },
@@ -61,7 +61,7 @@ const exercises = [
   { name: "Pistol", url: "https://www.spotebi.com/wp-content/uploads/2015/05/pistol-squat-exercise-illustration.jpg", category: "Legs", nivel: 4, type: "Parte da frente", division: "Squat (Push) - Parte da frente", required:"" },
   { name: "Pistol + 20% seu peso", url: "https://horadotreino.com.br/wp-content/uploads/2013/12/agachamento-unilateral2.jpg", category: "Legs", nivel: 5, type: "Parte da frente", division: "Squat (Push) - Parte da frente", required:"" },
   { name: "Pistol + 35% seu peso", url: "https://horadotreino.com.br/wp-content/uploads/2013/12/agachamento-unilateral2.jpg", category: "Legs", nivel: 6, type: "Parte da frente", division: "Squat (Push) - Parte da frente", required:"" },
-  { name: "Hip Thruster ", url: "https://thumbs.dreamstime.com/z/mulher-fazendo-levantamentos-eleva%C3%A7%C3%A3o-da-bunda-exerc%C3%ADcio-de-pontes-que-exercem-uma-ilustra%C3%A7%C3%A3o-plana-do-vetor-isolada-em-fundo-236723402.jpg", category: "Legs", nivel: 1, type: "Parte de trás", division: "Hip Thruster (Pull) - Parte de trás", default: true, required:"" },
+  { name: "Hip Thruster", url: "https://thumbs.dreamstime.com/z/mulher-fazendo-levantamentos-eleva%C3%A7%C3%A3o-da-bunda-exerc%C3%ADcio-de-pontes-que-exercem-uma-ilustra%C3%A7%C3%A3o-plana-do-vetor-isolada-em-fundo-236723402.jpg", category: "Legs", nivel: 1, type: "Parte de trás", division: "Hip Thruster (Pull) - Parte de trás", default: true, required:"" },
   { name: "Elevated Hip Thruster", url: "https://doctorlib.info/sport/mens-health-body/mens-health-body.files/image024.jpg", category: "Legs", nivel: 2, type: "Parte de trás", division: "Hip Thruster (Pull) - Parte de trás", required:"" },
   { name: "One Leg Hip Thruster", url: "https://cdn-0.weighttraining.guide/wp-content/uploads/2017/08/weighted-one-leg-hip-thrust-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4", category: "Legs", nivel: 3, type: "Parte de trás", division: "Hip Thruster (Pull) - Parte de trás", required:"" },
   { name: "Weighted Hip Thruster", url: "https://cdn-0.weighttraining.guide/wp-content/uploads/2017/04/barbell-hip-thrust-resized.png?ezimgfmt=ng%3Awebp%2Fngcb4", category: "Legs", nivel: 4, type: "Parte de trás", division: "Hip Thruster (Pull) - Parte de trás", required:"" },
@@ -89,10 +89,10 @@ const exercises = [
   { name: "L-sit Supinado", url: "https://i.ytimg.com/vi/WHi1bvZLwlw/maxresdefault.jpg", category: "Core", nivel: 6, type: "Abdômen", division: "L-sit (core) - Abdômen", required:"barraFixa" },
   { name: "60s de Prancha Abdominal", url: "https://corpoesbelto.com.br/wp-content/uploads/2018/03/Exerc%C3%ADcio-de-Prancha.jpg", category: "Core", nivel: 1, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
   { name: "Prancha Abdominal Unilateral", url: "https://treinomestre.com.br/wp-content/uploads/2021/07/prancha-lateral.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
-  { name: "Rodinha de Joelhos", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
-  { name: "Rodinha na Rampa Inclinada", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 4, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
-  { name: "Rodinha no chão Negativa", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 5, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
-  { name: "Rodinha no chão", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 6, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required:"" },
+  { name: "Rodinha de Joelhos", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
+  { name: "Rodinha na Rampa Inclinada", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 4, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
+  { name: "Rodinha no chão Negativa", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 5, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
+  { name: "Rodinha no chão", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 6, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
   { name: "Elevação de Perna Encolhida no Solo", url: "https://i.ytimg.com/vi/SoX3_liHpZE/maxresdefault.jpg", category: "Core", nivel: 1, type: "Abdômen", division: "Toes To Bar - Abdômen", required:"" },
   { name: "Elevação de Perna no Solo", url: "https://www.mundoboaforma.com.br/wp-content/uploads/2016/10/elevacao-de-pernas-e1475519816360.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "Toes To Bar - Abdômen", required:"" },
   { name: "Meio Toes to Bar (perna até a metade)", url: "https://i.ytimg.com/vi/6dHvTlsMvNY/maxresdefault.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "Toes To Bar - Abdômen", required:"barraFixa" },
@@ -112,11 +112,12 @@ const exercisesBase = exercises.filter(e => e.default == true)
 const div2 = document.getElementById('div2');
 
 window.addEventListener("load", function () {
-  // creatExercisesBase()
+
 });
 
 var treino = []
 var newExercises = []
+var newExercisesBase = []
 
 function getImgUrl(name) {
   const exercise = exercises.find(e => e.name === name);
@@ -135,7 +136,10 @@ function creatExercisesBase() {
   const divPai2 = document.getElementById('div2')
   var x = 1
   divPai2.classList.remove('d-none')
-  newExercises.forEach(exer => {
+
+
+
+  newExercisesBase.forEach(exer => {
     // Criação da nova div
     var novaDiv = document.createElement("div");
     novaDiv.id = "exer" + x;
@@ -221,7 +225,7 @@ function filter(id, name, category, type, nivel) {
   var level = exercises.filter(e => e.name == name)
   nivel = level[0].nivel
 
-  debugger
+
   // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
   if (input != null) {
     input == 0 || input <= 3 ? nivel -= 2 : null;
@@ -551,6 +555,8 @@ function creatStruct(id) {
 function gerarTreino(title, input, id) {
   // Cria um novo objeto com as informações do exercício
   const exer = getImgUrl(title.innerHTML)
+
+  //Se nao tiver equipamente para fazer um do tipo , tera que montar 5 séries do exercicio que ficou do max - 2
 
   const novoExercicio = { name: title.innerHTML, count: (input.value - 1), rept: 3, rest: 3, url: exer, num: id };
 
