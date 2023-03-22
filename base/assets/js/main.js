@@ -11,9 +11,11 @@ const exercises = [
   { name: "One Arm Push Ups/Tuck Planche", url: "https://post.healthline.com/wp-content/uploads/2019/07/Man-Exercising-1200x628-facebook.jpg", category: "Push", nivel: 6, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required:"" },
   { name: "Bench Dips (Dips no banco)", url: "https://media.istockphoto.com/id/1277965681/pt/vetorial/bench-triceps-dips-female-exercise-guide-colorful-illustration.jpg?s=170667a&w=0&k=20&c=rys1gAWR29rv2zQL21jzAxKAmUhOaobuUjYkKQkOqj8=", category: "Push", nivel: 0, type: "Vertical", division: 'Dips - Vertical', required:"" },
   { name: "Dips com ajuda ou elastico", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Dips.png/330px-Dips.png", category: "Push", nivel: 1, type: "Vertical", division: 'Dips - Vertical', required:['paralelas', 'superband'] },
-  { name: "Dips negativo", url: "https://julienquaglierini.com/wp-content/uploads/2018/08/dips-768x432.jpg.webp", category: "Push", nivel: 3, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
-  { name: "Dips na paralela", url: "https://static.netshoes.com.br/produtos/barra-paralela-dip-de-parede-calistenia-(parafusos-e-buchas-plasticas)/06/06O-0003-006/06O-0003-006_zoom3.jpg?ts=1601643646", category: "Push", nivel: 4, type: "Vertical", division: 'Dips - Vertical', default: true, required:"paralelas" },
-  { name: "Dips em L-sit", url: "https://www.shutterstock.com/image-vector/male-athlete-silhouette-doing-calisthenics-600w-1348704965.jpg", category: "Push", nivel: 5, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
+  { name: "Dips negativo", url: "https://julienquaglierini.com/wp-content/uploads/2018/08/dips-768x432.jpg.webp", category: "Push", nivel: 1, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
+  { name: "Dips na paralela", url: "https://static.netshoes.com.br/produtos/barra-paralela-dip-de-parede-calistenia-(parafusos-e-buchas-plasticas)/06/06O-0003-006/06O-0003-006_zoom3.jpg?ts=1601643646", category: "Push", nivel: 2, type: "Vertical", division: 'Dips - Vertical', default: true, required:"paralelas" },
+  { name: "Dips na paralela", url: "https://static.netshoes.com.br/produtos/barra-paralela-dip-de-parede-calistenia-(parafusos-e-buchas-plasticas)/06/06O-0003-006/06O-0003-006_zoom3.jpg?ts=1601643646", category: "Push", nivel: 3, type: "Vertical", division: 'Dips - Vertical', default: true, required:"paralelas" },
+  { name: "Dips em L-sit", url: "https://www.shutterstock.com/image-vector/male-athlete-silhouette-doing-calisthenics-600w-1348704965.jpg", category: "Push", nivel: 4, type: "Vertical", division: 'Dips - Vertical', required:['paralelas','argolas'] },
+  { name: "Dips a 45º (inclinado para frente)", url: "../img/Dips45ºpng.png", category: "Push", nivel: 4, type: "Vertical", division: 'Dips - Vertical', required:"paralelas" },
   { name: "Tuck Planche Push Ups", url: "https://qph.cf2.quoracdn.net/main-qimg-1782c86f06ca832b93dc8ae85ed637ae", category: "Push", nivel: 6, type: "Vertical", division: 'Dips - Vertical', required:"" },
   { name: "Rings Suppor Hold ", url: "https://bodydojo.com/wp-content/uploads/2018/06/RTO-support-400x300.jpg", category: "Push", nivel: 1, type: "Vertical", division: "Dips na Argola - Vertical", required:"argolas" },
   { name: "Rings Suppor Hold Supinado", url: "https://s3.amazonaws.com/prod.skimble/assets/832102/image_iphone.jpg", category: "Push", nivel: 2, type: "Vertical", division: "Dips na Argola - Vertical", required:"argolas" },
@@ -22,6 +24,7 @@ const exercises = [
   { name: "Dips em L-sit/Buldarian Dips", url: "https://cdn.vectorstock.com/i/1000x1000/05/62/man-doing-chair-bench-tricep-dips-exercise-vector-42870562.webp", category: "Push", nivel: 5, type: "Vertical", division: "Dips na Argola - Vertical", required:"" },
   { name: "Ring Dips Supinado", url: "https://www.shutterstock.com/image-vector/sporty-man-doing-ring-dips-600w-1360756589.jpg", category: "Push", nivel: 6, type: "Vertical", division: "Dips na Argola - Vertical", required:"argolas" },
   { name: "Dips com ajuda", url: "https://thumbs.dreamstime.com/z/ilustra%C3%A7%C3%A3o-de-vetor-for%C3%A7a-exerc%C3%ADcio-barra-dip-do-varejo-com-fundo-branco-vetorial-215590449.jpg", category: "Push", nivel: 1, type: "Vertical", division: "Weigthed Dips - Vertical", required:" paralelas" },
+  { name: "Dips na paralela", url: "https://static.netshoes.com.br/produtos/barra-paralela-dip-de-parede-calistenia-(parafusos-e-buchas-plasticas)/06/06O-0003-006/06O-0003-006_zoom3.jpg?ts=1601643646", category: "Push", nivel: 3, type: "Vertical", division: "Weigthed Dips - Vertical", required:"paralelas" },
   { name: "Dips + 20% do seu peso", url: "https://ginasiovirtual.com/wp-content/uploads/2021/06/fundos-com-peso.jpg", category: "Push", nivel: 4, type: "Vertical", division: "Weigthed Dips - Vertical", required:"paralelas" },
   { name: "Dips + 38% do seu peso", url: "https://ginasiovirtual.com/wp-content/uploads/2021/06/fundos-com-peso.jpg", category: "Push", nivel: 5, type: "Vertical", division: "Weigthed Dips - Vertical", required:"paralelas" },
   { name: "Dips + 55% do seu peso ", url: "https://ginasiovirtual.com/wp-content/uploads/2021/06/fundos-com-peso.jpg", category: "Push", nivel: 6, type: "Vertical", division: "Weigthed Dips - Vertical", required:"paralelas" },
@@ -31,6 +34,7 @@ const exercises = [
   { name: "Wall HSPU (Handstand Push Ups)", url: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt2c3e741ea4156df4/5dee7c59d03adf37d49cc286/Florian_HSPU_ES_HEAD.jpg?format=pjpg&auto=webp&quality=76&width=716", category: "Push", nivel: 4, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
   { name: "Wall HSPU c/ Paralela de frente | de costas", url: "https://elemento.ag/blog/wp-content/uploads/2022/02/image6.jpg", category: "Push", nivel: 5, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
   { name: "HSPU Livre", url: "https://http2.mlstatic.com/D_NQ_NP_2X_813656-MLB46427391074_062021-F.webp", category: "Push", nivel: 6, type: "Vertical", division: "Flexão na Parada de Mãos - Vertical", required:"" },
+
   { name: "Negativas de Remada", url: "https://treinomestre.com.br/wp-content/uploads/2021/11/remada-articulada.jpg", category: "Pull", nivel: 1, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
   { name: "Rows/Barra Australiana", url: "https://www.sport.es/labolsadelcorredor/wp-content/uploads/2018/05/Australian-pull-up.jpg", category: "Pull", nivel: 2, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", default: true, required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
   { name: "Wide Rows (pegada aberta)", url: "https://www.spotebi.com/wp-content/uploads/2015/04/wide-row-exercise-illustration.jpg", category: "Pull", nivel: 3, type: "Horizontal", division: " Rows/Barra Australiana - Horizontal", required: ['argolas', 'paralelas', 'barraFixa', 'trx'] },
@@ -140,6 +144,10 @@ function creatExercisesBase() {
 
 
   newExercisesBase.forEach(exer => {
+
+    if(exer == undefined){
+      return
+    }
     // Criação da nova div
     var novaDiv = document.createElement("div");
     novaDiv.id = "exer" + x;
