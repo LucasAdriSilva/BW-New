@@ -3,10 +3,17 @@
 
 {% block content %}
 
-<div id="quiz" class="carousel slide my-5">
-    <div class="row my-5 mx-3">
+<div id="quiz" class="carousel d-none slide my-5">
+    <div class="row mb-2">
+        <div class="col-12 d-flex justify-content-center align-items-center ">
+            <h5 class="reset text-uppercase"> 
+            Para gerar seu treino
+            </h5>
+        </div>
+    </div>
+    <div class="row mb-5 mx-3">
         <div class="col-12 d-flex justify-content-center align-items-center rounded-4 bg-quiz p-2">
-            <h4 class="reset text-uppercase">Responda o quiz abaixo</h4>
+            <h4 class="reset text-uppercase fw-bolder">Responda o quiz abaixo</h4>
         </div>
     </div>
     <div class="carousel-inner px-3">
@@ -268,11 +275,86 @@
     </button> -->
 </div>
 
-<div id="msgErr" class="row d-none my-5">
-    <div class="col-12">
-        Ops, verificamos que você não tem o <span class="reset text-danger"> equipamento necessário. </span>Sugerimos
-        que gere o treino pela opção de musculação ou comprar os equipamentos minimos!
+<div id="msgErr" class="row  my-5">
+    <div class="col-12 mb-2 d-flex justify-content-center align-items-center">
+         <h1 class="reset text-uppercase fw-bolder">Ops! </h1>
     </div>
+    
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="rounded-4 bg-orange2 p-3 text-center">
+            <span class="reset fs-6 text-uppercase fw-bold">
+                Parece que você não possui todos os equipamentos necessários para gerar este treino personalizado.
+            </span>
+        </div>
+        
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <span class="p-4 reset fs-6 text-center ">
+            Nós entendemos que isso pode ser frustrante, mas estamos aqui para ajudar. Para obter melhores resultados, sugerimos outras opções
+        </span>
+    </div>
+
+    <!-- <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
+        <img src="assets/img/check.png" class="icon-err" alt="">
+        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 1</span>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+        <span class="reset fs-4"> Comprar uma barra fixa</span>
+    </div>
+
+    <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
+        <img src="assets/img/check.png" class="icon-err" alt="">
+        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 2</span>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+        <span class="reset fs-4"> Fazer o programa na academia</span>
+    </div>
+
+    <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
+        <img src="assets/img/check.png" class="icon-err" alt="">
+        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 3</span>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+        <span class="reset fs-4 text-center"> Improvisar a barra australiana em algum lugar, ou a barra australiana pode ser seu único exercício de pull</span>
+    </div> -->
+
+
+    <div class="col-12">
+        <div class="row px-4 py-1">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+                <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 1</span>
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
+            ">
+                <span class="reset fs-4 py-3 px-2"> Comprar uma barra fixa</span>
+            </div>
+        </div>
+
+        <div class="row px-4 py-1">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+                <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 2</span>
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
+            ">
+                <span class="reset fs-4 py-3 px-2 text-center">Fazer o programa na academia</span>
+            </div>
+        </div>
+
+        <div class="row px-4 py-1">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+                <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 3</span>
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
+            ">
+                <span class="reset fs-4 py-3 px-2 text-center">Improvisar a barra australiana em algum lugar, ou a barra australiana pode ser seu único exercício de pull</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div id="div2" class="row d-none mt-5 rounded-3 d-flex justify-content-center align-content-center ">

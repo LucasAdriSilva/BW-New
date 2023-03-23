@@ -25,10 +25,10 @@ def teste():
 def index2():
     res = request.args.get('data')
     if res != None:
-      teste = json.loads(res.replace("'", "\""))
+      treino = json.loads(res.replace("'", "\""))
       data = {
         'nav': 'creat',
-        'treino': teste['treino'] 
+        'treino': treino['treino'] 
       }
       return render_template("home2.html", data=data)
     else: 

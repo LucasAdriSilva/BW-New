@@ -136,9 +136,18 @@ body {
   background-color: rgb(255, 199, 0);
 }
 
+.bg-orange2 {
+  background-color: rgb(255, 122, 5);
+  color: white;
+}
+
 .bg-orange {
   background-color: #ffa500;
   color: white;
+}
+
+.color-gree{
+  color: #6FBB3F;
 }
 
 .toggle-exer {
@@ -215,4 +224,9 @@ body {
 .form-check-square .form-check-input[type="checkbox"]:checked {
   background-color: rgb(255, 199, 0);
   border-color: rgb(255, 199, 0);
+}
+
+.icon-err{
+  width: 50px;
+  height: 50px;
 }
