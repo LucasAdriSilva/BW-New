@@ -35,8 +35,7 @@
                     </div>
 
                     <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="paralelas" id="ParalelaF"
-                            value="false">
+                        <input class="form-check-input" type="radio" name="paralelas" id="ParalelaF" value="false">
                         <label class="form-check-label" for="ParalelaF">
                             Não
                         </label>
@@ -153,7 +152,7 @@
                     <span class="w-50">Horas</span>
 
                     <select id="hours" class="form-select w-50 mx-3" aria-label="Default select example">
-                        <option class="text-center" selected>Horas</option>
+                        <option class="text-center" selected value="0">Horas</option>
                         <option class="text-center" value="0">0 Hora</option>
                         <option class="text-center" value="1">1 Hora</option>
                         <option class="text-center" value="2">2 Horas</option>
@@ -161,9 +160,9 @@
                         <option class="text-center" value="4">4 Horas</option>
                     </select>
 
-                    
+
                     <select id="min" class="form-select w-50 mx-3" aria-label="Default select example">
-                        <option class="text-center" selected>Min.</option>
+                        <option class="text-center" selected value="0">Min.</option>
                         <option class="text-center" value="0">0 Min</option>
                         <option class="text-center" value="5">5 Min</option>
                         <option class="text-center" value="10">10 Min</option>
@@ -178,6 +177,11 @@
                         <option class="text-center" value="55">55 Min</option>
                     </select>
 
+                </div>
+
+                <div id="timeErr" class="col-12 d-none d-flex justify-content-center align-i">
+
+                    <span class="text-danger text-center">O limite minimo de tempo é de 40 minutos, por favor altere o tempo do seu treino</span>
                 </div>
 
                 <!-- <div class="col-12  bg-gray px-3 py-2 rounded-2 d-flex justify-content-between align-items-center">
@@ -473,13 +477,15 @@
 
 <script>
     var requireds = []
-
+    var aux = 0
     // Obtém o elemento do carrossel e seus itens internos
     const quizCarousel = document.querySelector('#quiz');
     const quizItems = quizCarousel.querySelectorAll('.carousel-item');
     const hours = document.getElementById('hours')
     const min = document.getElementById('min')
     const days = document.getElementById('days')
+
+    const timeErr = document.getElementById('timeErr')
 
     // Percorre cada item do quiz e adiciona um evento de clique em seus inputs de opção
     quizItems.forEach(item => {
@@ -513,30 +519,61 @@
     });
 
     days.addEventListener('change', function () {
-        var newData = { name: 'days', value: days.value }
-        requireds.push(newData)
-    })
-
-
-    hours.addEventListener('change', function () {
-        var newData = { hours: hours.value }
-        requireds.push(newData)
-        //Da um filter no array em busca dos minutos
-        var find = requireds.filter(e => e.min != 'Min.')
-        // Se não tiver minutos no arrai nao cria os exercicios
-        if (find.length >= 9) {
-            verificationRequireds()
+        var D = parseInt(days.value)
+        if (D <= 0) {
+            // Erro de dia
+        }
+        else {
+            var newData = { name: 'days', value: days.value }
+            requireds.push(newData)
         }
     })
 
-    min.addEventListener('change', function () {
-        var newData = { min: min.value }
-        requireds.push(newData)
-        //Da um filter no array em busca das horas
-        var find = requireds.filter(e => e.hours != 'horas')
-        // Se não tiver horas no arrai nao cria os exercicios
-        if (find.length >= 9) {
+    hours.addEventListener('change', function () {
+        var H = parseInt(hours.value)
+        var M = parseInt(min.value)
+
+        min.classList.remove('selecte-err')
+        hours.classList.remove('selecte-err')
+
+        const index = requireds.findIndex((e) => e.hours == hours.value)
+
+        // Verificação se já existe o item no array
+        if (index !== -1) {
+            requireds[index].value = hours.value
+        } else {
+            requireds.push({ name: 'hours', value: hours.value })
+        }
+
+
+        //Da um filter no array em busca dos minutos
+        var find = requireds.filter(e => e.min != 'Min.')
+        // Se não tiver minutos no arrai nao cria os exercicios
+        if (find.length >= 10) {
             verificationRequireds()
+        }
+
+    })
+
+    min.addEventListener('change', function () {
+        var M = parseInt(min.value)
+        var H = parseInt(hours.value)
+        if (M <= 39 && H <= 0) {
+            //Lógica do erro
+            min.classList.add('selecte-err')
+            hours.classList.add('selecte-err')
+            timeErr.classList.remove('d-none')
+        }
+        else {
+            timeErr.classList.add('d-none')
+            var newData = { min: min.value }
+            requireds.push(newData)
+            //Da um filter no array em busca das horas
+            var find = requireds.filter(e => e.hours != 'horas')
+            // Se não tiver horas no arrai nao cria os exercicios
+            if (find.length >= 10) {
+                verificationRequireds()
+            }
         }
     })
 
