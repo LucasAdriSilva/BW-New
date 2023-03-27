@@ -212,7 +212,7 @@ function creatExercisesBase() {
   })
 
   // Criando as verificações "Blur"
-  for (let i = 1; i < newExercisesBase.length; i++) {
+  for (let i = 1; i < newExercisesBase.length + 1; i++) {
     creatStruct(i)
   }
 
@@ -495,7 +495,7 @@ function openToggleExer(id, Title, Input) {
 }
 
 function addColorError() {
-  for (let i = 1; i < newExercisesBase.length; i++) {
+  for (let i = 1; i < newExercisesBase.length + 1; i++) {
     const input = document.getElementById('ValidExer' + i)
     const title = document.getElementById('ValidTitle' + i)
     const repts = document.getElementById('repts' + i)
