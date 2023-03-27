@@ -179,7 +179,7 @@ function creatExercisesBase() {
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
-              <p class="reset text-uppercase text-gray1">PAUSE</p>
+              <p class="reset text-uppercase text-gray1">PAUSA</p>
               <input required="true" disabled placeholder="3min"
                 class="w-75 input-value text-center rounded-3" type="text">
             </div>
