@@ -185,7 +185,7 @@ function creatExercisesBase() {
             </div>
           </div>
 
-          <i class="bi bi-three-dots-vertical position-absolute top-0 end-0 "></i>
+           <!--<i class="bi bi-three-dots-vertical position-absolute top-0 end-0 "></i>-->
         </div>
 
         <div id="${'toggleExer' + x}"class="col-12 d-none d-flex flex-column justify-content-center">

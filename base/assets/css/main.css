@@ -216,8 +216,8 @@ body {
 .form-check-square .form-check-input[type="radio"] {
   width: 1.3em !important;
   height: 1.3em !important;
-  background-color: #fff !important;
-  border: 1px solid #ced4da !important;
+  background-color: #fff ;
+  border: 1px solid #ced4da ;
   border-radius: 0.25em !important;
 }
 
@@ -229,4 +229,25 @@ body {
 .icon-err{
   width: 50px;
   height: 50px;
+}
+
+.bg-gray2{
+ background-color: #ececec;
+}
+
+
+input[type="radio"]:checked {
+  /* Estilos para botão de opção marcado */
+  background-color: #ffffff !important;
+}
+
+.form-check-input {
+  box-shadow: none !important;
+}
+
+.form-check-input:checked[type=radio] {
+  /* --bs-form-check-bg-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e); */
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='%23000' d='M13.354 4.646a.5.5 0 0 0-.708 0L6.5 10.793 3.854 8.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7a.5.5 0 0 0 0-.708z'/%3e%3c/svg%3e");
+
+
 }

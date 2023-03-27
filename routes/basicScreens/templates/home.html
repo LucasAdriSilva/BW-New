@@ -6,38 +6,123 @@
 <div id="quiz" data-bs-touch="false" class="carousel slide my-5">
     <div class="row mb-2">
         <div class="col-12 d-flex justify-content-center align-items-center ">
-            <h5 class="reset text-uppercase"> 
-            Para gerar seu treino
+            <h5 class="reset text-uppercase">
+                Para gerar seu treino
             </h5>
         </div>
     </div>
     <div class="row mb-5 mx-3">
-        <div class="col-12 d-flex justify-content-center align-items-center rounded-4 bg-quiz p-2">
+        <div class="col-12 d-flex justify-content-center align-items-center rounded-2 bg-quiz p-2">
             <h4 class="reset text-uppercase fw-bolder">Responda o quiz abaixo</h4>
         </div>
     </div>
 
     <div class="carousel-inner px-3">
         <div class="carousel-item active">
-            <div class="row gap-1">
+            <div class="row gap-3">
                 <!-- Quest -->
                 <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a Super band?</h3>
+                    <h3 class="text-center">Quais equiamentos você tem para trienar? Marque abaixo:</h3>
                 </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
+
+                <div class="col-12 bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Barra Paralela 80cm</span>
                     <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="superband" id="radio1Quiz1" value="true">
-                        <label class="form-check-label" for="radio2Quiz1">
+                        <input class="form-check-input" type="radio" name="paralelas" id="ParalelaT" value="true">
+                        <label class="form-check-label" for="ParalelaT">
                             Sim
                         </label>
                     </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
+
                     <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="superband" id="radio2Quiz1" value="false">
-                        <label class="form-check-label" for="radio2Quiz1">
+                        <input class="form-check-input" type="radio" name="paralelas" id="ParalelaF"
+                            value="false">
+                        <label class="form-check-label" for="ParalelaF">
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Barra fixa de porta, parede ou de chão</span>
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="barraFixa" id="barraFixaT" value="true">
+                        <label class="form-check-label" for="barraFixaT">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="barraFixa" id="barraFixaF" value="false">
+                        <label class="form-check-label" for="barraFixaF">
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12  bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">TRX</span>
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="trx" id="trxT" value="true">
+                        <label class="form-check-label" for="trxT">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="trx" id="trxF" value="false">
+                        <label class="form-check-label" for="trxF">
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12  bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Rodinha Abdominal</span>
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="rodinha" id="rodinhaT" value="true">
+                        <label class="form-check-label" for="rodinhaT">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="rodinha" id="rodinhaF" value="false">
+                        <label class="form-check-label" for="rodinhaF">
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12  bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Argolas de madeira</span>
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="argolas" id="argolasT" value="true">
+                        <label class="form-check-label" for="argolasT">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="argolas" id="argolasF" value="false">
+                        <label class="form-check-label" for="argolasF">
+                            Não
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12  bg-gray2 px-3 py-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Super Bands</span>
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="superband" id="superbandT" value="true">
+                        <label class="form-check-label" for="superbandT">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-square">
+                        <input class="form-check-input" type="radio" name="superband" id="superbandF" value="false">
+                        <label class="form-check-label" for="superbandF">
                             Não
                         </label>
                     </div>
@@ -49,220 +134,55 @@
             <div class="row gap-1">
                 <!-- Quest -->
                 <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a barras paralelas altas de 80cm de altura?</h3>
+                    <h3 class="text-center">Quanto tempo você tem para treinar?</h3>
                 </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="paralelas" id="radio1Quiz2" value="true">
-                        <label class="form-check-label" for="radio1Quiz2">
-                            Sim
-                        </label>
-                    </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="paralelas" id="radio2Quiz2" value="false">
-                        <label class="form-check-label" for="radio2Quiz2">
-                            Não
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="carousel-item ">
-            <div class="row gap-1">
-                <!-- Quest -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a barra fixa (de parede, porta ou fixa no chão)?</h3>
-                </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="barraFixa" id="radio1Quiz3" value="true">
-                        <label class="form-check-label" for="radio1Quiz3">
-                            Sim
-                        </label>
-                    </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="barraFixa" id="radio2Quiz3" value="false">
-                        <label class="form-check-label" for="radio2Quiz3">
-                            Não
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item ">
-            <div class="row gap-1">
-                <!-- Quest -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a argolas?</h3>
-                </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="argolas" id="radio1Quiz4" value="true">
-                        <label class="form-check-label" for="radio1Quiz4">
-                            Sim
-                        </label>
-                    </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="argolas" id="radio2Quiz4" value="false">
-                        <label class="form-check-label" for="radio2Quiz4">
-                            Não
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item ">
-            <div class="row gap-1">
-                <!-- Quest -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a TRX?</h3>
-                </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="trx" id="radio1Quiz5" value="true">
-                        <label class="form-check-label" for="radio1Quiz5">
-                            Sim
-                        </label>
-                    </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="trx" id="radio2Quiz5" value="false">
-                        <label class="form-check-label" for="radio2Quiz5">
-                            Não
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item ">
-            <div class="row gap-1">
-                <!-- Quest -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Tem acesso a rodinha?</h3>
-                </div>
-                <!-- Yes -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="rodinha" id="radio1Quiz8" value="true">
-                        <label class="form-check-label" for="radio1Quiz8">
-                            Sim
-                        </label>
-                    </div>
-                </div>
-                <!-- No -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="rodinha" id="radio2Quiz8" value="false">
-                        <label class="form-check-label" for="radio2Quiz8">
-                            Não
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item ">
-            <div class="row gap-1">
-                <!-- Quest -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="text-center">Quantos dias da semana você tem disponíveis para treinar?</h3>
-                </div>
-                <!-- 3 -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="qtdTreino" id="radio1Quiz6" value="3">
-                        <label class="form-check-label" for="radio1Quiz6">
-                            3 Dias
-                        </label>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="qtdTreino" id="radio2Quiz6" value="4">
-                        <label class="form-check-label" for="radio2Quiz6">
-                            4 dias
-                        </label>
-                    </div>
-                </div>
-                <!-- 5 -->
-                <div class="col-12 d-flex flex-column justify-content-center align-items-start bg-gray rounded-2 p-1">
-                    <div class="form-check form-check-square">
-                        <input class="form-check-input" type="radio" name="qtdTreino" id="radio3Quiz5" value="5">
-                        <label class="form-check-label" for="radio3Quiz5">
-                            5 Dias
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="text-center">Quanto tempo em cada dia?</h3>
-                </div>
-                <div class="col-6 d-flex flex-column justify-content-center align-items-center">
-                    <select id="hours" class="form-select" aria-label="Default select example">
-                        <option selected>Horas</option>
-                        <option value="0">0 Hora</option>
-                        <option value="1">1 Hora</option>
-                        <option value="2">2 Horas</option>
-                        <option value="3">3 Horas</option>
-                        <option value="4">4 Horas</option>
+                <div class="col-12 bg-gray px-3 py-2 rounded-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Dias</span>
+                    <select id="days" class="form-select w-50" aria-label="Default select example">
+                        <option class="text-center" selected>Dias</option>
+                        <option class="text-center" value="3">3</option>
+                        <option class="text-center" value="4">4</option>
+                        <option class="text-center" value="5">5</option>
                     </select>
-                    <!-- <div class="form-check">
-                        <input class="form-check-input" type="radio" name="quiz7" id="radio1Quiz7" value="true">
-                        <input class="form-check-input" type="radio" name="quiz7" id="radio1Quiz7" value="true">
-                        <label class="form-check-label" for="radio1Quiz7">
-                            SIM
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="quiz7" id="radio2Quiz7" value="false ">
-                        <label class="form-check-label" for="radio2Quiz7">
-                           NÂO
-                        </label>
-                    </div> -->
                 </div>
-                <div class="col-6 d-flex flex-column justify-content-center align-items-center">
-                    <select id="min" class="form-select" aria-label="Default select example">
-                        <option selected>Min.</option>
-                        <option value="0">0 Min</option>
-                        <option value="5">5 Min</option>
-                        <option value="10">10 Min</option>
-                        <option value="15">15 Min</option>
-                        <option value="20">20 Min</option>
-                        <option value="25">25 Min</option>
-                        <option value="30">30 Min</option>
-                        <option value="35">35 Min</option>
-                        <option value="40">40 Min</option>
-                        <option value="45">45 Min</option>
-                        <option value="50">50 Min</option>
-                        <option value="55">55 Min</option>
+
+                <div class="col-12  bg-gray px-3 py-2 rounded-2 d-flex justify-content-between align-items-center">
+                    <span class="w-50">Horas</span>
+
+                    <select id="hours" class="form-select w-50" aria-label="Default select example">
+                        <option class="text-center" selected>Horas</option>
+                        <option class="text-center" value="0">0 Hora</option>
+                        <option class="text-center" value="1">1 Hora</option>
+                        <option class="text-center" value="2">2 Horas</option>
+                        <option class="text-center" value="3">3 Horas</option>
+                        <option class="text-center" value="4">4 Horas</option>
+                    </select>
+
+                </div>
+
+                <div class="col-12  bg-gray px-3 py-2 rounded-2 d-flex justify-content-between align-items-center">
+                    <span class class="text-center"="w-50">Minutos</span>
+
+                    <select id="min" class="form-select w-50" aria-label="Default select example">
+                        <option class="text-center" selected>Min.</option>
+                        <option class="text-center" value="0">0 Min</option>
+                        <option class="text-center" value="5">5 Min</option>
+                        <option class="text-center" value="10">10 Min</option>
+                        <option class="text-center" value="15">15 Min</option>
+                        <option class="text-center" value="20">20 Min</option>
+                        <option class="text-center" value="25">25 Min</option>
+                        <option class="text-center" value="30">30 Min</option>
+                        <option class="text-center" value="35">35 Min</option>
+                        <option class="text-center" value="40">40 Min</option>
+                        <option class="text-center" value="45">45 Min</option>
+                        <option class="text-center" value="50">50 Min</option>
+                        <option class="text-center" value="55">55 Min</option>
                     </select>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- <button class="carousel-control-prev" type="button" data-bs-target="#quiz" data-bs-slide="prev">
@@ -277,55 +197,29 @@
 
 <div id="msgErr" class="row d-none my-5">
     <div class="col-12 mb-2 d-flex justify-content-center align-items-center">
-         <h1 class="reset text-uppercase fw-bolder">Ops! </h1>
+        <h1 class="reset text-uppercase fw-bolder">Ops! </h1>
     </div>
-    
+
     <div class="col-12 d-flex justify-content-center align-items-center">
         <div class="rounded-4 bg-orange2 p-3 text-center">
             <span class="reset fs-6 text-uppercase fw-bold">
                 Parece que você não possui todos os equipamentos necessários para gerar este treino personalizado.
             </span>
         </div>
-        
+
     </div>
 
     <div class="col-12 d-flex justify-content-center align-items-center">
         <span class="p-4 reset fs-6 text-center ">
-            Nós entendemos que isso pode ser frustrante, mas estamos aqui para ajudar. Para obter melhores resultados, sugerimos outras opções
+            Nós entendemos que isso pode ser frustrante, mas estamos aqui para ajudar. Para obter melhores resultados,
+            sugerimos outras opções
         </span>
     </div>
 
-    <!-- <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
-        <img src="assets/img/check.png" class="icon-err" alt="">
-        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 1</span>
-    </div>
-
-    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-        <span class="reset fs-4"> Comprar uma barra fixa</span>
-    </div>
-
-    <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
-        <img src="assets/img/check.png" class="icon-err" alt="">
-        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 2</span>
-    </div>
-
-    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-        <span class="reset fs-4"> Fazer o programa na academia</span>
-    </div>
-
-    <div class="col-12 pl-2 d-flex justify-content-center align-items-center">
-        <img src="assets/img/check.png" class="icon-err" alt="">
-        <span class="reset fs-4 fw-bolder color-gree text-uppercase"> Opção 3</span>
-    </div>
-
-    <div class="col-12 d-flex justify-content-center align-items-center mb-3">
-        <span class="reset fs-4 text-center"> Improvisar a barra australiana em algum lugar, ou a barra australiana pode ser seu único exercício de pull</span>
-    </div> -->
-
-
     <div class="col-12">
         <div class="row px-4 py-1">
-            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+            <div class="col-12 d-flex justify-content-center align-items-center"
+                style="background-color: rgb(192, 192, 192);">
                 <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 1</span>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
@@ -335,7 +229,8 @@
         </div>
 
         <div class="row px-4 py-1">
-            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+            <div class="col-12 d-flex justify-content-center align-items-center"
+                style="background-color: rgb(192, 192, 192);">
                 <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 2</span>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
@@ -345,12 +240,14 @@
         </div>
 
         <div class="row px-4 py-1">
-            <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(192, 192, 192);">
+            <div class="col-12 d-flex justify-content-center align-items-center"
+                style="background-color: rgb(192, 192, 192);">
                 <span class="reset text-uppercase fs-5 fw-bolder p-2"> opção 3</span>
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center" style="background-color: rgb(240, 240, 240);
             ">
-                <span class="reset fs-4 py-3 px-2 text-center">Improvisar a barra australiana em algum lugar, ou a barra australiana pode ser seu único exercício de pull</span>
+                <span class="reset fs-4 py-3 px-2 text-center">Improvisar a barra australiana em algum lugar, ou a barra
+                    australiana pode ser seu único exercício de pull</span>
             </div>
         </div>
     </div>
@@ -563,24 +460,44 @@
     const quizItems = quizCarousel.querySelectorAll('.carousel-item');
     const hours = document.getElementById('hours')
     const min = document.getElementById('min')
+    const days = document.getElementById('days')
 
     // Percorre cada item do quiz e adiciona um evento de clique em seus inputs de opção
     quizItems.forEach(item => {
         const optionInputs = item.querySelectorAll('.form-check-input');
+
         optionInputs.forEach((input) => {
             input.addEventListener('click', () => {
-                // quizCarousel.next();
                 const name = input.name
                 const value = input.value
-                var newData = { name: name, value: value }
-                requireds.push(newData)
+                const index = requireds.findIndex((e) => e.name == name)
 
-                $('input[type=radio]').change(function () {
-                    $('.carousel').carousel('next'); // Avança para o próximo slide
-                });
+                // Verificação se já existe o item no array
+                if (index !== -1) {
+                    requireds[index].value = value
+                } else {
+                    requireds.push({ name: name, value: value })
+                }
+
+                console.log(requireds)
+                if (requireds.length == 6 && input.name != 'qtdTreino') {
+                    $('input[type=radio]').change(function () {
+                        $('.carousel').carousel('next'); // Avança para o próximo slide
+                    });
+
+                    if (requireds.length > 6) {
+                        console.log('wee')
+                    }
+                }
             });
         });
     });
+
+    days.addEventListener('change', function () {
+        var newData = { name: 'days', value: days.value }
+        requireds.push(newData)
+    })
+
 
     hours.addEventListener('change', function () {
         var newData = { hours: hours.value }
@@ -611,7 +528,7 @@
         var argolas = requireds.filter(e => e.name == 'argolas')[0].value
         var trx = requireds.filter(e => e.name == 'trx')[0].value
         var rodinha = requireds.filter(e => e.name == 'rodinha')[0].value
-        var qtdTreino = parseInt(requireds.filter(e => e.name == 'qtdTreino')[0].value)
+        var days = parseInt(requireds.filter(e => e.name == 'days')[0].value)
         var horas = requireds.filter(e => e.name == 'hours')[0]
         var min = requireds.filter(e => e.name == 'min')[0]
 
@@ -695,7 +612,6 @@
             });
         }
 
-
         // Verifica se tem o minimo 
         if (paralelas == 'false' && barraFixa == 'false' && argolas == 'false' && trx == 'false') {
             const quiz = document.getElementById('quiz')
@@ -703,7 +619,7 @@
 
             const divErr = document.getElementById('msgErr')
             divErr.classList.remove('d-none')
-        } 
+        }
         else {
 
             // Primeiro Exercicio
@@ -727,7 +643,7 @@
 
             // Sexto Exercicio
             newExercisesBase.push(exercises.filter(e => e.name == 'Hip Thruster')[0])
-            
+
             // Setimo Exercicio
             paralelas == 'true' ?
                 newExercisesBase.push(exercises.filter(e => e.name == 'Tuck L-sit')[0]) :
