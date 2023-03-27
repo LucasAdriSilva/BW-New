@@ -181,7 +181,8 @@
 
                 <div id="timeErr" class="col-12 d-none d-flex justify-content-center align-i">
 
-                    <span class="text-danger text-center">O limite minimo de tempo é de 40 minutos, por favor altere o tempo do seu treino</span>
+                    <span class="text-danger text-center">O limite minimo de tempo é de 40 minutos, por favor altere o
+                        tempo do seu treino</span>
                 </div>
 
                 <!-- <div class="col-12  bg-gray px-3 py-2 rounded-2 d-flex justify-content-between align-items-center">
@@ -477,7 +478,6 @@
 
 <script>
     var requireds = []
-    var aux = 0
     // Obtém o elemento do carrossel e seus itens internos
     const quizCarousel = document.querySelector('#quiz');
     const quizItems = quizCarousel.querySelectorAll('.carousel-item');
@@ -536,20 +536,23 @@
         min.classList.remove('selecte-err')
         hours.classList.remove('selecte-err')
 
-        const index = requireds.findIndex((e) => e.hours == hours.value)
+        const index = requireds.findIndex((e) => e.name == 'hours')
+        const indexMin = requireds.findIndex((e) => e.name == 'min')
 
         // Verificação se já existe o item no array
         if (index !== -1) {
             requireds[index].value = hours.value
+            if (indexMin !== -1) {
+                requireds[indexMin].value = min.value
+            }
         } else {
             requireds.push({ name: 'hours', value: hours.value })
         }
 
-
         //Da um filter no array em busca dos minutos
         var find = requireds.filter(e => e.min != 'Min.')
         // Se não tiver minutos no arrai nao cria os exercicios
-        if (find.length >= 10) {
+        if (find.length >= 9) {
             verificationRequireds()
         }
 
@@ -558,20 +561,32 @@
     min.addEventListener('change', function () {
         var M = parseInt(min.value)
         var H = parseInt(hours.value)
+        const index2 = requireds.findIndex((e) => e.min == min.value)
+
         if (M <= 39 && H <= 0) {
             //Lógica do erro
             min.classList.add('selecte-err')
             hours.classList.add('selecte-err')
             timeErr.classList.remove('d-none')
+            if (index2 !== -1) {
+                requireds[index2].value = min.value
+            } else {
+                requireds.push({ name: 'min', value: min.value })
+            }
         }
         else {
             timeErr.classList.add('d-none')
-            var newData = { min: min.value }
-            requireds.push(newData)
+            // Verifica se já existe, se tiver att se nao adiciona
+            if (index2 !== -1) {
+                requireds[index2].value = min.value
+            } else {
+                requireds.push({ name: 'min', value: min.value })
+            }
+
             //Da um filter no array em busca das horas
             var find = requireds.filter(e => e.hours != 'horas')
             // Se não tiver horas no arrai nao cria os exercicios
-            if (find.length >= 10) {
+            if (find.length >= 9) {
                 verificationRequireds()
             }
         }
