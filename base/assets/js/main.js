@@ -412,7 +412,7 @@ function subs(id, name, category, type, img, nivel) {
 
 }
 
-function openToggleExer(id, Title, Input) {
+function openToggleExer(id, Title, Input, bool) {
   const input = document.getElementById('ValidExer' + id);
   const btn = document.getElementById('toggleExer' + id)
   const light = document.getElementById('light' + id)
@@ -446,11 +446,13 @@ function openToggleExer(id, Title, Input) {
 
   }
   if (input.value > 4 && input.value < 16) {
-    success.classList.remove('d-none')
-    // Tempo da message de sucesso
-    setTimeout(function () {
-      success.classList.add("d-none");
-    }, 10000);
+    if(bool){
+      success.classList.remove('d-none')
+      // Tempo da message de sucesso
+      setTimeout(function () {
+        success.classList.add("d-none");
+      }, 10000);
+    }
     input.classList.remove('text-danger')
     input.classList.remove('input-danger')
 
@@ -517,7 +519,7 @@ function addColorError() {
       // title.classList.remove('text-danger')
 
 
-      openToggleExer(i, title, input)
+      openToggleExer(i, title, input, false)
     }
 
   }
@@ -552,7 +554,7 @@ function creatStruct(id) {
       repts.classList.remove('text-danger')
       input.classList.remove('input-exer-fail')
       input.classList.add('input-exer')
-      openToggleExer(id, title, input)
+      openToggleExer(id, title, input, true)
     }
   })
 }
