@@ -1,6 +1,3 @@
-
-
-
 const exercises = [
   { name: "Knee Push Ups (de joelho)", url: "https://cdn.w600.comps.canstockphoto.com.br/trabalhando-dela-joelho-femininas-vetor-clip-arte_csp89802369.jpg", category: "Push", nivel: 0, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", required: "" },
   { name: "Flexão Padrão", url: "https://aprovataf.com.br/wp-content/uploads/2016/04/Flex%C3%A3o-de-bra%C3%A7o-no-solo-AprovaTAF.jpg", category: "Push", nivel: 1, type: "Horizontal", division: "Flexão (Push Ups) - Horizontal", default: true, required: "" },

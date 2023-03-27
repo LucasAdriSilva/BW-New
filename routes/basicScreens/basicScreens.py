@@ -43,5 +43,5 @@ def index3():
   data = {
     'nav': '3'
   }
-  return render_template("home3.html", data = data)
+  return render_template("user.html", data = data)
 

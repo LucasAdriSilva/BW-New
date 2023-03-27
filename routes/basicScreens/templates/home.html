@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div id="quiz" class="carousel  slide my-5">
+<div id="quiz" data-bs-touch="false" class="carousel slide my-5">
     <div class="row mb-2">
         <div class="col-12 d-flex justify-content-center align-items-center ">
             <h5 class="reset text-uppercase"> 
@@ -16,6 +16,7 @@
             <h4 class="reset text-uppercase fw-bolder">Responda o quiz abaixo</h4>
         </div>
     </div>
+
     <div class="carousel-inner px-3">
         <div class="carousel-item active">
             <div class="row gap-1">
@@ -152,7 +153,6 @@
             </div>
         </div>
 
-
         <div class="carousel-item ">
             <div class="row gap-1">
                 <!-- Quest -->
@@ -179,7 +179,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="carousel-item ">
             <div class="row gap-1">
@@ -217,8 +216,6 @@
             </div>
         </div>
 
-
-
         <div class="carousel-item">
             <div class="row">
                 <div class="col-12">
@@ -227,14 +224,12 @@
                 <div class="col-6 d-flex flex-column justify-content-center align-items-center">
                     <select id="hours" class="form-select" aria-label="Default select example">
                         <option selected>Horas</option>
+                        <option value="0">0 Hora</option>
                         <option value="1">1 Hora</option>
                         <option value="2">2 Horas</option>
                         <option value="3">3 Horas</option>
                         <option value="4">4 Horas</option>
                     </select>
-
-
-
                     <!-- <div class="form-check">
                         <input class="form-check-input" type="radio" name="quiz7" id="radio1Quiz7" value="true">
                         <input class="form-check-input" type="radio" name="quiz7" id="radio1Quiz7" value="true">
@@ -252,6 +247,8 @@
                 <div class="col-6 d-flex flex-column justify-content-center align-items-center">
                     <select id="min" class="form-select" aria-label="Default select example">
                         <option selected>Min.</option>
+                        <option value="0">0 Min</option>
+                        <option value="5">5 Min</option>
                         <option value="10">10 Min</option>
                         <option value="15">15 Min</option>
                         <option value="20">20 Min</option>
@@ -259,6 +256,9 @@
                         <option value="30">30 Min</option>
                         <option value="35">35 Min</option>
                         <option value="40">40 Min</option>
+                        <option value="45">45 Min</option>
+                        <option value="50">50 Min</option>
+                        <option value="55">55 Min</option>
                     </select>
                 </div>
             </div>
