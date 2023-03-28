@@ -446,7 +446,7 @@ function openToggleExer(id, Title, Input, bool) {
 
   }
   if (input.value > 4 && input.value < 16) {
-    if(bool){
+    if (bool) {
       success.classList.remove('d-none')
       // Tempo da message de sucesso
       setTimeout(function () {
@@ -504,7 +504,7 @@ function addColorError() {
     const light = document.getElementById('light' + i)
     const heavy = document.getElementById('heavy' + i)
 
-    
+
     if (input.value == NaN || input.value == null || input.value == undefined || input.value == "") {
       // Se o input estiver vazio add as classes 
       input.classList.remove('input-exer')
@@ -540,7 +540,7 @@ function creatStruct(id) {
   const input = document.getElementById('ValidExer' + id)
   const title = document.getElementById('ValidTitle' + id)
   const repts = document.getElementById('repts' + id)
-  
+
   input.addEventListener('blur', function () {
     if (input.value == NaN ||
       input.value == null ||
@@ -707,7 +707,74 @@ function gerarTreino(title, input, id) {
 //   }
 // }
 
+function validationQtdExer() {
+  var filterCategory = []
+
+  treino.forEach(e => {
+    var aux = exercises.filter(i => i.name == e.name)
+    filterCategory.push(aux)
+  })
+
+  var Push = filterCategory.flat().filter(e => e.category == 'Push')
+  var Pull = filterCategory.flat().filter(e => e.category == 'Pull')
+  var Core = filterCategory.flat().filter(e => e.category == 'Core')
+  var Legs = filterCategory.flat().filter(e => e.category == 'Legs')
+
+  if (Push.length == 1) {
+    // Procura no treino qual é o index do exercicio que precisa ser alterado
+    let indexName = treino.findIndex(e => e.name == Push[0].name)
+    // Atualiza o count = 5 e rept = (total -2)
+    if (indexName !== -1) {
+      console.log(treino[indexName])
+      treino[indexName].rept = 5
+      treino[indexName].count -= 1
+    } else {
+      console.log('treino completo')
+    }
+  }
+
+  if (Pull.length == 1) {
+    // Procura no treino qual é o index do exercicio que precisa ser alterado
+    let indexName = treino.findIndex(e => e.name == Pull[0].name)
+    // Atualiza o count = 5 e rept = (total -2)
+    if (indexName !== -1) {
+      console.log(treino[indexName])
+      treino[indexName].rept = 5
+      treino[indexName].count -= 1
+    } else {
+      console.log('treino completo')
+    }
+  }
+
+  if (Core.length == 1) {
+    // Procura no treino qual é o index do exercicio que precisa ser alterado
+    let indexName = treino.findIndex(e => e.name == Core[0].name)
+    // Atualiza o count = 5 e rept = (total -2)
+    if (indexName !== -1) {
+      console.log(treino[indexName])
+      treino[indexName].rept = 5
+      treino[indexName].count -= 1
+    } else {
+      console.log('treino completo')
+    }
+  }
+
+  if (Legs.length == 1) {
+    // Procura no treino qual é o index do exercicio que precisa ser alterado
+    let indexName = treino.findIndex(e => e.name == Legs[0].name)
+    // Atualiza o count = 5 e rept = (total -2)
+    if (indexName !== -1) {
+      console.log(treino[indexName])
+      treino[indexName].rept = 5
+      treino[indexName].count -= 1
+    } else {
+      console.log('treino completo')
+    }
+  }
+}
+
 function enviarTreino2() {
+  validationQtdExer()
   if (treino.length == newExercisesBase.length - 1) {
     fetch('/sendTraining', {
       method: 'POST',
