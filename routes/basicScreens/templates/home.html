@@ -461,6 +461,35 @@
 
 </div>
 
+<!-- Modal de Exercicios com segundos-->
+<div class="modal fade" id="toggleExerSegs" tabindex="-1" aria-labelledby="toggleExerSegsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center align-items-center">
+                <span class="text-center text-uppercase font-title-modal fw-bold" id="toggleExerSegsLabel">Seu exercicio está pesado!</span>
+            </div>
+            <div class="modal-body">
+                <div class="row reset-Padding">
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <span class="text-center font-title-modal">Sugerimos excluir o exercicio </span>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center align-items-cente">
+                        <span id="nameExer" class="text-center fw-bolder text-uppercase"></span>
+                    </div>
+                    <div class="col-12 mt-3 d-flex justify-content-center align-items-cente">
+                        <span class="mt-2 text-start font-capt text-danger">Seu treino ira ficar com apenas um exercício do grupo muscular <span id="categoryExer" class="fw-bolder font-capt"></span></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="removeExer" data-bs-dismiss="modal" class="btn btn-success">Excluir</button>
+                <button data-bs-dismiss="modal" class="btn btn-success">Não Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- <script>

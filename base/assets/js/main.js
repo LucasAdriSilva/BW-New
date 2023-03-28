@@ -82,14 +82,14 @@ const exercises = [
   { name: "Sissy com Elevação Média", url: "https://www.inspireusafoundation.org/wp-content/uploads/2022/11/sissy-squat-muscles-768x569.png", category: "Legs", nivel: 4, type: "Parte da frente", division: "Shrimp Squat (Push) - Parte da frente", required: "" },
   { name: "Sissy com Elevação Minima", url: "https://www.inspireusafoundation.org/wp-content/uploads/2022/11/sissy-squat-muscles-768x569.png", category: "Legs", nivel: 5, type: "Parte da frente", division: "Shrimp Squat (Push) - Parte da frente", required: "" },
   { name: "Sissy Squat", url: "https://www.inspireusafoundation.org/wp-content/uploads/2022/11/sissy-squat-muscles-768x569.png", category: "Legs", nivel: 6, type: "Parte da frente", division: "Shrimp Squat (Push) - Parte da frente", required: "" },
-  { name: "Tuck L-sit", url: "https://calisthenicsfamily.b-cdn.net/wp-content/uploads/2021/04/Tuck-Planche-progression-Tucked-L-sit.png", category: "Core", nivel: 1, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas" },
-  { name: "One Leg L-sit", url: "https://bodydojo.com/wp-content/uploads/2018/09/single-leg-L-sit-parallettes-400x300.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas" },
-  { name: "L-sit", url: "https://www.shutterstock.com/image-vector/l-sit-hang-on-bar-600w-796165771.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "L-sit (core) - Abdômen", default: true, required: "barraFixa" },
-  { name: "Straddle L-sit", url: "https://mover.tips/pics/exercise/s/straddle-l-sit.png", category: "Core", nivel: 4, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas" },
-  { name: "Rings L-sit", url: "https://i.ytimg.com/vi/lwcHmXvw-T4/maxresdefault.jpg", category: "Core", nivel: 5, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "argolas" },
-  { name: "L-sit Supinado", url: "https://i.ytimg.com/vi/WHi1bvZLwlw/maxresdefault.jpg", category: "Core", nivel: 6, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "barraFixa" },
-  { name: "60s de Prancha Abdominal", url: "https://corpoesbelto.com.br/wp-content/uploads/2018/03/Exerc%C3%ADcio-de-Prancha.jpg", category: "Core", nivel: 1, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: "" },
-  { name: "Prancha Abdominal Unilateral", url: "https://treinomestre.com.br/wp-content/uploads/2021/07/prancha-lateral.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: "" },
+  { name: "Tuck L-sit", url: "https://calisthenicsfamily.b-cdn.net/wp-content/uploads/2021/04/Tuck-Planche-progression-Tucked-L-sit.png", category: "Core", nivel: 1, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas", segs: true },
+  { name: "One Leg L-sit", url: "https://bodydojo.com/wp-content/uploads/2018/09/single-leg-L-sit-parallettes-400x300.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas", segs: true },
+  { name: "L-sit", url: "https://www.shutterstock.com/image-vector/l-sit-hang-on-bar-600w-796165771.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "L-sit (core) - Abdômen", default: true, required: "barraFixa", segs: true },
+  { name: "Straddle L-sit", url: "https://mover.tips/pics/exercise/s/straddle-l-sit.png", category: "Core", nivel: 4, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "paralelas", segs: true },
+  { name: "Rings L-sit", url: "https://i.ytimg.com/vi/lwcHmXvw-T4/maxresdefault.jpg", category: "Core", nivel: 5, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "argolas", segs: true },
+  { name: "L-sit Supinado", url: "https://i.ytimg.com/vi/WHi1bvZLwlw/maxresdefault.jpg", category: "Core", nivel: 6, type: "Abdômen", division: "L-sit (core) - Abdômen", required: "barraFixa", segs: true },
+  { name: "60s de Prancha Abdominal", url: "https://corpoesbelto.com.br/wp-content/uploads/2018/03/Exerc%C3%ADcio-de-Prancha.jpg", category: "Core", nivel: 1, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: "", segs: true },
+  { name: "Prancha Abdominal Unilateral", url: "https://treinomestre.com.br/wp-content/uploads/2021/07/prancha-lateral.jpg", category: "Core", nivel: 2, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: "", segs: true },
   { name: "Rodinha de Joelhos", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 3, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
   { name: "Rodinha na Rampa Inclinada", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 4, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
   { name: "Rodinha no chão Negativa", url: "https://treinomestre.com.br/wp-content/uploads/2017/02/roda-abdominal-exercicio.jpg", category: "Core", nivel: 5, type: "Abdômen", division: "Abdominal na Rodinha - Abdômen", required: ['rodinha', 'argola'] },
@@ -173,7 +173,7 @@ function creatExercisesBase() {
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
-              <p id="${'repts' + x}" class="reset text-uppercase text-gray1">REPS</p>
+              <p id="${'repts' + x}" class="reset text-uppercase text-gray1">${exer.segs ? 'SEGS' : 'REPS'}</p>
               <input required="true" id="${'ValidExer' + x}" class="w-75 input-value text-center rounded-3"
                 type="text">
             </div>
@@ -229,29 +229,48 @@ function filter(id, name, category, type, nivel) {
 
   var level = exercises.filter(e => e.name == name)
   nivel = level[0].nivel
+  var segs = level[0].segs
 
+  // Verifica se o exercicio precisa tratar segundos
+  if (segs) {
+    //input 18s
+    let segundos = input / 2 //9s
+    let repeticao = 60 / segundos // 6 reptes
+    let sugundosTotais = segundos * repeticao // 54segundos totais
+    if (repeticao == 5 || repeticao == 6) {
 
-  // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
-  if (input != null) {
-    input == 0 || input <= 3 ? nivel -= 2 : null;
+    }
+    if (repeticao > 6) {
+      nivel -= 1
+    }
+    if (repeticao < 2) {
+      nivel += 1
+    }
 
-    input == 4 || input == 5 ? nivel -= 1 : null;
+  }
+  else {
+    // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
+    if (input != null) {
+      input == 0 || input <= 3 ? nivel -= 2 : null;
 
-    input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
+      input == 4 || input == 5 ? nivel -= 1 : null;
 
-    input > 15 && input <= 25 ? nivel += 1 : null;
+      input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
 
-    input > 25 && input <= 40 ? nivel += 2 : null;
+      input > 15 && input <= 25 ? nivel += 1 : null;
 
-    nivel > 6 ? nivel = 6 : nivel = nivel
+      input > 25 && input <= 40 ? nivel += 2 : null;
 
-    nivel < 0 ? nivel = 0 : nivel = nivel
+      nivel > 6 ? nivel = 6 : nivel = nivel
+
+      nivel < 0 ? nivel = 0 : nivel = nivel
+    }
+
   }
 
 
-
   if (category) {
-    filterType = exercises.filter(exercise => exercise.category === category);
+    filterType = newExercises.filter(exercise => exercise.category === category);
   }
   // Filtra os exercícios com base no nível, se o nível for especificado
   if (nivel !== undefined && nivel >= 0) {
@@ -368,6 +387,22 @@ function subs(id, name, category, type, img, nivel) {
   const input = document.getElementById('ValidExer' + id)
   const repts = document.getElementById('repts' + id)
 
+  // var newArray = []
+  // newExercisesBase.forEach(e => {
+  //   if (e == undefined) {
+  //     return
+  //   }
+  //   newArray.push(e)
+  // })
+
+  var nameExer = exercises.filter(e => e.name == name)
+  if (nameExer[0].segs) {
+    repts.innerHTML = 'SEGS'
+  }
+  else{
+    repts.innerHTML = 'REPS'
+  }
+
   // zerar a div do botão
   div.innerHTML = ''
 
@@ -420,80 +455,196 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
 
+  var exer = exercises.filter(e => e.name == Title.innerHTML)
+  if (exer[0].segs) {
+    // Se o exercicio nao for de segundos ira executar essa validação
+    let segundos = input.value / 2 //Resposta em segundos
+    let repeticao = 60 / segundos // Repostas em repetição
+    let sugundosTotais = segundos * repeticao // Segundos totais do exer
 
-  if (input.value < 5) {
-    // Texto de sucesso some
-    success.classList.add('d-none')
-
-    // Mostra o botão de trocar o exercicio
-    btn.classList.add('d-block')
-    btn.classList.remove('d-none')
-
-    //Mostra a obs de exer pesado
-    heavy.classList.add('d-block')
-    heavy.classList.remove('d-none')
-
-    //Oculta a obs de exer leve
-    light.classList.add('d-none')
-    light.classList.remove('d-block')
-
-    //Add visuald e erro
-    input.classList.add('text-danger')
-    input.classList.add('input-danger')
-
-    repts.classList.add('text-danger')
-    repts.classList.remove('text-gray1')
-
-  }
-  if (input.value > 4 && input.value < 16) {
-    if (bool) {
+    // Se o numero de repetição for 5 ou 6 mostra a messagem de sucesso
+    if (repeticao <= 4) {
+      // if (bool) {
       success.classList.remove('d-none')
       // Tempo da message de sucesso
       setTimeout(function () {
         success.classList.add("d-none");
       }, 10000);
+      // }
+      input.classList.remove('text-danger')
+      input.classList.remove('input-danger')
+
+      repts.classList.remove('text-danger')
+      repts.classList.add('text-gray1')
+
+      btn.classList.add('d-none')
+      btn.classList.remove('d-block')
+      gerarTreino(Title, Input, id)
     }
-    input.classList.remove('text-danger')
-    input.classList.remove('input-danger')
 
-    repts.classList.remove('text-danger')
-    repts.classList.add('text-gray1')
+    if (repeticao == 5 || repeticao == 6) {
+      //  dar opção de eliminar exercicio
+      var modal = new bootstrap.Modal(document.querySelector('#toggleExerSegs'));
 
-    btn.classList.add('d-none')
-    btn.classList.remove('d-block')
-    gerarTreino(Title, Input, id)
+      const name = document.getElementById('nameExer')
+      name.innerHTML = exer[0].name
 
-    const divPai = document.getElementById('divToggle')
-    divPai.innerHTML = ''
-    if (treino.length === 8) {
-      // fechar model
-      // const button = document.getElementById('saveTraining')
-      // button.setAttribute('data-bs-dismiss', 'modal')
+      const categoryExer = document.getElementById('categoryExer')
+      categoryExer.innerHTML = exer[0].category
+
+      var fizArray = []
+      newExercisesBase.forEach(e => {
+        if (e == undefined) {
+          return
+        }
+        fizArray.push(e)
+      })
+      var countCategory = fizArray.filter(e => e.category == exer[0].category)
+
+      if (countCategory.length == 1) {
+        // Mostra o botão de trocar o exercicio
+        btn.classList.add('d-block')
+        btn.classList.remove('d-none')
+      }
+      else {
+        const btnremove = document.getElementById('removeExer')
+        btnremove.onclick = function () { removeExer(exer) };
+        // Exibir o modal
+        modal.show();
+      }
+
+      // Mostra o botão de trocar o exercicio
+      btn.classList.add('d-block')
+      btn.classList.remove('d-none')
+    }
+    // Se for maior que 6 mostra messagem de erro PESADO
+    if (repeticao > 6) {
+      // Texto de sucesso some
+      success.classList.add('d-none')
+
+      // Mostra o botão de trocar o exercicio
+      btn.classList.add('d-block')
+      btn.classList.remove('d-none')
+
+      //Mostra a obs de exer leve
+      light.classList.add('d-block')
+      light.classList.remove('d-none')
+
+      //Oculta a obs de exer pesado
+      heavy.classList.add('d-none')
+      heavy.classList.remove('d-block')
+
+      //Add visuald e erro
+      input.classList.add('text-danger')
+      input.classList.add('input-danger')
+
+      repts.classList.add('text-danger')
+      repts.classList.remove('text-gray1')
+    }
+
+    // Leve
+    if (repeticao < 2) {
+      // Texto de sucesso some
+      success.classList.add('d-none')
+
+      // Mostra o botão de trocar o exercicio
+      btn.classList.add('d-block')
+      btn.classList.remove('d-none')
+
+      //Mostra a obs de exer leve
+      light.classList.add('d-block')
+      light.classList.remove('d-none')
+
+      //Oculta a obs de exer pesado
+      heavy.classList.add('d-none')
+      heavy.classList.remove('d-block')
+
+      //Add visuald e erro
+      input.classList.add('text-danger')
+      input.classList.add('input-danger')
+
+      repts.classList.add('text-danger')
+      repts.classList.remove('text-gray1')
     }
   }
-  if (input.value > 15) {
-    // Texto de sucesso some
-    success.classList.add('d-none')
+  else {
+    // Se o exercicio nao for de repetição ira executar essa validação
+    if (input.value < 5) {
+      // Texto de sucesso some
+      success.classList.add('d-none')
 
-    // Mostra o botão de trocar o exercicio
-    btn.classList.add('d-block')
-    btn.classList.remove('d-none')
+      // Mostra o botão de trocar o exercicio
+      btn.classList.add('d-block')
+      btn.classList.remove('d-none')
 
-    //Mostra a obs de exer leve
-    light.classList.add('d-block')
-    light.classList.remove('d-none')
+      //Mostra a obs de exer pesado
+      heavy.classList.add('d-block')
+      heavy.classList.remove('d-none')
 
-    //Oculta a obs de exer pesado
-    heavy.classList.add('d-none')
-    heavy.classList.remove('d-block')
+      //Oculta a obs de exer leve
+      light.classList.add('d-none')
+      light.classList.remove('d-block')
 
-    //Add visuald e erro
-    input.classList.add('text-danger')
-    input.classList.add('input-danger')
+      //Add visuald e erro
+      input.classList.add('text-danger')
+      input.classList.add('input-danger')
 
-    repts.classList.add('text-danger')
-    repts.classList.remove('text-gray1')
+      repts.classList.add('text-danger')
+      repts.classList.remove('text-gray1')
+
+    }
+    if (input.value > 4 && input.value < 16) {
+      if (bool) {
+        success.classList.remove('d-none')
+        // Tempo da message de sucesso
+        setTimeout(function () {
+          success.classList.add("d-none");
+        }, 10000);
+      }
+      input.classList.remove('text-danger')
+      input.classList.remove('input-danger')
+
+      repts.classList.remove('text-danger')
+      repts.classList.add('text-gray1')
+
+      btn.classList.add('d-none')
+      btn.classList.remove('d-block')
+      gerarTreino(Title, Input, id)
+
+      const divPai = document.getElementById('divToggle')
+      divPai.innerHTML = ''
+      if (treino.length === 8) {
+        // fechar model
+        // const button = document.getElementById('saveTraining')
+        // button.setAttribute('data-bs-dismiss', 'modal')
+      }
+    }
+    if (input.value > 15) {
+      // Texto de sucesso some
+      success.classList.add('d-none')
+
+      // Mostra o botão de trocar o exercicio
+      btn.classList.add('d-block')
+      btn.classList.remove('d-none')
+
+      //Mostra a obs de exer leve
+      light.classList.add('d-block')
+      light.classList.remove('d-none')
+
+      //Oculta a obs de exer pesado
+      heavy.classList.add('d-none')
+      heavy.classList.remove('d-block')
+
+      //Add visuald e erro
+      input.classList.add('text-danger')
+      input.classList.add('input-danger')
+
+      repts.classList.add('text-danger')
+      repts.classList.remove('text-gray1')
+    }
   }
+
+
 }
 
 function addColorError() {
@@ -593,7 +744,7 @@ function gerarTreino(title, input, id) {
   } else {
     // Adiciona o novo exercício no final do array treino
     treino.push(novoExercicio);
-    console.log(treino)
+    // console.log(treino)
 
   }
 }
@@ -729,7 +880,6 @@ function validationQtdExer() {
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
-      console.log('treino completo')
     }
   }
 
@@ -742,7 +892,6 @@ function validationQtdExer() {
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
-      console.log('treino completo')
     }
   }
 
@@ -755,7 +904,6 @@ function validationQtdExer() {
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
-      console.log('treino completo')
     }
   }
 
@@ -768,7 +916,6 @@ function validationQtdExer() {
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
-      console.log('treino completo')
     }
   }
 }
@@ -798,4 +945,38 @@ function enviarTreino2() {
   }
 
 
+}
+
+function removeExer(exer) {
+  // Remove o exercicio do array
+  var treino2 = []
+  newExercisesBase.forEach(e => {
+    if (e == undefined) {
+      return
+    }
+    treino2.push(e)
+  })
+
+  let index = treino2.findIndex(e => e.name === exer[0].name);
+  if (index !== -1) {
+    treino2.splice(index, 1); //remova o elemento com o índice encontrado
+  }
+  // ---------------------------------------------------------------------
+  // remove visualmente o exer
+  var x = 1
+  debugger
+  newExercisesBase.forEach(e => {
+    if (e == undefined) {
+      return
+    }
+    if (e.name == exer[0].name) {
+      const divRemove = document.getElementById('exer' + x)
+      divRemove.remove()
+    }
+    x++
+  })
+
+  newExercisesBase = treino2
+  console.log(newExercisesBase)
+  return newExercisesBase; //retorne o array atualizado
 }

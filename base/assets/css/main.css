@@ -258,3 +258,12 @@ input[type="radio"]:checked {
 .form-select {
   box-shadow: none !important; 
 }
+
+.font-capt{
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.font-title-modal{
+  font-size: 18px;
+}
