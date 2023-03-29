@@ -793,44 +793,66 @@ function gerarTreino(title, input, id) {
   let novoExercicio = {}
   var valueInput = parseInt(input.value)
 
+  let exerFound = exercises.filter(e => e.name == title.innerHTML)[0]
 
-  if (title.innerHTML == 'Dips na paralela' || title.innerHTML == 'Pull Ups') {
+  let segundos = Math.round(valueInput / 2 )//Resposta em segundos
+  let repeticao = Math.round(60 / segundos) // Repostas em repetição
 
-    if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
-      if (valueInput == 3) {
-        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
+
+  if (exerFound.segs) {
+    // add no treino, com as regras de segundos
+    novoExercicio = { name: title.innerHTML, count: segundos, rept: repeticao, rest: 3, url: exer, num: id };
+  }
+  else {
+    if (title.innerHTML == 'Dips na paralela' || title.innerHTML == 'Pull Ups') {
+
+      if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
+        if (valueInput == 3) {
+          novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
+        }
+        if (valueInput == 4) {
+          novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
+        }
+        if (valueInput == 5) {
+          novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 4, rest: 3, url: exer, num: id };
+        }
       }
-      if (valueInput == 4) {
-        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
-      }
-      if (valueInput == 5) {
-        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 4, rest: 3, url: exer, num: id };
+      else {
+        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 3, rest: 3, url: exer, num: id };
       }
     }
     else {
       novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 3, rest: 3, url: exer, num: id };
     }
   }
-  else {
-    novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 3, rest: 3, url: exer, num: id };
-  }
 
   const found = treino.findIndex(e => e.name == novoExercicio.name)
-  // Atualiza o count = 5 e rept = (total -2)
   if (found !== -1) {
-    if (treino[found].name == 'Dips na paralela' || treino[found].name == 'Pull Ups') {
 
-      if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
-        if (valueInput == 3) {
-          treino[found].rept = 5
-          treino[found].count = (valueInput - 1)
+    if (exerFound.segs) {
+      // add no treino, com as regras de segundos
+      treino[found].rept = repeticao
+      treino[found].count = segundos
+    }
+    else {
+      if (treino[found].name == 'Dips na paralela' || treino[found].name == 'Pull Ups') {
+
+        if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
+          if (valueInput == 3) {
+            treino[found].rept = 5
+            treino[found].count = (valueInput - 1)
+          }
+          if (valueInput == 4) {
+            treino[found].rept = 5
+            treino[found].count = (valueInput - 1)
+          }
+          if (valueInput == 5) {
+            treino[found].rept = 4
+            treino[found].count = (valueInput - 1)
+          }
         }
-        if (valueInput == 4) {
-          treino[found].rept = 5
-          treino[found].count = (valueInput - 1)
-        }
-        if (valueInput == 5) {
-          treino[found].rept = 4
+        else {
+          treino[found].rept = 3
           treino[found].count = (valueInput - 1)
         }
       }
@@ -838,10 +860,6 @@ function gerarTreino(title, input, id) {
         treino[found].rept = 3
         treino[found].count = (valueInput - 1)
       }
-    }
-    else {
-      treino[found].rept = 3
-      treino[found].count = (valueInput - 1)
     }
   } else {
     treino.push(novoExercicio);
