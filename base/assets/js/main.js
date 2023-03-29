@@ -249,13 +249,13 @@ function filter(id, name, category, type, nivel) {
 
   }
   else {
-    // Se o nivel é passado usamos ele para configurar os exercicios anteriores e posteriores 
+
     if (input != null) {
-      input == 0 || input <= 3 ? nivel -= 2 : null;
+      input == 0 || input <= 2 ? nivel -= 2 : null;
 
-      input == 4 || input == 5 ? nivel -= 1 : null;
+      input >= 3 && input <= 5 ? nivel -= 1 : null;
 
-      input >= 5 && input <= 15 ? nivel : null  // valor ser mostrado default
+      input >= 6 && input <= 15 ? nivel : null  // valor ser mostrado default
 
       input > 15 && input <= 25 ? nivel += 1 : null;
 
@@ -399,7 +399,7 @@ function subs(id, name, category, type, img, nivel) {
   if (nameExer[0].segs) {
     repts.innerHTML = 'SEGS'
   }
-  else{
+  else {
     repts.innerHTML = 'REPS'
   }
 
@@ -568,79 +568,155 @@ function openToggleExer(id, Title, Input, bool) {
     }
   }
   else {
-    // Se o exercicio nao for de repetição ira executar essa validação
-    if (input.value < 5) {
-      // Texto de sucesso some
-      success.classList.add('d-none')
+    if (exer[0].name == 'Dips na paralela' || exer[0].name == 'Pull Ups') {
+      if (input.value <= 2) {
+        // Texto de sucesso some
+        success.classList.add('d-none')
 
-      // Mostra o botão de trocar o exercicio
-      btn.classList.add('d-block')
-      btn.classList.remove('d-none')
+        // Mostra o botão de trocar o exercicio
+        btn.classList.add('d-block')
+        btn.classList.remove('d-none')
 
-      //Mostra a obs de exer pesado
-      heavy.classList.add('d-block')
-      heavy.classList.remove('d-none')
+        //Mostra a obs de exer pesado
+        heavy.classList.add('d-block')
+        heavy.classList.remove('d-none')
 
-      //Oculta a obs de exer leve
-      light.classList.add('d-none')
-      light.classList.remove('d-block')
+        //Oculta a obs de exer leve
+        light.classList.add('d-none')
+        light.classList.remove('d-block')
 
-      //Add visuald e erro
-      input.classList.add('text-danger')
-      input.classList.add('input-danger')
+        //Add visuald e erro
+        input.classList.add('text-danger')
+        input.classList.add('input-danger')
 
-      repts.classList.add('text-danger')
-      repts.classList.remove('text-gray1')
+        repts.classList.add('text-danger')
+        repts.classList.remove('text-gray1')
 
-    }
-    if (input.value > 4 && input.value < 16) {
-      if (bool) {
-        success.classList.remove('d-none')
-        // Tempo da message de sucesso
-        setTimeout(function () {
-          success.classList.add("d-none");
-        }, 10000);
       }
-      input.classList.remove('text-danger')
-      input.classList.remove('input-danger')
+      if (input.value > 2 && input.value < 16) {
+        if (bool) {
+          success.classList.remove('d-none')
+          // Tempo da message de sucesso
+          setTimeout(function () {
+            success.classList.add("d-none");
+          }, 10000);
+        }
+        input.classList.remove('text-danger')
+        input.classList.remove('input-danger')
 
-      repts.classList.remove('text-danger')
-      repts.classList.add('text-gray1')
+        repts.classList.remove('text-danger')
+        repts.classList.add('text-gray1')
 
-      btn.classList.add('d-none')
-      btn.classList.remove('d-block')
-      gerarTreino(Title, Input, id)
+        btn.classList.add('d-none')
+        btn.classList.remove('d-block')
+        gerarTreino(Title, Input, id)
 
-      const divPai = document.getElementById('divToggle')
-      divPai.innerHTML = ''
-      if (treino.length === 8) {
-        // fechar model
-        // const button = document.getElementById('saveTraining')
-        // button.setAttribute('data-bs-dismiss', 'modal')
+        const divPai = document.getElementById('divToggle')
+        divPai.innerHTML = ''
+        if (treino.length === 8) {
+          // fechar model
+          // const button = document.getElementById('saveTraining')
+          // button.setAttribute('data-bs-dismiss', 'modal')
+        }
+      }
+      if (input.value > 15) {
+        // Texto de sucesso some
+        success.classList.add('d-none')
+
+        // Mostra o botão de trocar o exercicio
+        btn.classList.add('d-block')
+        btn.classList.remove('d-none')
+
+        //Mostra a obs de exer leve
+        light.classList.add('d-block')
+        light.classList.remove('d-none')
+
+        //Oculta a obs de exer pesado
+        heavy.classList.add('d-none')
+        heavy.classList.remove('d-block')
+
+        //Add visuald e erro
+        input.classList.add('text-danger')
+        input.classList.add('input-danger')
+
+        repts.classList.add('text-danger')
+        repts.classList.remove('text-gray1')
       }
     }
-    if (input.value > 15) {
-      // Texto de sucesso some
-      success.classList.add('d-none')
+    else {
+      if (input.value < 6) {
+        // Texto de sucesso some
+        success.classList.add('d-none')
 
-      // Mostra o botão de trocar o exercicio
-      btn.classList.add('d-block')
-      btn.classList.remove('d-none')
+        // Mostra o botão de trocar o exercicio
+        btn.classList.add('d-block')
+        btn.classList.remove('d-none')
 
-      //Mostra a obs de exer leve
-      light.classList.add('d-block')
-      light.classList.remove('d-none')
+        //Mostra a obs de exer pesado
+        heavy.classList.add('d-block')
+        heavy.classList.remove('d-none')
 
-      //Oculta a obs de exer pesado
-      heavy.classList.add('d-none')
-      heavy.classList.remove('d-block')
+        //Oculta a obs de exer leve
+        light.classList.add('d-none')
+        light.classList.remove('d-block')
 
-      //Add visuald e erro
-      input.classList.add('text-danger')
-      input.classList.add('input-danger')
+        //Add visuald e erro
+        input.classList.add('text-danger')
+        input.classList.add('input-danger')
 
-      repts.classList.add('text-danger')
-      repts.classList.remove('text-gray1')
+        repts.classList.add('text-danger')
+        repts.classList.remove('text-gray1')
+
+      }
+      if (input.value > 5 && input.value < 16) {
+        if (bool) {
+          success.classList.remove('d-none')
+          // Tempo da message de sucesso
+          setTimeout(function () {
+            success.classList.add("d-none");
+          }, 10000);
+        }
+        input.classList.remove('text-danger')
+        input.classList.remove('input-danger')
+
+        repts.classList.remove('text-danger')
+        repts.classList.add('text-gray1')
+
+        btn.classList.add('d-none')
+        btn.classList.remove('d-block')
+        gerarTreino(Title, Input, id)
+
+        const divPai = document.getElementById('divToggle')
+        divPai.innerHTML = ''
+        if (treino.length === 8) {
+          // fechar model
+          // const button = document.getElementById('saveTraining')
+          // button.setAttribute('data-bs-dismiss', 'modal')
+        }
+      }
+      if (input.value > 15) {
+        // Texto de sucesso some
+        success.classList.add('d-none')
+
+        // Mostra o botão de trocar o exercicio
+        btn.classList.add('d-block')
+        btn.classList.remove('d-none')
+
+        //Mostra a obs de exer leve
+        light.classList.add('d-block')
+        light.classList.remove('d-none')
+
+        //Oculta a obs de exer pesado
+        heavy.classList.add('d-none')
+        heavy.classList.remove('d-block')
+
+        //Add visuald e erro
+        input.classList.add('text-danger')
+        input.classList.add('input-danger')
+
+        repts.classList.add('text-danger')
+        repts.classList.remove('text-gray1')
+      }
     }
   }
 
@@ -713,39 +789,63 @@ function creatStruct(id) {
 function gerarTreino(title, input, id) {
   // Cria um novo objeto com as informações do exercício
   const exer = getImgUrl(title.innerHTML)
-  //Se nao tiver equipamente para fazer um do tipo , tera que montar 5 séries do exercicio que ficou do max - 2
-  const novoExercicio = { name: title.innerHTML, count: (input.value - 1), rept: 3, rest: 3, url: exer, num: id };
+  // debugger
+  let novoExercicio = {}
+  var valueInput = parseInt(input.value)
 
-  // Verifica se já existe um exercício igual no array
-  const exercicioExistente = treino.find((exercicio) => {
-    if (exercicio.num == novoExercicio.num) {
-      // Atualiza o objeto existente
-      exercicio.name = novoExercicio.name;
-      exercicio.rept = novoExercicio.rept;
-      exercicio.rest = novoExercicio.rest;
-      return true; // Retorna true para indicar que o objeto foi atualizado
+
+  if (title.innerHTML == 'Dips na paralela' || title.innerHTML == 'Pull Ups') {
+
+    if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
+      if (valueInput == 3) {
+        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
+      }
+      if (valueInput == 4) {
+        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 5, rest: 3, url: exer, num: id };
+      }
+      if (valueInput == 5) {
+        novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 4, rest: 3, url: exer, num: id };
+      }
     }
-    return (
-      exercicio.name === novoExercicio.name &&
-      exercicio.rept === novoExercicio.rept &&
-      exercicio.rest === novoExercicio.rest &&
-      exercicio.num === novoExercicio.num
-    );
-  });
+    else {
+      novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 3, rest: 3, url: exer, num: id };
+    }
+  }
+  else {
+    novoExercicio = { name: title.innerHTML, count: (valueInput - 1), rept: 3, rest: 3, url: exer, num: id };
+  }
 
-  if (exercicioExistente) {
-    // Se o exercício já existe, atualiza o valor de count
-    exercicioExistente.count = input.value - 1;
+  const found = treino.findIndex(e => e.name == novoExercicio.name)
+  // Atualiza o count = 5 e rept = (total -2)
+  if (found !== -1) {
+    if (treino[found].name == 'Dips na paralela' || treino[found].name == 'Pull Ups') {
 
-  } else if (novoExercicio.count === -1 || novoExercicio.count === 0) {
-    // Se o exercício não existe E o valor de count é inválido, exibe uma mensagem de erro e não adiciona ao array
-    return
-
+      if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
+        if (valueInput == 3) {
+          treino[found].rept = 5
+          treino[found].count = (valueInput - 1)
+        }
+        if (valueInput == 4) {
+          treino[found].rept = 5
+          treino[found].count = (valueInput - 1)
+        }
+        if (valueInput == 5) {
+          treino[found].rept = 4
+          treino[found].count = (valueInput - 1)
+        }
+      }
+      else {
+        treino[found].rept = 3
+        treino[found].count = (valueInput - 1)
+      }
+    }
+    else {
+      treino[found].rept = 3
+      treino[found].count = (valueInput - 1)
+    }
   } else {
-    // Adiciona o novo exercício no final do array treino
     treino.push(novoExercicio);
-    // console.log(treino)
-
+    console.log(treino)
   }
 }
 
@@ -876,7 +976,6 @@ function validationQtdExer() {
     let indexName = treino.findIndex(e => e.name == Push[0].name)
     // Atualiza o count = 5 e rept = (total -2)
     if (indexName !== -1) {
-      console.log(treino[indexName])
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
@@ -888,7 +987,6 @@ function validationQtdExer() {
     let indexName = treino.findIndex(e => e.name == Pull[0].name)
     // Atualiza o count = 5 e rept = (total -2)
     if (indexName !== -1) {
-      console.log(treino[indexName])
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
@@ -900,7 +998,6 @@ function validationQtdExer() {
     let indexName = treino.findIndex(e => e.name == Core[0].name)
     // Atualiza o count = 5 e rept = (total -2)
     if (indexName !== -1) {
-      console.log(treino[indexName])
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
@@ -912,7 +1009,6 @@ function validationQtdExer() {
     let indexName = treino.findIndex(e => e.name == Legs[0].name)
     // Atualiza o count = 5 e rept = (total -2)
     if (indexName !== -1) {
-      console.log(treino[indexName])
       treino[indexName].rept = 5
       treino[indexName].count -= 1
     } else {
@@ -922,7 +1018,7 @@ function validationQtdExer() {
 
 function enviarTreino2() {
   validationQtdExer()
-  if (treino.length == newExercisesBase.length - 1) {
+  if (treino.length == newExercisesBase.length) {
     fetch('/sendTraining', {
       method: 'POST',
       body: JSON.stringify(treino),
@@ -964,7 +1060,6 @@ function removeExer(exer) {
   // ---------------------------------------------------------------------
   // remove visualmente o exer
   var x = 1
-  debugger
   newExercisesBase.forEach(e => {
     if (e == undefined) {
       return
@@ -977,6 +1072,5 @@ function removeExer(exer) {
   })
 
   newExercisesBase = treino2
-  console.log(newExercisesBase)
   return newExercisesBase; //retorne o array atualizado
 }

@@ -531,15 +531,14 @@
                 } else {
                     requireds.push({ name: name, value: value })
                 }
-
-                console.log(requireds)
+             
                 if (requireds.length == 6 && input.name != 'qtdTreino') {
                     $('input[type=radio]').change(function () {
                         $('.carousel').carousel('next'); // Avança para o próximo slide
                     });
 
                     if (requireds.length > 6) {
-                        console.log('wee')
+                        // console.log('wee')
                     }
                 }
             });
