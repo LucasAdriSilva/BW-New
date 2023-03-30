@@ -483,7 +483,6 @@ function openToggleExer(id, Title, Input, bool) {
     }
     // Se o numero de repetição for 5 ou 6 mostra o modal
     if (repeticao == 5 || repeticao == 6) {
-      debugger
       //  dar opção de eliminar exercicio
       var modal = new bootstrap.Modal(document.querySelector('#toggleExerSegs'));
 
@@ -1052,7 +1051,6 @@ function validationQtdExer() {
 
 function enviarTreino2() {
   if (treino.length == newExercisesBase.length) {
-    debugger
     const pairedSets = document.getElementById('pairedSetsValue').checked
     var stre = ""
     pairedSets ? stre = "true" : stre = "false"
