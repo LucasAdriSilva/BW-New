@@ -44,8 +44,7 @@ def index2():
               new_data = a.copy()
               new_data.update(t)
               data_all.append(new_data)
-
-              
+             
         for e in data_all:
           repeated_e = [e] * e['rept']  # repete o dicionário e rept vezes
           new_order.extend(repeated_e)  # adiciona a lista resultante à new_order # adiciona a lista resultante à new_order
@@ -56,10 +55,13 @@ def index2():
           'nav': 'creat',
           'treino': treino['treino'],
           'pairedSets': pairedSets,
-          'all': data_all
+          'all': new_order
         }
       except Exception as e:
         print(f"Errrooo --> {e}")
+        data = {
+          'nav': 'creat',         
+        }
       return render_template("home2.html", data=data)
     else: 
       data = {

@@ -454,15 +454,15 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
 
-
   var exer = exercises.filter(e => e.name == Title.innerHTML)
+  // Se for segs
   if (exer[0].segs) {
     // Se o exercicio nao for de segundos ira executar essa validação
     let segundos = input.value / 2 //Resposta em segundos
     let repeticao = 60 / segundos // Repostas em repetição
     let sugundosTotais = segundos * repeticao // Segundos totais do exer
 
-    // Se o numero de repetição for 5 ou 6 mostra a messagem de sucesso
+    // Dentro dos parametros
     if (repeticao <= 4) {
       // if (bool) {
       success.classList.remove('d-none')
@@ -481,25 +481,34 @@ function openToggleExer(id, Title, Input, bool) {
       btn.classList.remove('d-block')
       gerarTreino(Title, Input, id)
     }
-
+    // Se o numero de repetição for 5 ou 6 mostra o modal
     if (repeticao == 5 || repeticao == 6) {
+      debugger
       //  dar opção de eliminar exercicio
       var modal = new bootstrap.Modal(document.querySelector('#toggleExerSegs'));
 
+      // Pegar nome do exer que ira ser deletado
+      let exerRemove = newExercisesBase.filter(e => e.category == exer[0].category && e.name != exer[0].name)
+
+      // Imprimir na tela
+      const exerDeletr = document.getElementById('exerDeleter')
+      exerDeletr.innerHTML = exerRemove[0].name
+
+      // Imprimir nome do exercicio que está pesado
       const name = document.getElementById('nameExer')
       name.innerHTML = exer[0].name
 
-      const categoryExer = document.getElementById('categoryExer')
-      categoryExer.innerHTML = exer[0].category
+      
 
-      var fizArray = []
+      var fixArray = []
       newExercisesBase.forEach(e => {
         if (e == undefined) {
           return
         }
-        fizArray.push(e)
+        fixArray.push(e)
       })
-      var countCategory = fizArray.filter(e => e.category == exer[0].category)
+
+      var countCategory = fixArray.filter(e => e.category == exer[0].category)
 
       if (countCategory.length == 1) {
         // Mostra o botão de trocar o exercicio
@@ -507,16 +516,19 @@ function openToggleExer(id, Title, Input, bool) {
         btn.classList.remove('d-none')
       }
       else {
-        // filtra por categori e pega o outro exercicio 
+        // filtra por categori e pega o outro exercicio da mesma catagoria
         let exerRemove = newExercisesBase.filter(e => e.category == exer[0].category && e.name != exer[0].name)
+
         btn.classList.add('d-none')
+
         const btnremove = document.getElementById('removeExer')
-        btnremove.onclick = function () { removeExer(exerRemove) };
+        btnremove.onclick = function () { removeExer(exerRemove, exer[0], id, Title, Input) };
+
         // Exibir o modal
         modal.show();
 
         const notRemove = document.getElementById('notRemove')
-        notRemove.onclick = function () { showBtn(btn)}
+        notRemove.onclick = function () { showBtn(btn) }
       }
 
     }
@@ -544,7 +556,6 @@ function openToggleExer(id, Title, Input, bool) {
       repts.classList.add('text-danger')
       repts.classList.remove('text-gray1')
     }
-
     // Leve
     if (repeticao < 2) {
       // Texto de sucesso some
@@ -570,6 +581,7 @@ function openToggleExer(id, Title, Input, bool) {
       repts.classList.remove('text-gray1')
     }
   }
+  // Se for repts
   else {
     if (exer[0].name == 'Dips na paralela' || exer[0].name == 'Pull Ups') {
       if (input.value <= 2) {
@@ -792,7 +804,6 @@ function creatStruct(id) {
 function gerarTreino(title, input, id) {
   // Cria um novo objeto com as informações do exercício
   const exer = getImgUrl(title.innerHTML)
-  // debugger
   let novoExercicio = {}
   var valueInput = parseInt(input.value)
 
@@ -804,10 +815,10 @@ function gerarTreino(title, input, id) {
 
   if (exerFound.segs) {
     // add no treino, com as regras de segundos
-    novoExercicio = { name: title.innerHTML, count: segundos, rept: repeticao, rest: 3, url: exer, num: id };
+    novoExercicio = { name: title.innerHTML, count: segundos, rept: repeticao, rest: 3, url: exer, num: id, segs: "true" };
   }
   else {
-    if (title.innerHTML == 'Dips na paralela' || title.innerHTML == 'Pull Ups') {
+    if (title.innerHTML == "Dips na paralela" || title.innerHTML == "Pull Ups") {
 
       if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
         if (valueInput == 3) {
@@ -838,7 +849,7 @@ function gerarTreino(title, input, id) {
       treino[found].count = segundos
     }
     else {
-      if (treino[found].name == 'Dips na paralela' || treino[found].name == 'Pull Ups') {
+      if (treino[found].name == "Dips na paralela" || treino[found].name == "Pull Ups") {
 
         if (valueInput == 3 || valueInput == 4 || valueInput == 5) {
           if (valueInput == 3) {
@@ -873,7 +884,7 @@ function gerarTreino(title, input, id) {
 // function enviarTreino() {
 
 //   if (treino.length === 8) {
-//     const divPai = document.getElementById('trainingGenerated')
+//     const divPai = document.getElementById("trainingGenerated')
 //     divPai.innerHTML = ''
 //     treino.forEach(exer => {
 
@@ -1040,12 +1051,11 @@ function validationQtdExer() {
 }
 
 function enviarTreino2() {
-  validationQtdExer()
   if (treino.length == newExercisesBase.length) {
-
+    debugger
     const pairedSets = document.getElementById('pairedSetsValue').checked
-    var stre = ''
-    pairedSets ? stre = 'true' : stre = 'false'
+    var stre = ""
+    pairedSets ? stre = "true" : stre = "false"
     const newAtt = { name: "Paired Sets", value: stre }
     treino.push(newAtt)
 
@@ -1074,7 +1084,7 @@ function enviarTreino2() {
 
 }
 
-function removeExer(exer) {
+function removeExer(exer, addExer, id, Title, Input) {
   // Remove o exercicio do array
   var treino2 = []
   newExercisesBase.forEach(e => {
@@ -1087,6 +1097,11 @@ function removeExer(exer) {
   let index = treino2.findIndex(e => e.name === exer[0].name);
   if (index !== -1) {
     treino2.splice(index, 1); //remova o elemento com o índice encontrado
+  }
+
+  let treinoDel = treino.findIndex(e => e.name === exer[0].name)
+  if (treinoDel !== -1) {
+    treino.splice(treinoDel, 1); //remova o elemento com o índice encontrado
   }
   // ---------------------------------------------------------------------
   // remove visualmente o exer
@@ -1101,8 +1116,8 @@ function removeExer(exer) {
     }
     x++
   })
-
   newExercisesBase = treino2
+  gerarTreino(Title, Input, id)
   return newExercisesBase; //retorne o array atualizado
 }
 
