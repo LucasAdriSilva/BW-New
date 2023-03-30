@@ -127,12 +127,13 @@ body {
 }
 
 .input-exer-fail {
-  border: 1px solid #dc3545!important;;
+  border: 1px solid #dc3545 !important;
+  ;
   border-radius: 5px;
   max-width: 100px;
 }
 
-.bg-quiz{
+.bg-quiz {
   background-color: rgb(255, 199, 0);
 }
 
@@ -146,7 +147,7 @@ body {
   color: white;
 }
 
-.color-gree{
+.color-gree {
   color: #6FBB3F;
 }
 
@@ -197,27 +198,28 @@ body {
   border-bottom: 1px solid red;
 }
 
-.input-value{
+.input-value {
   border: 1px solid rgb(133, 133, 133);
 }
 
-.text-gray1{
+.text-gray1 {
   color: #929191;
 }
 
-.input-danger{
-  border: 1px solid rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important;;
+.input-danger {
+  border: 1px solid rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+  ;
 }
 
-.bg-gray{
+.bg-gray {
   background-color: #e2e2e2;
 }
 
 .form-check-square .form-check-input[type="radio"] {
   width: 1.3em !important;
   height: 1.3em !important;
-  background-color: #fff ;
-  border: 1px solid #ced4da ;
+  background-color: #fff;
+  border: 1px solid #ced4da;
   border-radius: 0.25em !important;
 }
 
@@ -226,13 +228,13 @@ body {
   border-color: rgb(255, 199, 0);
 }
 
-.icon-err{
+.icon-err {
   width: 50px;
   height: 50px;
 }
 
-.bg-gray2{
- background-color: #ececec;
+.bg-gray2 {
+  background-color: #ececec;
 }
 
 
@@ -250,20 +252,41 @@ input[type="radio"]:checked {
   --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='%23000' d='M13.354 4.646a.5.5 0 0 0-.708 0L6.5 10.793 3.854 8.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7a.5.5 0 0 0 0-.708z'/%3e%3c/svg%3e");
 }
 
-.selecte-err{
+.selecte-err {
   background-color: #f57a86;
   color: rgb(255, 255, 255);
 }
 
 .form-select {
-  box-shadow: none !important; 
+  box-shadow: none !important;
 }
 
-.font-capt{
+.font-capt {
   font-size: 14px;
   font-weight: 400;
 }
 
-.font-title-modal{
+.font-title-modal {
   font-size: 18px;
+}
+
+.form-check-input:checked {
+  background-color: rgb(255, 199, 0);
+  border-color: rgb(255, 199, 0);
+}
+
+.border-switch {
+  border: 1px solid #696969 !important;
+  background-color: #ebebeb;
+}
+
+.form-switch .form-check-input {
+  --bs-form-switch-bg: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff' /%3e%3c/svg%3e) !important;
+  background-image: var(--bs-form-switch-bg);
+  background-position: left center;
+}
+
+
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
 }

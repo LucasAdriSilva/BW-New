@@ -290,6 +290,14 @@
         <span class="text-center">E adicione as informações abaixo</span>
     </div>
 
+    <div class="col-12 d-flex justify-content-center align-items-center gap-1">
+        <div class="form-check form-switch">
+            <input class="form-check-input border-switch" type="checkbox" role="switch" id="pairedSetsValue">
+            <label class="form-check-label" for="pairedSetsValue">Paired Sets</label>
+        </div>
+        <img src="assets/img/interrog.jpg" onclick="openModal('pairedSets')" width="20" height="20" alt="">
+    </div>
+
     <!-- <div id="exer1" class="col-lg-5 position-relative col-11 d-flex justify-content-center align-items-center rounded-3 p-2 m-2 bg-white" style="border: 1px solid rgb(163, 163, 163);">
 
         <div class="row position-relative">
@@ -466,7 +474,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-center align-items-center">
-                <span class="text-center text-uppercase font-title-modal fw-bold" id="toggleExerSegsLabel">Seu exercicio está pesado!</span>
+                <span class="text-center text-uppercase font-title-modal fw-bold" id="toggleExerSegsLabel">Seu exercicio
+                    está pesado!</span>
             </div>
             <div class="modal-body">
                 <div class="row reset-Padding">
@@ -477,7 +486,8 @@
                         <span id="nameExer" class="text-center fw-bolder text-uppercase"></span>
                     </div>
                     <div class="col-12 mt-3 d-flex justify-content-center align-items-cente">
-                        <span class="mt-2 text-start font-capt text-danger">Seu treino ira ficar com apenas um exercício do grupo muscular <span id="categoryExer" class="fw-bolder font-capt"></span></span>
+                        <span class="mt-2 text-start font-capt text-danger">Seu treino ira ficar com apenas um exercício
+                            do grupo muscular <span id="categoryExer" class="fw-bolder font-capt"></span></span>
                     </div>
                 </div>
             </div>
@@ -485,11 +495,39 @@
 
             <div class="modal-footer d-flex justify-content-center">
                 <button id="removeExer" data-bs-dismiss="modal" class="btn btn-success">Excluir</button>
-                <button data-bs-dismiss="modal" class="btn btn-success">Não Excluir</button>
+                <button id="notRemove" data-bs-dismiss="modal" class="btn btn-success">Não Excluir</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+<!-- Modal Paired Sets-->
+<div class="modal fade" id="pairedSets" tabindex="-1" aria-labelledby="pairedSetsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="pairedSetsLabel">O que é Paired Sets?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span>
+                    Os paired sets é uma técnica de treinamento em que realizamos exercícios de grupos musculares
+                    diferentes em sequência, com um descanso mais curto entre eles do que o usual. Por exemplo, se você
+                    fizer um exercício para o peito, seguido de um exercício para as costas, em vez de descansar
+                    completamente entre os dois, você descansaria apenas metade do tempo usual. Essa técnica ajuda a
+                    aumentar a intensidade do treino e pode ser uma ótima maneira de otimizar o tempo.
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- <script>
@@ -531,7 +569,7 @@
                 } else {
                     requireds.push({ name: name, value: value })
                 }
-             
+
                 if (requireds.length == 6 && input.name != 'qtdTreino') {
                     $('input[type=radio]').change(function () {
                         $('.carousel').carousel('next'); // Avança para o próximo slide

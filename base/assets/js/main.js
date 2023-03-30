@@ -113,7 +113,6 @@ const exercisesBase = exercises.filter(e => e.default == true)
 const div2 = document.getElementById('div2');
 
 window.addEventListener("load", function () {
-
 });
 
 var treino = []
@@ -455,6 +454,7 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
 
+
   var exer = exercises.filter(e => e.name == Title.innerHTML)
   if (exer[0].segs) {
     // Se o exercicio nao for de segundos ira executar essa validação
@@ -507,15 +507,18 @@ function openToggleExer(id, Title, Input, bool) {
         btn.classList.remove('d-none')
       }
       else {
+        // filtra por categori e pega o outro exercicio 
+        let exerRemove = newExercisesBase.filter(e => e.category == exer[0].category && e.name != exer[0].name)
+        btn.classList.add('d-none')
         const btnremove = document.getElementById('removeExer')
-        btnremove.onclick = function () { removeExer(exer) };
+        btnremove.onclick = function () { removeExer(exerRemove) };
         // Exibir o modal
         modal.show();
+
+        const notRemove = document.getElementById('notRemove')
+        notRemove.onclick = function () { showBtn(btn)}
       }
 
-      // Mostra o botão de trocar o exercicio
-      btn.classList.add('d-block')
-      btn.classList.remove('d-none')
     }
     // Se for maior que 6 mostra messagem de erro PESADO
     if (repeticao > 6) {
@@ -795,7 +798,7 @@ function gerarTreino(title, input, id) {
 
   let exerFound = exercises.filter(e => e.name == title.innerHTML)[0]
 
-  let segundos = Math.round(valueInput / 2 )//Resposta em segundos
+  let segundos = Math.round(valueInput / 2)//Resposta em segundos
   let repeticao = Math.round(60 / segundos) // Repostas em repetição
 
 
@@ -1032,11 +1035,21 @@ function validationQtdExer() {
     } else {
     }
   }
+
+
 }
 
 function enviarTreino2() {
   validationQtdExer()
   if (treino.length == newExercisesBase.length) {
+
+    const pairedSets = document.getElementById('pairedSetsValue').checked
+    var stre = ''
+    pairedSets ? stre = 'true' : stre = 'false'
+    const newAtt = { name: "Paired Sets", value: stre }
+    treino.push(newAtt)
+
+
     fetch('/sendTraining', {
       method: 'POST',
       body: JSON.stringify(treino),
@@ -1091,4 +1104,14 @@ function removeExer(exer) {
 
   newExercisesBase = treino2
   return newExercisesBase; //retorne o array atualizado
+}
+
+function openModal(id) {
+  var modal = new bootstrap.Modal(document.querySelector(`#${id}`));
+  modal.show()
+}
+
+function showBtn(btn) {
+  btn.classList.add('d-block')
+  btn.classList.remove('d-none')
 }

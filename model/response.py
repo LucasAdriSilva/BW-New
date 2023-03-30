@@ -5,3 +5,5 @@ class Response:
         self.ok = ok
         self.message = menssage
         self.data = data
+
+        
