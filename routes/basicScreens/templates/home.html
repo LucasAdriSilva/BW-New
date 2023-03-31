@@ -353,7 +353,6 @@
             </div>
         </div>
     </div> -->
-
     <!-- <div id="exer1" class="col-lg-5 col-11 position-relative rounded-3 m-2 bg-white"
         style="border: 1px solid rgb(20, 20, 20);">
         <div class="row reset-Padding h-100">
@@ -379,7 +378,6 @@
                     type="button">Trocar Exercicío</button></div>
         </div>
     </div> -->
-
     <!-- Sugestões de troca -->
     <!-- <div class="row d-none d-flex justify-content-center toggle-exer" > -->
     <!-- <div class="col-12 d-flex justify-content-between mb-5"
@@ -416,8 +414,54 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body" id="divToggle">
+                <!-- Caso nao tiver nenhum exercicio -->
+                <div id="zeroExer" class="row d-none modal-body">
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                        <span id="titleSugest" class="mt-2 text-center font-capt">Verificamos que não conseguiu fazer o
+                            exercicio de
+                            NIVEL 0 da categoria</span>
 
+                        <span class=" text-center font-capt fs-4 fw-bolder" id="categoryNull"></span>
+
+                        <span class=" text-center font-capt"></span>
+
+                        <span id="sugest" class=" text-center font-capt">
+                            Sugerimos mudar para <strong>Treino Hibrido</strong> ou <strong>Treino de
+                                Musculação</strong>
+                        </span>
+
+
+                    </div>
+                    <div id="btnSugest" class="col-12 d-flex justify-content-around align-items-center my-3">
+                        <button data-bs-dismiss="modal" class="btn btn-success w-25">Hibrido</button>
+                        <button data-bs-dismiss="modal" class="btn btn-success w-25">Musculação</button>
+                    </div>
+                </div>
+
+                <!-- Caso tiver algum exericio e o atual for o ultimo -->
+                <div id="exerLeve" class="row d-none modal-body px-3">
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <span class="mt-2 text-center font-capt">Esse era o exercicio mais leve, mas não tem
+                            problema!</span>
+                    </div>
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                        <span class="text-center font-capt">Verificamos que você conseguiu fazer o exercicio </span>
+                        <span id="exerSameCategory" class="font-capt fw-bolder fs-4"></span>
+                        <span class="text-center font-capt">então vamos fazer o seguinte:</span>
+                    </div>
+                    <div class="col-12 bg-success2 rounded-3 d-flex justify-content-center align-items-center">
+                        <span class="mt-2 text-center font-capt">
+                            Você ira progredir apenas
+                            com um exercicio e
+                            assim que tiver mais forte iremos sugerir um exercicio novo
+                        </span>
+                    </div>
+                    <div class="col-12 mt-4 d-flex justify-content-center align-items-center">
+                        <button id="exerLeveRemove" data-bs-dismiss="modal" class="btn btn-success w-50">OK</button>
+                    </div>
+                </div>
+
+                <div class="modal-body" id="divToggle">
                     <!-- <div class="row reset-Padding my-3">
                         <div class="col-5 reset-Padding d-flex justify-content-center align-items-center">
                             <img width="125" height="125"
@@ -443,6 +487,7 @@
                     </div>  -->
 
                 </div>
+
             </div>
         </div>
     </div>
@@ -487,7 +532,7 @@
                     </div>
                     <div class="col-12 mt-3 d-flex flex-column justify-content-center align-items-cente">
                         <span class="mt-2 text-center font-capt">
-                            Você terá que fazer muitas séries de 
+                            Você terá que fazer muitas séries de
                             <span id="nameExer" class="fw-bolder text-uppercase"></span> e por isso ele pode valer por 2
                             exercícios ao mesmo tempo.
                         </span>
@@ -507,9 +552,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <!-- Modal Paired Sets-->
 <div class="modal fade" id="pairedSets" tabindex="-1" aria-labelledby="pairedSetsLabel" aria-hidden="true">
@@ -534,7 +576,6 @@
         </div>
     </div>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- <script>

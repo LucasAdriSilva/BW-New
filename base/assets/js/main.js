@@ -189,7 +189,7 @@ function creatExercisesBase() {
 
         <div id="${'toggleExer' + x}"class="col-12 d-none d-flex flex-column justify-content-center">
 
-          <button id="${'btn' + 1}" onclick="filter(${x}, '${exer.name}', '${exer.category}', '${exer.type}', ${exer.nivel})" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
+          <button id="${'btn' + x}" onclick="filter(${x}, '${exer.name}', '${exer.category}', '${exer.type}', ${exer.nivel})" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
             
           </button>
 
@@ -218,17 +218,25 @@ function creatExercisesBase() {
 }
 
 function filter(id, name, category, type, nivel) {
+
+  // Mescla os dados entre os arrays
+  let arrayCorrecty = correctingArray(treino, exercises)
+  // Procura no array de exercicios qual é o que vai ser alterado
+  let exerFound = exercises.filter(e => e.name == name)
+
+  let filterType
+
+
   const divHidden = document.getElementById('divToggle')
   divHidden.classList.remove('d-none')
   divHidden.classList.add('d-block')
-  var filterType
 
   const inputValue = document.getElementById('ValidExer' + id)
-  var input = parseInt(inputValue.value)
+  let input = parseInt(inputValue.value)
 
-  var level = exercises.filter(e => e.name == name)
-  nivel = level[0].nivel
-  var segs = level[0].segs
+
+  nivel = exerFound[0].nivel
+  let segs = exerFound[0].segs
 
   // Verifica se o exercicio precisa tratar segundos
   if (segs) {
@@ -280,102 +288,193 @@ function filter(id, name, category, type, nivel) {
     filterType = filterType.filter(exercise => exercise.type === type);
   }
 
-  const divPai = document.getElementById('divToggle')
-  divPai.innerHTML = ''
-  var x = 1
-  filterType.forEach(e => {
-    // divPai.appendChild(div)
-    const parent = document.querySelector('.parent');
+  if (filterType.length < 1) {
+    const zeroExer = document.getElementById('zeroExer')
+    zeroExer.classList.add('d-none')
+    const exerLeve = document.getElementById('exerLeve')
+    exerLeve.classList.add('d-none')
 
-    // cria o primeiro elemento
-    const div1 = document.createElement('div');
-    div1.classList.add('row', 'reset-Padding', 'my-3');
+    let exerSameCategory = arrayCorrecty.filter(e => e.category == exerFound[0].category && e.name != exerFound[0].name)
 
-    // cria o segundo elemento
-    const div2s = document.createElement('div');
-    div2s.classList.add('col-5', 'reset-Padding', 'd-flex', 'justify-content-center', 'align-items-center');
+    debugger
+    // Se não tiver outro exercicio no treino 
+    if (exerSameCategory.length > 0) {
+      //Mostrar messagem que só tera esse exercicio até ele evoluir o suficiente para fazer outro exercicio
+      const exerLeve = document.getElementById('exerLeve')
+      exerLeve.classList.remove('d-none')
 
-    // cria o terceiro elemento
-    const img = document.createElement('img');
-    img.setAttribute('width', '115');
-    img.setAttribute('height', 'auto');
-    img.setAttribute('src', e.url);
+      const ESC = document.getElementById('exerSameCategory')
+      ESC.innerHTML = exerSameCategory[0].name
 
-    // adiciona o terceiro elemento ao segundo elemento
-    div2s.appendChild(img);
+      const titleModal = document.getElementById('exampleModalLabel')
+      titleModal.innerHTML = 'Atenção'
+      titleModal.classList.add('fw-bolder')
 
-    // cria o quarto elemento
-    const div3 = document.createElement('div');
-    div3.classList.add('col-7', 'd-flex', 'align-items-center', 'reset-Padding');
+      const exerLeveRemove = document.getElementById('exerLeveRemove')
+      exerLeveRemove.onclick = function () { removeExer(exerFound) };
 
-    // cria o quinto elemento
-    const div4 = document.createElement('div');
-    div4.classList.add('row', 'reset-Padding');
-    div4.id = 'row' + x
-    // cria o sexto elemento
-    const div5 = document.createElement('div');
-    div5.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+    }
+    else {
+      // Identificamos qual é o outro exercicio da mesma categoria
+      let otherExerSameCategory = newExercisesBase.filter(e => e.category == exerFound[0].category && e.name != exerFound[0].name)[0]
+      // descobrimos o index dele
+      let index = newExercisesBase.findIndex(e => e.name == otherExerSameCategory.name)
+      // Atraves do index puxamos o valor do input
+      const inputExer = document.getElementById('ValidExer' + (index + 1))
+      // Verificamos se o botão está aparecendo
+      const toggleExer = document.getElementById('toggleExer' + (index + 1))
 
-    // cria o sétimo elemento
-    const span1 = document.createElement('span');
-    span1.classList.add('reset');
-    span1.textContent = e.name;
 
-    // adiciona o sétimo elemento ao sexto elemento
-    div5.appendChild(span1);
 
-    // adiciona o sexto elemento ao quinto elemento
-    div4.appendChild(div5);
+      const btnSugest = document.getElementById('btnSugest')
+      const titleSugest = document.getElementById('titleSugest')
+      const categoryNull = document.getElementById('categoryNull')
+      const sugest = document.getElementById('sugest')
 
-    // cria o oitavo elemento
-    const div6 = document.createElement('div');
-    div6.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+      // Verifica se o exercicio de mesma categoria está vazio
+      if (inputExer.value == "") {
+        btnSugest.classList.add('d-none')
+        sugest.classList.add('d-none')
+        categoryNull.classList.add('d-none')
 
-    // cria o nono elemento
-    const span2 = document.createElement('span');
-    span2.classList.add('reset');
-    span2.textContent = `(${e.category} ${e.type})`;
+        titleSugest.innerHTML = `Sugerimos tentar fazer o <strong>${otherExerSameCategory.name}</strong> antes de fazer a troca desse exercicio`
 
-    // adiciona o nono elemento ao oitavo elemento
-    div6.appendChild(span2);
+      }
+      // Se estiver preenchido e não for valido
+      else {
+        if (inputExer.value != "" && toggleExer.classList.contains('d-none')) {
+          btnSugest.classList.add('d-none')
+          categoryNull.classList.add('d-none')
+          sugest.classList.remove('d-none')
 
-    // adiciona o oitavo elemento ao quinto elemento
-    div4.appendChild(div6);
+          titleSugest.innerHTML = `Verificamos que você conseguiu fazer o ${otherExerSameCategory.name}. E este exercicio que você está tentando trocar é o de nivel 0 (Não tem exercicio mais fraco)`
 
-    // cria o décimo elemento
-    const div7 = document.createElement('div');
-    div7.classList.add('col-12', 'd-flex', 'justify-content-center', 'align-items-center', 'reset-Padding', 'W-100');
+          sugest.innerHTML = `Sugerimos que mantenha apenas com 1 exercicio da categoria ${otherExerSameCategory.category}`
+        }
+        // Se estiver preenchido e for valido
+        else {
 
-    // cria o décimo primeiro elemento
-    const button = document.createElement('button');
-    button.onclick = function () { subs(id, e.name, e.category, e.type, e.url, e.nivel) };
-    button.id = 'toggle' + x
-    button.className = 'btn btn-primary mt-2';
-    button.innerText = 'Trocar';
-    button.classList.add('btn', 'btn-primary', 'mt-2');
-    button.setAttribute('data-bs-dismiss', 'modal');
-    button.setAttribute('style', 'width: 100%');
-    button.textContent = 'Trocar';
+          btnSugest.classList.remove('d-none')
+          sugest.classList.remove('d-none')
 
-    // adiciona o décimo primeiro elemento ao décimo elemento
-    div7.appendChild(button);
 
-    // adiciona o quinto e o décimo elemento ao quarto elemento
-    div4.appendChild(div5);
-    div4.appendChild(div6);
-    div4.appendChild(div7);
+          titleSugest.innerHTML = `Verificamos que não conseguiu fazer os exercicios de NIVEL 0 da categoria <strong>${exerFound[0].category}</strong> (${otherExerSameCategory.name} e ${exerFound[0].name})</span>`
 
-    // adiciona o segundo e o quarto elemento ao terceiro elemento
-    div3.appendChild(div4);
 
-    // adiciona o segundo e o terceiro elemento ao primeiro elemento
-    div1.appendChild(div2s);
-    div1.appendChild(div3);
+          sugest.innerHTML = 'Sugerimos mudar para <strong>Treino Hibrido</strong> ou <strong>Treino de Musculação</strong>'
 
-    // adiciona o primeiro elemento ao elemento pai
-    divPai.appendChild(div1);
-    x++
-  })
+        }
+      }
+
+
+
+
+      const zeroExer = document.getElementById('zeroExer')
+      zeroExer.classList.remove('d-none')
+
+      const zeroEcategoryNullxer = document.getElementById('categoryNull')
+      zeroEcategoryNullxer.innerHTML = exerFound[0].category
+
+
+    }
+  }
+  else {
+
+    const divPai = document.getElementById('divToggle')
+    divPai.innerHTML = ''
+    var x = 1
+    filterType.forEach(e => {
+      // cria o primeiro elemento
+      const div1 = document.createElement('div');
+      div1.classList.add('row', 'reset-Padding', 'my-3');
+
+      // cria o segundo elemento
+      const div2s = document.createElement('div');
+      div2s.classList.add('col-5', 'reset-Padding', 'd-flex', 'justify-content-center', 'align-items-center');
+
+      // cria o terceiro elemento
+      const img = document.createElement('img');
+      img.setAttribute('width', '115');
+      img.setAttribute('height', 'auto');
+      img.setAttribute('src', e.url);
+
+      // adiciona o terceiro elemento ao segundo elemento
+      div2s.appendChild(img);
+
+      // cria o quarto elemento
+      const div3 = document.createElement('div');
+      div3.classList.add('col-7', 'd-flex', 'align-items-center', 'reset-Padding');
+
+      // cria o quinto elemento
+      const div4 = document.createElement('div');
+      div4.classList.add('row', 'reset-Padding');
+      div4.id = 'row' + x
+      // cria o sexto elemento
+      const div5 = document.createElement('div');
+      div5.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+
+      // cria o sétimo elemento
+      const span1 = document.createElement('span');
+      span1.classList.add('reset');
+      span1.textContent = e.name;
+
+      // adiciona o sétimo elemento ao sexto elemento
+      div5.appendChild(span1);
+
+      // adiciona o sexto elemento ao quinto elemento
+      div4.appendChild(div5);
+
+      // cria o oitavo elemento
+      const div6 = document.createElement('div');
+      div6.classList.add('col-12', 'd-flex', 'justify-content-start', 'align-items-center', 'reset-Padding');
+
+      // cria o nono elemento
+      const span2 = document.createElement('span');
+      span2.classList.add('reset');
+      span2.textContent = `(${e.category} ${e.type})`;
+
+      // adiciona o nono elemento ao oitavo elemento
+      div6.appendChild(span2);
+
+      // adiciona o oitavo elemento ao quinto elemento
+      div4.appendChild(div6);
+
+      // cria o décimo elemento
+      const div7 = document.createElement('div');
+      div7.classList.add('col-12', 'd-flex', 'justify-content-center', 'align-items-center', 'reset-Padding', 'W-100');
+
+      // cria o décimo primeiro elemento
+      const button = document.createElement('button');
+      button.onclick = function () { subs(id, e.name, e.category, e.type, e.url, e.nivel) };
+      button.id = 'toggle' + x
+      button.className = 'btn btn-primary mt-2';
+      button.innerText = 'Trocar';
+      button.classList.add('btn', 'btn-primary', 'mt-2');
+      button.setAttribute('data-bs-dismiss', 'modal');
+      button.setAttribute('style', 'width: 100%');
+      button.textContent = 'Trocar';
+
+      // adiciona o décimo primeiro elemento ao décimo elemento
+      div7.appendChild(button);
+
+      // adiciona o quinto e o décimo elemento ao quarto elemento
+      div4.appendChild(div5);
+      div4.appendChild(div6);
+      div4.appendChild(div7);
+
+      // adiciona o segundo e o quarto elemento ao terceiro elemento
+      div3.appendChild(div4);
+
+      // adiciona o segundo e o terceiro elemento ao primeiro elemento
+      div1.appendChild(div2s);
+      div1.appendChild(div3);
+
+      // adiciona o primeiro elemento ao elemento pai
+      divPai.appendChild(div1);
+      x++
+    })
+
+  }
 
 }
 
@@ -497,7 +596,7 @@ function openToggleExer(id, Title, Input, bool) {
       const name = document.getElementById('nameExer')
       name.innerHTML = exer[0].name
 
-      
+
 
       var fixArray = []
       newExercisesBase.forEach(e => {
@@ -521,7 +620,7 @@ function openToggleExer(id, Title, Input, bool) {
         btn.classList.add('d-none')
 
         const btnremove = document.getElementById('removeExer')
-        btnremove.onclick = function () { removeExer(exerRemove, exer[0], id, Title, Input) };
+        btnremove.onclick = function () { removeExer(exerRemove, id, Title, Input) };
 
         // Exibir o modal
         modal.show();
@@ -1082,7 +1181,7 @@ function enviarTreino2() {
 
 }
 
-function removeExer(exer, addExer, id, Title, Input) {
+function removeExer(exer, id, Title, Input) {
   // Remove o exercicio do array
   var treino2 = []
   newExercisesBase.forEach(e => {
@@ -1115,7 +1214,9 @@ function removeExer(exer, addExer, id, Title, Input) {
     x++
   })
   newExercisesBase = treino2
-  gerarTreino(Title, Input, id)
+  if (Title) {
+    gerarTreino(Title, Input, id)
+  }
   return newExercisesBase; //retorne o array atualizado
 }
 
@@ -1127,4 +1228,18 @@ function openModal(id) {
 function showBtn(btn) {
   btn.classList.add('d-block')
   btn.classList.remove('d-none')
+}
+
+function correctingArray(treino, exercicio) {
+  let data_all = [];
+
+  exercicio.forEach(a => {
+    treino.forEach(t => {
+      if (a["name"] == t["name"]) {
+        let new_data = Object.assign({}, a, t);
+        data_all.push(new_data);
+      }
+    });
+  });
+  return data_all
 }
