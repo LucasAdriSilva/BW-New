@@ -203,7 +203,7 @@ function creatExercisesBase() {
 
                 </div>
                 <span id="${'success' + x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
-                    Perfeito, só aguardar o tempo do pause para prosseguir!
+                Perfeito, agora é só descansar 3m e fazer o próximo exercício
                 </span> 
       </div>`;
     x += 1
@@ -296,7 +296,7 @@ function filter(id, name, category, type, nivel) {
 
     let exerSameCategory = arrayCorrecty.filter(e => e.category == exerFound[0].category && e.name != exerFound[0].name)
 
-    
+
     // Se não tiver outro exercicio no treino 
     if (exerSameCategory.length > 0) {
       //Mostrar messagem que só tera esse exercicio até ele evoluir o suficiente para fazer outro exercicio
@@ -515,7 +515,7 @@ function subs(id, name, category, type, img, nivel) {
 
   </div>
   <span id="${'success' + id}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
-    Perfeito, só aguardar o tempo do pause para prosseguir!
+  Perfeito, agora é só descansar ${nameExer[0].rest}m e fazer o próximo exercício
   </span> 
   `
 
@@ -1183,7 +1183,7 @@ function enviarTreino2() {
 
 function removeExer(exer, id, Title, Input, exerRestante) {
   // Remove o exercicio do array
-  
+
   var treino2 = []
   newExercisesBase.forEach(e => {
     if (e == undefined) {
@@ -1218,11 +1218,11 @@ function removeExer(exer, id, Title, Input, exerRestante) {
   if (Title) {
     gerarTreino(Title, Input, id)
   }
-  
-  if(exerRestante){
+
+  if (exerRestante) {
     let index = newExercisesBase.findIndex(e => e.name == exerRestante[0].name)
 
-    let input = document.getElementById('ValidExer'+ (index+ 1))
+    let input = document.getElementById('ValidExer' + (index + 1))
     input.classList.remove('input-danger')
     input.classList.remove('text-danger')
   }
