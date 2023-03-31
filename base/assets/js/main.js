@@ -564,7 +564,7 @@ function openToggleExer(id, Title, Input, bool) {
     let sugundosTotais = segundos * repeticao // Segundos totais do exer
 
     // Dentro dos parametros
-    if (repeticao <= 4) {
+    if (repeticao <= 4 && input.value < 60 ) {
       // if (bool) {
       success.classList.remove('d-none')
       // Tempo da message de sucesso
@@ -633,7 +633,7 @@ function openToggleExer(id, Title, Input, bool) {
 
     }
     // Se for maior que 6 mostra messagem de erro PESADO
-    if (repeticao > 6) {
+    if (repeticao > 6 || input.value >= 60) {
       // Texto de sucesso some
       success.classList.add('d-none')
 
@@ -680,6 +680,8 @@ function openToggleExer(id, Title, Input, bool) {
       repts.classList.add('text-danger')
       repts.classList.remove('text-gray1')
     }
+
+
   }
   // Se for repts
   else {
