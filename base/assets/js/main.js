@@ -296,7 +296,7 @@ function filter(id, name, category, type, nivel) {
 
     let exerSameCategory = arrayCorrecty.filter(e => e.category == exerFound[0].category && e.name != exerFound[0].name)
 
-    debugger
+    
     // Se não tiver outro exercicio no treino 
     if (exerSameCategory.length > 0) {
       //Mostrar messagem que só tera esse exercicio até ele evoluir o suficiente para fazer outro exercicio
@@ -620,7 +620,7 @@ function openToggleExer(id, Title, Input, bool) {
         btn.classList.add('d-none')
 
         const btnremove = document.getElementById('removeExer')
-        btnremove.onclick = function () { removeExer(exerRemove, id, Title, Input) };
+        btnremove.onclick = function () { removeExer(exerRemove, id, Title, Input, exer) };
 
         // Exibir o modal
         modal.show();
@@ -1181,8 +1181,9 @@ function enviarTreino2() {
 
 }
 
-function removeExer(exer, id, Title, Input) {
+function removeExer(exer, id, Title, Input, exerRestante) {
   // Remove o exercicio do array
+  
   var treino2 = []
   newExercisesBase.forEach(e => {
     if (e == undefined) {
@@ -1216,6 +1217,14 @@ function removeExer(exer, id, Title, Input) {
   newExercisesBase = treino2
   if (Title) {
     gerarTreino(Title, Input, id)
+  }
+  
+  if(exerRestante){
+    let index = newExercisesBase.findIndex(e => e.name == exerRestante[0].name)
+
+    let input = document.getElementById('ValidExer'+ (index+ 1))
+    input.classList.remove('input-danger')
+    input.classList.remove('text-danger')
   }
   return newExercisesBase; //retorne o array atualizado
 }
