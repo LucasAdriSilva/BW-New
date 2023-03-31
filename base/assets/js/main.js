@@ -557,8 +557,10 @@ function openToggleExer(id, Title, Input, bool) {
   // Se for segs
   if (exer[0].segs) {
     // Se o exercicio nao for de segundos ira executar essa validação
+  debugger
     let segundos = input.value / 2 //Resposta em segundos
-    let repeticao = 60 / segundos // Repostas em repetição
+    let repeticao = 60 / Math.round(segundos) // Repostas em repetição
+    repeticao = Math.round(repeticao)
     let sugundosTotais = segundos * repeticao // Segundos totais do exer
 
     // Dentro dos parametros
