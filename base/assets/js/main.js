@@ -194,11 +194,11 @@ function creatExercisesBase() {
           </button>
 
             <span id="${'heavy' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-                    *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
+                    *Ops, sua quantidade de ${exer.segs? 'segundos' : 'repetição'} está baixa! Vamos trocar para um mais leve?
                 </span>
 
                  <span id="${'light' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-                    *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
+                    *Ops, sua quantidade de ${exer.segs? 'segundos' : 'repetição'} está  alta! Vamos trocar para um mais pesado?
                 </span> 
 
                 </div>
@@ -506,11 +506,11 @@ function subs(id, name, category, type, img, nivel) {
 
   div.innerHTML = `<button id="${'btn' + id}" onclick="filter(${id}, '${name}', '${category}', '${type}', ${nivel})" class="btn btn-primary mb-2 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Trocar Exercicío</button>
   <span id="${'heavy' + id}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-  *Ops, sua quantidade de repetição está baixa! Vamos trocar para um mais leve?
+  *Ops, sua quantidade de ${nameExer[0].segs ? 'segundos' : 'repetição'} está baixa! Vamos trocar para um mais leve?
   </span>
 
   <span id="${'light' + id}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-    *Ops, sua quantidade de repetição está alta! Vamos trocar para um mais pesado?
+    *Ops, sua quantidade de ${nameExer[0].segs ? 'segundos' : 'repetição'} está alta! Vamos trocar para um mais pesado?
   </span> 
 
   </div>
