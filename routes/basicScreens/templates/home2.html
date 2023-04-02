@@ -137,10 +137,15 @@
 
 {%endif%}
 {%endif%}
-<form method="POST" action="{{ url_for('basicScreens.download_pdf') }}" target="_blank">
-    <input type="hidden" name="data" value="{{ data }}">
-    <button type="submit">Baixar PDF</button>
-</form>
+<div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center my-3">
+        <form method="POST" action="{{ url_for('basicScreens.download_pdf') }}" target="_blank">
+            <input type="hidden" name="data" value="{{ data }}">
+            <button class="btn btn-success" type="submit">Baixar PDF</button>
+        </form>
+    </div>
+</div>
+
 
 
 {% endblock %}

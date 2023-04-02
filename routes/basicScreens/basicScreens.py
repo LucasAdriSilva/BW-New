@@ -124,6 +124,7 @@ def download_pdf():
   x = 1
   for item in data['treino']:
     pdf.cell(200, 10, f"{x} Exercicio - {str(item['name'])}. quantidade: {str(item['count'])}, serie: {str(item['rept'])}, descanso: {str(item['rest'])}", ln=1)
+    x += 1
   pdf_name = 'Treino.pdf'
   pdf_bytes = pdf.output(dest='S').encode('latin1')  # converte o PDF para bytes
   response = make_response(pdf_bytes)
