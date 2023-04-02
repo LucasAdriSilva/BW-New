@@ -557,7 +557,6 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
   const noInput = document.getElementById('noInput' + id)
-  debugger
 
   var exer = exercises.filter(e => e.name == Title.innerHTML)
   // Se for segs

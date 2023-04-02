@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, make_response
 import json
 from model.exercicio import Exercicio 
+from fpdf import FPDF
+
 
 basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
@@ -86,6 +88,8 @@ def index2():
           print(f"{e}")
           data = {'nav': 'creat'}
       # Se for false retorna os exercicios
+
+
       else:
           data = {
             'nav': 'creat',
@@ -107,3 +111,22 @@ def index3():
   }
   return render_template("user.html", data = data)
 
+@basicScreens.route("/download-pdf", methods=["POST"])
+def download_pdf():
+  # Recupera os dados enviados pelo formulário
+  data = request.form['data']
+  data = json.loads(data.replace("'", "\""))
+  # Cria o arquivo PDF usando a biblioteca FPDF
+  pdf = FPDF()
+  pdf.add_page()
+  pdf.set_font("Arial", size=12)
+  
+  x = 1
+  for item in data['treino']:
+    pdf.cell(200, 10, f"{x} Exercicio - {str(item['name'])}. quantidade: {str(item['count'])}, serie: {str(item['rept'])}, descanso: {str(item['rest'])}", ln=1)
+  pdf_name = 'Treino.pdf'
+  pdf_bytes = pdf.output(dest='S').encode('latin1')  # converte o PDF para bytes
+  response = make_response(pdf_bytes)
+  response.headers.set('Content-Disposition', 'attachment', filename=pdf_name)  # adiciona o cabeçalho para download
+  response.headers.set('Content-Type', 'application/pdf')  # define o tipo de conteúdo como PDF
+  return response
