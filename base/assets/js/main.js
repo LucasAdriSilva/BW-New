@@ -194,16 +194,20 @@ function creatExercisesBase() {
           </button>
 
             <span id="${'heavy' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-                    *Ops, sua quantidade de ${exer.segs? 'segundos' : 'repetição'} está baixa! Vamos trocar para um mais leve?
+                    *Ops, sua quantidade de ${exer.segs ? 'segundos' : 'repetição'} está baixa! Vamos trocar para um mais leve?
                 </span>
 
                  <span id="${'light' + x}" class="reset text-danger text-start px-2 d-none" style="font-size: 10px;">
-                    *Ops, sua quantidade de ${exer.segs? 'segundos' : 'repetição'} está  alta! Vamos trocar para um mais pesado?
+                    *Ops, sua quantidade de ${exer.segs ? 'segundos' : 'repetição'} está  alta! Vamos trocar para um mais pesado?
                 </span> 
 
                 </div>
                 <span id="${'success' + x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
                 Perfeito, agora é só descansar 3m e fazer o próximo exercício
+                </span> 
+
+                <span id="${'noInput' + x}" class="reset px-3 text-start text-danger d-none" style="font-size: 10px;">
+                Por favor, insira o numero máximo de ${exer.segs ? 'segundos' : 'repetição'}, para montarmos seu treino.
                 </span> 
       </div>`;
     x += 1
@@ -552,20 +556,23 @@ function openToggleExer(id, Title, Input, bool) {
   const heavy = document.getElementById('heavy' + id)
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
+  const noInput = document.getElementById('noInput' + id)
+  debugger
 
   var exer = exercises.filter(e => e.name == Title.innerHTML)
   // Se for segs
   if (exer[0].segs) {
     // Se o exercicio nao for de segundos ira executar essa validação
-  debugger
+
     let segundos = input.value / 2 //Resposta em segundos
     let repeticao = 60 / Math.round(segundos) // Repostas em repetição
     repeticao = Math.round(repeticao)
     let sugundosTotais = segundos * repeticao // Segundos totais do exer
 
     // Dentro dos parametros
-    if (repeticao <= 4 && input.value < 60 ) {
+    if (repeticao <= 4 && input.value < 60) {
       // if (bool) {
+      noInput.classList.add('d-none')
       success.classList.remove('d-none')
       // Tempo da message de sucesso
       setTimeout(function () {
@@ -584,6 +591,7 @@ function openToggleExer(id, Title, Input, bool) {
     }
     // Se o numero de repetição for 5 ou 6 mostra o modal
     if (repeticao == 5 || repeticao == 6) {
+      noInput.classList.add('d-none')
       //  dar opção de eliminar exercicio
       var modal = new bootstrap.Modal(document.querySelector('#toggleExerSegs'));
 
@@ -634,6 +642,7 @@ function openToggleExer(id, Title, Input, bool) {
     }
     // Se for maior que 6 mostra messagem de erro PESADO
     if (repeticao > 6 || input.value >= 60) {
+      noInput.classList.add('d-none')
       // Texto de sucesso some
       success.classList.add('d-none')
 
@@ -658,6 +667,7 @@ function openToggleExer(id, Title, Input, bool) {
     }
     // Leve
     if (repeticao < 2) {
+      noInput.classList.add('d-none')
       // Texto de sucesso some
       success.classList.add('d-none')
 
@@ -687,6 +697,7 @@ function openToggleExer(id, Title, Input, bool) {
   else {
     if (exer[0].name == 'Dips na paralela' || exer[0].name == 'Pull Ups') {
       if (input.value <= 2) {
+        noInput.classList.add('d-none')
         // Texto de sucesso some
         success.classList.add('d-none')
 
@@ -711,6 +722,7 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 2 && input.value < 16) {
+        noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
           // Tempo da message de sucesso
@@ -737,6 +749,7 @@ function openToggleExer(id, Title, Input, bool) {
         }
       }
       if (input.value > 15) {
+        noInput.classList.add('d-none')
         // Texto de sucesso some
         success.classList.add('d-none')
 
@@ -762,6 +775,8 @@ function openToggleExer(id, Title, Input, bool) {
     }
     else {
       if (input.value < 6) {
+        noInput.classList.add('d-none')
+
         // Texto de sucesso some
         success.classList.add('d-none')
 
@@ -786,13 +801,18 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 5 && input.value < 16) {
+
+        noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
+          let divExer = document.getElementById('exer' + id)
           // Tempo da message de sucesso
           setTimeout(function () {
             success.classList.add("d-none");
           }, 10000);
         }
+
+
         input.classList.remove('text-danger')
         input.classList.remove('input-danger')
 
@@ -813,6 +833,7 @@ function openToggleExer(id, Title, Input, bool) {
       }
       if (input.value > 15) {
         // Texto de sucesso some
+        noInput.classList.add('d-none')
         success.classList.add('d-none')
 
         // Mostra o botão de trocar o exercicio
@@ -847,6 +868,7 @@ function addColorError() {
     const repts = document.getElementById('repts' + i)
     const light = document.getElementById('light' + i)
     const heavy = document.getElementById('heavy' + i)
+    const noInput = document.getElementById('noInput' + i)
 
 
     if (input.value == NaN || input.value == null || input.value == undefined || input.value == "") {
@@ -854,14 +876,17 @@ function addColorError() {
       input.classList.remove('input-exer')
       input.classList.add('input-exer-fail')
       repts.classList.add('text-danger')
-      // title.classList.add('text-danger')
+
+      // setTimeout(function () {
+      noInput.classList.remove('d-none')
+      // }, 10000);
     } else {
       // Se estiver preenchido
+      noInput.classList.add('d-none')
       input.classList.add('input-exer')
       input.classList.remove('input-exer-fail')
       repts.classList.remove('text-danger')
       // title.classList.remove('text-danger')
-
 
       openToggleExer(i, title, input, false)
     }
