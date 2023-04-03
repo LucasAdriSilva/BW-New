@@ -361,6 +361,11 @@
 
 
 <div id="RegularFullbody" class="d-none my-3">
+    <div class="row border-bottom">
+        <div class="col-12">
+            <h1 class="reset text-center my-4" style="font-size: 3rem;">Seu treino</h1>
+        </div>
+    </div>
     {% if data.pairedSets == True %}
         {% for e in  data.allTreinos.pairedSetsTraining.fullbodyPS %}
             <div
@@ -488,7 +493,11 @@
 </div>
 
 <div id="RegularPushPull" class="d-none my-3">
-    
+    <div class="row border-bottom">
+        <div class="col-12">
+            <h1 class="reset text-center my-4" style="font-size: 3rem;">Seu treino</h1>
+        </div>
+    </div>
     {% if data.pairedSets == True %}
         <div class="row bg-gray2">
             <div class="col-12 d-flex justify-content-center align-items-center">
@@ -760,6 +769,11 @@
 </div>
 
 <div id="RegularUpperLower" class="d-none my-3">
+    <div class="row border-bottom">
+        <div class="col-12">
+            <h1 class="reset text-center my-4" style="font-size: 3rem;">Seu treino</h1>
+        </div>
+    </div>
     {% if data.pairedSets == True %}
         <div class="row bg-gray2">
             <div class="col-12 d-flex justify-content-center align-items-center">
@@ -1029,7 +1043,8 @@
     {% endif %}
 </div>
 
-<div id="bntPdf" class="row d-none">
+
+<div id="bntPdf" class="row {% if data.days == 4 %}d-none {% endif %}">
     <div class="col-12 d-flex justify-content-center align-items-center my-3">
         <form method="POST" action="{{ url_for('basicScreens.download_pdf') }}" target="_blank">
             <input type="hidden" name="data" value="{{ data.allTreinos }}">
