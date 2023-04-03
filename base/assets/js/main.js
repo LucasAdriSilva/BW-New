@@ -696,7 +696,7 @@ function openToggleExer(id, Title, Input, bool) {
   // Se for repts
   else {
     if (exer[0].name == 'Dips na paralela' || exer[0].name == 'Pull Ups') {
-      if (input.value <= 2) {
+      if (input.value <= 3) {
         noInput.classList.add('d-none')
         // Texto de sucesso some
         success.classList.add('d-none')
@@ -721,7 +721,7 @@ function openToggleExer(id, Title, Input, bool) {
         repts.classList.remove('text-gray1')
 
       }
-      if (input.value > 2 && input.value < 16) {
+      if (input.value > 3 && input.value < 16) {
         noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
