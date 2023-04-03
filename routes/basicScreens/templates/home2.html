@@ -231,11 +231,13 @@
 {% endif %}
 
 {% if data.days == 3 %}   
+    
     <div class="row border-bottom">
         <div class="col-12">
             <h1 class="reset text-center my-4" style="font-size: 3rem;">Seu treino</h1>
         </div>
     </div>
+
     {% if data.pairedSets == True %}
 
         {% for e in  data.allTreinos.pairedSetsTraining.fullbodyPS %}

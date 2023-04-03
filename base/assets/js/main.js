@@ -242,7 +242,6 @@ function filter(id, name, category, type, nivel) {
 
   nivel = exerFound[0].nivel
   let segs = exerFound[0].segs
-
   // Verifica se o exercicio precisa tratar segundos
   if (segs) {
     //input 18s
@@ -292,6 +291,26 @@ function filter(id, name, category, type, nivel) {
   if (type) {
     filterType = filterType.filter(exercise => exercise.type === type);
   }
+  debugger
+
+  // Retira exercicios repetidos
+  let filtered = filterType.filter((item, index, arr) => {
+    return arr.findIndex(t => t.name === item.name) === index;
+  });
+  filterType = filtered;
+
+  // Retira os exercicios que estão no newExercisesBase
+  let altered = [];
+  filterType.forEach(e => {
+    if (!newExercisesBase.find(i => i.name === e.name)) {
+      altered.push(e);
+    }
+  });
+  filterType = altered;
+
+
+  // Retira todos os exercicios com o nome do que está subistituindo
+  filterType = filterType.filter(e => e.name !== exerFound[0].name);
 
   if (filterType.length < 1) {
     const zeroExer = document.getElementById('zeroExer')
@@ -499,6 +518,12 @@ function subs(id, name, category, type, img, nivel) {
   // })
 
   var nameExer = exercises.filter(e => e.name == name)
+  // Subistituir no array
+  let indexExer = newExercisesBase.findIndex(e => e.name == Name.innerHTML)
+  if(indexExer != -1){
+    newExercisesBase[indexExer] = nameExer[0]
+  }
+
   if (nameExer[0].segs) {
     repts.innerHTML = 'SEGS'
   }
@@ -1188,7 +1213,6 @@ days.addEventListener('change', function () {
   else {
     var newData = { name: 'days', value: days.value }
     requireds.push(newData)
-    getRequireds(req, requireds)
   }
 })
 
@@ -1405,7 +1429,7 @@ function chosenRoutine(rotina) {
     const RegularPushPull = document.getElementById('RegularPushPull')
     RegularPushPull.classList.remove('d-none')
   }
-  if (rotina == 'RegularUpperLower') { 
+  if (rotina == 'RegularUpperLower') {
     const RegularUpperLower = document.getElementById('RegularUpperLower')
     RegularUpperLower.classList.remove('d-none')
   }
