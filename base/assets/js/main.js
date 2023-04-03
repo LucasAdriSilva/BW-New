@@ -118,6 +118,7 @@ window.addEventListener("load", function () {
 var treino = []
 var newExercises = []
 var newExercisesBase = []
+var requireds = []
 
 function getImgUrl(name) {
   const exercise = exercises.find(e => e.name === name);
@@ -1007,115 +1008,6 @@ function gerarTreino(title, input, id) {
   }
 }
 
-// function enviarTreino() {
-
-//   if (treino.length === 8) {
-//     const divPai = document.getElementById("trainingGenerated')
-//     divPai.innerHTML = ''
-//     treino.forEach(exer => {
-
-//       const title = document.getElementById('txtTitle')
-//       title.classList.remove('d-none')
-//       title.classList.add('d-block')
-
-//       const div = document.createElement('div');
-//       // adicionar as classes à div
-//       div.classList.add('col-lg-6', 'col-12', 'position-relative', 'rounded-3', 'p-3', 'bg-white');
-
-//       // criar o elemento h3 e adicionar o texto
-//       const h3 = document.createElement('h3');
-//       h3.classList.add('reset', 'text-center');
-//       h3.setAttribute('id', 'ValidTitle8');
-//       h3.textContent = exer.name;
-
-//       // adicionar o elemento h3 à div
-//       div.appendChild(h3);
-
-//       // criar o elemento div
-//       const div2 = document.createElement('div');
-//       div2.classList.add('d-flex', 'rounded-3', 'p-3', 'bg-white', 'w-100');
-//       div2.style.border = '1px solid rgb(20, 20, 20)';
-
-//       // criar o elemento div com a imagem e adicionar a imagem
-//       const imgDiv = document.createElement('div');
-//       imgDiv.classList.add('d-flex', 'justify-content-center', 'img-card', 'reset-Padding');
-//       const img = document.createElement('img');
-//       img.classList.add('img-fluid', 'img-resolution');
-//       img.setAttribute('id', 'img1');
-//       img.setAttribute('width', '150');
-//       img.setAttribute('height', '150');
-//       img.setAttribute('src', exer.url);
-//       img.setAttribute('alt', '');
-//       imgDiv.appendChild(img);
-
-//       // criar o elemento div com as informações da série e adicionar as informações
-//       const infoDiv = document.createElement('div');
-//       infoDiv.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-content-center');
-//       infoDiv.style.width = '350px';
-
-//       const serieDiv = document.createElement('div');
-//       serieDiv.classList.add('d-flex', 'text-center', 'justify-content-between', 'align-items-center');
-
-//       const serieSpan1 = document.createElement('span');
-//       serieSpan1.textContent = 'Serie: ';
-
-//       const serieSpan2 = document.createElement('span');
-//       serieSpan2.textContent = exer.rept + 'x';
-//       serieDiv.appendChild(serieSpan1);
-//       serieDiv.appendChild(serieSpan2);
-
-//       const repDiv = document.createElement('div');
-//       repDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
-
-//       const repSpan1 = document.createElement('span');
-//       repSpan1.textContent = 'Num de repetição: ';
-
-//       const repSpan2 = document.createElement('span');
-//       repSpan2.textContent = exer.count;
-
-//       repDiv.appendChild(repSpan1);
-//       repDiv.appendChild(repSpan2);
-//       const descDiv = document.createElement('div');
-//       descDiv.classList.add('d-flex', 'text-center', 'align-items-center', 'justify-content-between');
-//       const descSpan1 = document.createElement('span');
-//       descSpan1.textContent = 'Descanso: ';
-//       const descSpan2 = document.createElement('span');
-//       descSpan2.textContent = exer.rest + ' Minutos';
-//       descDiv.appendChild(descSpan1);
-//       descDiv.appendChild(descSpan2);
-//       infoDiv.appendChild(serieDiv);
-//       infoDiv.appendChild(repDiv);
-//       infoDiv.appendChild(descDiv);
-
-//       // adicionar os elementos à segunda div
-//       div2.appendChild(imgDiv);
-//       div2.appendChild(infoDiv);
-
-//       // adicionar a segunda div à primeira div
-//       div.appendChild(div2);
-//       divPai.appendChild(div);
-//     })
-//   } else {
-//     for (let i = 1; i < 9; i++) {
-//       const input = document.getElementById('ValidExer' + i)
-
-
-//       if (input.value == NaN ||
-//         input.value == null ||
-//         input.value == undefined ||
-//         input.value == "") {
-
-//         input.classList.remove('input-exer')
-//         input.classList.add('input-exer-fail')
-//       } else {
-//         input.classList.remove('input-exer-fail')
-//         input.classList.add('input-exer')
-//       }
-
-//     }
-//   }
-// }
-
 function validationQtdExer() {
   var filterCategory = []
 
@@ -1171,39 +1063,6 @@ function validationQtdExer() {
       treino[indexName].count -= 1
     } else {
     }
-  }
-
-
-}
-
-function enviarTreino2() {
-  if (treino.length == newExercisesBase.length) {
-    const pairedSets = document.getElementById('pairedSetsValue').checked
-    var stre = ""
-    pairedSets ? stre = "true" : stre = "false"
-    const newAtt = { name: "Paired Sets", value: stre }
-    treino.push(newAtt)
-
-
-    fetch('/sendTraining', {
-      method: 'POST',
-      body: JSON.stringify(treino),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (response.redirected) {
-          window.location.replace(response.url);
-        } else {
-
-        }
-      })
-      .catch(error => {
-        console.error('Erro na requisição:', error);
-      });
-  } else {
-    addColorError()
   }
 
 
@@ -1279,4 +1138,324 @@ function correctingArray(treino, exercicio) {
     });
   });
   return data_all
+}
+
+// ----------------------------------------------------------- Page Home.html
+// Obtém o elemento do carrossel e seus itens internos
+const quizCarousel = document.querySelector('#quiz');
+const quizItems = quizCarousel.querySelectorAll('.carousel-item');
+const hours = document.getElementById('hours')
+const min = document.getElementById('min')
+const days = document.getElementById('days')
+
+const timeErr = document.getElementById('timeErr')
+
+// Percorre cada item do quiz e adiciona um evento de clique em seus inputs de opção
+quizItems.forEach(item => {
+  const optionInputs = item.querySelectorAll('.form-check-input');
+
+  optionInputs.forEach((input) => {
+    input.addEventListener('click', () => {
+      const name = input.name
+      const value = input.value
+      const index = requireds.findIndex((e) => e.name == name)
+
+      // Verificação se já existe o item no array
+      if (index !== -1) {
+        requireds[index].value = value
+      } else {
+        requireds.push({ name: name, value: value })
+      }
+
+      if (requireds.length == 6 && input.name != 'qtdTreino') {
+        $('input[type=radio]').change(function () {
+          $('.carousel').carousel('next'); // Avança para o próximo slide
+        });
+
+        if (requireds.length > 6) {
+          // console.log('wee')
+        }
+      }
+    });
+  });
+});
+
+days.addEventListener('change', function () {
+  var D = parseInt(days.value)
+  if (D <= 0) {
+    // Erro de dia
+  }
+  else {
+    var newData = { name: 'days', value: days.value }
+    requireds.push(newData)
+    getRequireds(req, requireds)
+  }
+})
+
+hours.addEventListener('change', function () {
+  var H = parseInt(hours.value)
+  var M = parseInt(min.value)
+
+  min.classList.remove('selecte-err')
+  hours.classList.remove('selecte-err')
+
+  const index = requireds.findIndex((e) => e.name == 'hours')
+  const indexMin = requireds.findIndex((e) => e.name == 'min')
+
+  // Verificação se já existe o item no array
+  if (index !== -1) {
+    requireds[index].value = hours.value
+    if (indexMin !== -1) {
+      requireds[indexMin].value = min.value
+    }
+  } else {
+    requireds.push({ name: 'hours', value: hours.value })
+  }
+
+  //Da um filter no array em busca dos minutos
+  var find = requireds.filter(e => e.min != 'Min.')
+  // Se não tiver minutos no arrai nao cria os exercicios
+  if (find.length >= 9) {
+    verificationRequireds()
+  }
+
+})
+
+min.addEventListener('change', function () {
+  var M = parseInt(min.value)
+  var H = parseInt(hours.value)
+  const index2 = requireds.findIndex((e) => e.min == min.value)
+
+  if (M <= 39 && H <= 0) {
+    //Lógica do erro
+    min.classList.add('selecte-err')
+    hours.classList.add('selecte-err')
+    timeErr.classList.remove('d-none')
+    if (index2 !== -1) {
+      requireds[index2].value = min.value
+    } else {
+      requireds.push({ name: 'min', value: min.value })
+    }
+  }
+  else {
+    timeErr.classList.add('d-none')
+    // Verifica se já existe, se tiver att se nao adiciona
+    if (index2 !== -1) {
+      requireds[index2].value = min.value
+    } else {
+      requireds.push({ name: 'min', value: min.value })
+    }
+
+    //Da um filter no array em busca das horas
+    var find = requireds.filter(e => e.hours != 'horas')
+    // Se não tiver horas no arrai nao cria os exercicios
+    if (find.length >= 9) {
+      verificationRequireds()
+    }
+  }
+})
+
+function verificationRequireds() {
+  var superband = requireds.filter(e => e.name == 'superband')[0].value
+  var paralelas = requireds.filter(e => e.name == 'paralelas')[0].value
+  var barraFixa = requireds.filter(e => e.name == 'barraFixa')[0].value
+  var argolas = requireds.filter(e => e.name == 'argolas')[0].value
+  var trx = requireds.filter(e => e.name == 'trx')[0].value
+  var rodinha = requireds.filter(e => e.name == 'rodinha')[0].value
+  var days = parseInt(requireds.filter(e => e.name == 'days')[0].value)
+  var horas = requireds.filter(e => e.name == 'hours')[0]
+  var min = requireds.filter(e => e.name == 'min')[0]
+
+  // Add os sem filtros
+  var aux = exercises.filter(e => e.required == "")
+  aux.forEach(e => {
+    newExercises.push(e)
+  })
+
+
+  if (superband == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('superband');
+      } else {
+        return e.required == 'superband';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+  if (paralelas == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('paralelas');
+      } else {
+        return e.required == 'paralelas';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+  if (barraFixa == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('barraFixa');
+      } else {
+        return e.required == 'barraFixa';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+  if (argolas == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('argolas');
+      } else {
+        return e.required == 'argolas';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+  if (trx == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('trx');
+      } else {
+        return e.required == 'trx';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+  if (rodinha == 'true') {
+    var aux = exercises.filter(e => {
+      if (Array.isArray(e.required)) {
+        return e.required.includes('rodinha');
+      } else {
+        return e.required == 'rodinha';
+      }
+    });
+    aux.forEach(e => {
+      newExercises.push(e)
+    });
+  }
+
+  // Verifica se tem o minimo 
+  if (paralelas == 'false' && barraFixa == 'false' && argolas == 'false' && trx == 'false') {
+    const quiz = document.getElementById('quiz')
+    quiz.classList.add('d-none')
+
+    const divErr = document.getElementById('msgErr')
+    divErr.classList.remove('d-none')
+  }
+  else {
+
+    // Primeiro Exercicio
+    paralelas == 'true' ?
+      newExercisesBase.push(exercises.filter(e => e.name == 'Dips na paralela')[0]) :
+      newExercisesBase.push(newExercises.filter(e => e.nivel == 2 && e.type == 'Vertical' && e.category == 'Push')[0])
+
+    // Segundo Exercicio
+    newExercisesBase.push(newExercises.filter(e => e.name == 'Flexão Padrão')[0])
+
+    // Terceiro Exercicio
+    barraFixa == 'true' ?
+      newExercisesBase.push(exercises.filter(e => e.name == 'Pull Ups')[0]) :
+      newExercisesBase.push(newExercises.filter(e => e.nivel == 3 && e.type == 'Vertical' && e.category == 'Pull')[0])
+
+    // Quarto Exercicio
+    newExercisesBase.push(exercises.filter(e => e.name == 'Rows/Barra Australiana')[0])
+
+    // Quinto Exercicio
+    newExercisesBase.push(exercises.filter(e => e.name == 'Full Squat (descer tudo)')[0])
+
+    // Sexto Exercicio
+    newExercisesBase.push(exercises.filter(e => e.name == 'Hip Thruster')[0])
+
+    // Setimo Exercicio
+    paralelas == 'true' ?
+      newExercisesBase.push(exercises.filter(e => e.name == 'Tuck L-sit')[0]) :
+      newExercisesBase.push(newExercises.filter(e => e.nivel == 2 && e.type == 'Abdômen' && e.category == 'Core')[0])
+
+    // Oitavo Exercicio
+    newExercisesBase.push(exercises.filter(e => e.name == '60s de Prancha Abdominal')[0])
+
+    creatExercisesBase()
+  }
+}
+
+// Desativa a rotação automática do carrossel
+quizCarousel.setAttribute('data-bs-interval', 'false');
+
+
+// ----------------------------------------------------------- Page Home2.html
+
+function chosenRoutine(rotina) {
+  if (rotina == 'RegularFullbody') {
+    const RegularFullbody = document.getElementById('RegularFullbody')
+    RegularFullbody.classList.remove('d-none')
+  }
+  if (rotina == 'RegularPushPull') {
+    const RegularPushPull = document.getElementById('RegularPushPull')
+    RegularPushPull.classList.remove('d-none')
+  }
+  if (rotina == 'RegularUpperLower') { 
+    const RegularUpperLower = document.getElementById('RegularUpperLower')
+    RegularUpperLower.classList.remove('d-none')
+  }
+
+  const text1 = document.getElementById('text1')
+  const text2 = document.getElementById('text2')
+  text1.classList.add('d-none')
+  text2.classList.add('d-none')
+
+  const bntPdf = document.getElementById('bntPdf')
+  bntPdf.classList.remove('d-none')
+
+}
+
+// ------------------------------------------------------------- Ultima função
+function enviarTreino2() {
+  if (treino.length == newExercisesBase.length) {
+    //Enviando o valor de Paired Sets
+    const pairedSets = document.getElementById('pairedSetsValue').checked
+    var stre = ""
+    pairedSets ? stre = "true" : stre = "false"
+    const newAtt = { name: "Paired Sets", value: stre }
+    treino.push(newAtt)
+
+    let res = requireds.filter(e => e.name == 'days')[0]
+    let days = parseInt(res.value)
+    let newData = { name: 'days', value: days }
+    treino.push(newData)
+
+
+    fetch('/sendTraining', {
+      method: 'POST',
+      body: JSON.stringify(treino),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (response.redirected) {
+          window.location.replace(response.url);
+        } else {
+
+        }
+      })
+      .catch(error => {
+        console.error('Erro na requisição:', error);
+      });
+  } else {
+    addColorError()
+  }
+
+
 }

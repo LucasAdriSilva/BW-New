@@ -294,3 +294,25 @@ input[type="radio"]:checked {
 .bg-success2{
   background-color: #aed199;
 }
+
+.correct-size{
+  padding-top: -10px !important;
+}
+
+.bg-success-50{
+  background-color: #c1e7d5;
+  /* #198754 */
+}
+
+.bg-danger-50{
+  background-color: #f3c6cb;
+  /* #dc3545 */
+}
+
+.btn-gray{
+  background-color: #b9b9b9;
+}
+
+.btn-orange{
+  background-color: rgb(255, 199, 0);
+}

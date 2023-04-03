@@ -19,7 +19,6 @@ def teste():
     if request.method == "POST":
         treino = request.get_json()
         data = {'treino': treino}
-        print(data)
         return redirect(url_for('basicScreens.index2', data=data))
 
     return render_template("home.html")
@@ -33,67 +32,113 @@ def index2():
 
       all = Exercicio.getAllExercicios()
       
+      # pega o valor de dias
+      days = treino['treino'][-1]
+      # remove o days do array de treino
+      treino['treino'].pop(-1)
+      
       # pega o valor do Paired Sets
       pairedSets = treino['treino'][-1]
       # remove o Paired Sets do array de treino
       treino['treino'].pop(-1)
 
-      # Se for true, reordenas os exercicios
+      
+      try:
+        data_all = []
+        new_order = []
+
+        # Unindo o Treino com o All
+        for a in all:
+          for t in treino['treino']:
+            if a["name"] == t["name"]:
+              new_data = a.copy()
+              new_data.update(t)
+              data_all.append(new_data)
+            
+        # Cria um array qeu repete o num de veses de acordo com o exer, e add infos
+        for e in data_all:
+          repeated_e = [e.copy() for _ in range(e['rept'])]  # cria uma cópia do dicionário e rept vezes
+          for i, d in enumerate(repeated_e):
+              d['rept_num'] = i + 1  # adiciona um novo campo 'rept_num' com o número de repetição
+              d['reset'] = '1:30'   # altera o campo 'reset' para '1:30'
+          new_order.extend(repeated_e)
+
+        #-----------------------------------------------------------------------------------------------------Treino com Paired Sets 
+        # Agrupa os objetos por categoria
+        categories = {}
+        for a in new_order:
+          category = a["category"]
+          if category not in categories:
+              categories[category] = []
+          categories[category].append(a)
+
+        #  Cria 2 arrays para fazer a intecalação
+        array1 = []
+        array2 = []
+        # Criando a rotina FULLBODY com Paired Sets intercalada 
+        array1 = [valor for par in zip(categories['Push'], categories['Core']) for valor in par]
+        array2 = [valor for par in zip(categories['Pull'], categories['Legs']) for valor in par]
+        array1.extend(array2)
+        fullbodyPS = array1
+
+        # Criando a rotina Push/Pull com Paired Sets intercalada 
+        array1 = [valor for par in zip(categories['Push'], categories['Legs']) for valor in par]
+        array2 = [valor for par in zip(categories['Pull'], categories['Core']) for valor in par]
+        pushPullPS = {'d1' : array1 , 'd2': array2}
+
+         # Criando a rotina Upper/Lowe com Paired Sets intercalada 
+        array1 = [valor for par in zip(categories['Push'], categories['Pull']) for valor in par]
+        array2 = [valor for par in zip(categories['Core'], categories['Legs']) for valor in par]
+        upperLowerPS = {'d1' : array1 , 'd2': array2}
+
+        pairedSetsTraining = {'fullbodyPS': fullbodyPS,'pushPullPS': pushPullPS,'upperLowerPS': upperLowerPS}
+        #-----------------------------------------------------------------------------------------------------Treino Normal 
+        # Agrupa os objetos por categoria, sem ter erpetições
+        grupCategories = {}
+        for a in data_all:
+          category = a["category"]
+          if category not in grupCategories:
+              grupCategories[category] = []
+          grupCategories[category].append(a)
+
+        # Criando a rotina FULLBODY intercalada
+        array1 = [valor for par in zip(grupCategories['Push'], grupCategories['Core']) for valor in par]
+        array2 = [valor for par in zip(grupCategories['Pull'], grupCategories['Legs']) for valor in par]
+        array1.extend(array2)
+        fullbody = array1
+
+        # Criando a rotina Push/Pull intercalada
+        array1 = [valor for par in zip(grupCategories['Push'], grupCategories['Legs']) for valor in par]
+        array2 = [valor for par in zip(grupCategories['Pull'], grupCategories['Core']) for valor in par]
+        pushPull = {'d1' : array1 , 'd2': array2}
+
+        # Criando a rotina Upper/Lowe intercalada
+        array1 = [valor for par in zip(grupCategories['Push'], grupCategories['Pull']) for valor in par]
+        array2 = [valor for par in zip(grupCategories['Legs'], grupCategories['Core']) for valor in par]
+        upperLower = {'d1' : array1 , 'd2': array2}
+
+        regularTraining = {'fullbody': fullbody,'pushPull':pushPull,'upperLower': upperLower}
+      except Exception as e:
+        print(f"{e}")
+        
+
+      allTreinos = {'regularTraining': regularTraining, 'pairedSetsTraining': pairedSetsTraining}
+      days = days['value']
+
+      # Tratando a resposta
       if pairedSets['value'] == 'true':
-        try:
-          data_all = []
-          new_order = []
-
-          for a in all:
-            for t in treino['treino']:
-              if a["name"] == t["name"]:
-                new_data = a.copy()
-                new_data.update(t)
-                data_all.append(new_data)
-              
-          for e in data_all:
-            repeated_e = [e.copy() for _ in range(e['rept'])]  # cria uma cópia do dicionário e rept vezes
-            for i, d in enumerate(repeated_e):
-                d['rept_num'] = i + 1  # adiciona um novo campo 'rept_num' com o número de repetição
-                d['reset'] = '1:30'   # altera o campo 'reset' para '1:30'
-            new_order.extend(repeated_e)
-
-
-          # Agrupa os objetos por categoria
-          categories = {}
-          for a in new_order:
-              category = a["category"]
-              if category not in categories:
-                  categories[category] = []
-              categories[category].append(a)
-
-          #  Cria 2 arrays para fazer a intecalação
-          dist1 = []
-          distAux = []
-
-          # Intercalas os arrays
-          dist1 = [valor for par in zip(categories['Push'], categories['Core']) for valor in par]
-          distAux = [valor for par in zip(categories['Pull'], categories['Legs']) for valor in par]
-
-          #Adiciona os 2 arrays em um só
-          dist1.extend(distAux)
-          
-          data = {
+        data = {
             'nav': 'creat',
-            'treino': treino['treino'],
-            'pairedSets': pairedSets,
-            'ExerPS': dist1
+            'allTreinos': allTreinos,
+            'pairedSets': True,
+            'days': days
           }
-        except Exception as e:
-          print(f"{e}")
-          data = {'nav': 'creat'}
-      # Se for false retorna os exercicios
-
-
       else:
           data = {
             'nav': 'creat',
-            'treino': treino['treino']
+            'allTreinos': allTreinos,
+            'pairedSets': False,
+            'days': days
           }
   
       return render_template("home2.html", data=data)
@@ -122,8 +167,9 @@ def download_pdf():
   pdf.set_font("Arial", size=12)
   
   x = 1
-  for item in data['treino']:
-    pdf.cell(200, 10, f"{x} Exercicio - {str(item['name'])}. quantidade: {str(item['count'])}, serie: {str(item['rept'])}, descanso: {str(item['rest'])}", ln=1)
+  for item in data:
+    # pdf.cell(200, 10, f"{x} Exercicio - {str(item['name'])}. quantidade: {str(item['count'])}, serie: {str(item['rept'])}, descanso: {str(item['rest'])}", ln=1)
+    pdf.cell(200, 10, f"Teste {item}", ln=1)
     x += 1
   pdf_name = 'Treino.pdf'
   pdf_bytes = pdf.output(dest='S').encode('latin1')  # converte o PDF para bytes
