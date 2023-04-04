@@ -4,9 +4,9 @@
     allTreinos.pairedSetsTraining -- fullbodyPS -- pushPullPS  -- upperLowerPS
 -->
 {% block content %}
-
-
-{% if data.days == 4 %}    
+{% if data.allTreinos is not none%}
+<div>
+    {% if data.days == 4 %}    
     <div id="text1" class="row mt-3">
         <div class="col-12 d-flex justify-content-center align-items-center">
             <h5 class="text-center">Verificamos que você tem disponiblidade para 4 dias de treino, neste caso você tem
@@ -1054,5 +1054,11 @@
         </form>
     </div>
 </div>
+</div>
+{% else %}
+
+<h1>teste</h1>
+{% endif %}
+
 
 {% endblock %}

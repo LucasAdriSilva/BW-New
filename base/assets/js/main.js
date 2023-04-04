@@ -1208,7 +1208,7 @@ function desabilitCard(id) {
     if (segundosRestantes <= 0) {
       clearInterval(interval); // Parar o cronômetro
       meuInput.disabled = false; // Habilitar input
-      cronometro.innerHTML = "Tempo esgotado";
+      cronometro.innerHTML = "fim";
 
       numberInput.forEach(e => {
         const inputDesabilit = document.getElementById('ValidExer' + e)

@@ -29,8 +29,8 @@ a {
 }
 
 .reset-Padding-x {
-  padding-left: 1px;
-  padding-right: 1px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 html,
@@ -320,4 +320,9 @@ input[type="radio"]:checked {
 .desabilited {
   opacity: 0.3;
   background-color: white;
+}
+
+.img-res {
+  object-fit: cover;
+  object-position: center;
 }

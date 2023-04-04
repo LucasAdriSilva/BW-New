@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, make_response
+from flask import Blueprint, render_template, request, redirect, url_for, make_response, session
 import json
 from model.exercicio import Exercicio 
+from model.db import Db 
 from fpdf import FPDF
 
 
@@ -8,10 +9,15 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
 @basicScreens.route("/")
 def index():
-  data = {
-    'nav': '1'
-  }
-  return render_template("home.html", data = data)
+  if session['ip'] is not None:
+    data = {'nav': 'home'}
+    return render_template("home.html", data = data)
+  else:
+    ip = request.remote_addr
+    session['ip'] = ip
+    data = {'nav': 'home'}
+    return render_template("firstAcess.html", data = data)
+
 
 
 @basicScreens.route("/sendTraining", methods=["GET", "POST"])
@@ -19,13 +25,13 @@ def teste():
     if request.method == "POST":
         treino = request.get_json()
         data = {'treino': treino}
-        return redirect(url_for('basicScreens.index2', data=data))
+        return redirect(url_for('basicScreens.creatTraining', data=data))
 
     return render_template("home.html")
 
 
-@basicScreens.route("/2" , methods=["GET", "POST"])
-def index2():
+@basicScreens.route("/creatTraining" , methods=["GET", "POST"])
+def creatTraining():
     res = request.args.get('data')
     if res != None:
       treino = json.loads(res.replace("'", "\""))
@@ -42,7 +48,6 @@ def index2():
       # remove o Paired Sets do array de treino
       treino['treino'].pop(-1)
 
-      
       try:
         data_all = []
         new_order = []
@@ -121,9 +126,13 @@ def index2():
       except Exception as e:
         print(f"{e}")
         
-
       allTreinos = {'regularTraining': regularTraining, 'pairedSetsTraining': pairedSetsTraining}
       days = days['value']
+
+      # Salvando uasndo IP
+      if session['ip'] is not None:
+        user = {'ip': session['ip'], 'Treino': allTreinos}
+        save = Db.save(user)
 
       # Tratando a resposta
       if pairedSets['value'] == 'true':
@@ -141,20 +150,28 @@ def index2():
             'days': days
           }
   
-      return render_template("home2.html", data=data)
+      return render_template("creatTraining.html", data=data)
     else: 
       data = {
-        'nav': 'creat'
-      }
-      return render_template("home2.html", data=data)
-
+            'nav': 'creat'
+          }
+      return render_template("exercices.html", data=data)
 
 @basicScreens.route("/3")
 def index3():
   data = {
-    'nav': '3'
+    'nav': 'user'
   }
   return render_template("user.html", data = data)
+
+
+@basicScreens.route("/creat")
+def creat():
+  data = {
+    'nav': 'home'
+  }
+  return render_template("firstAcess.html", data = data)
+
 
 @basicScreens.route("/download-pdf", methods=["POST"])
 def download_pdf():
