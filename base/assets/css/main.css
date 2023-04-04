@@ -291,28 +291,33 @@ input[type="radio"]:checked {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
 }
 
-.bg-success2{
+.bg-success2 {
   background-color: #aed199;
 }
 
-.correct-size{
+.correct-size {
   padding-top: -10px !important;
 }
 
-.bg-success-50{
+.bg-success-50 {
   background-color: #c1e7d5;
   /* #198754 */
 }
 
-.bg-danger-50{
+.bg-danger-50 {
   background-color: #f3c6cb;
   /* #dc3545 */
 }
 
-.btn-gray{
+.btn-gray {
   background-color: #b9b9b9;
 }
 
-.btn-orange{
+.btn-orange {
   background-color: rgb(255, 199, 0);
+}
+
+.desabilited {
+  opacity: 0.3;
+  background-color: white;
 }

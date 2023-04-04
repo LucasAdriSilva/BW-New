@@ -119,6 +119,7 @@ var treino = []
 var newExercises = []
 var newExercisesBase = []
 var requireds = []
+var numberInput = [1, 2, 3, 4, 5, 6, 7, 8]
 
 function getImgUrl(name) {
   const exercise = exercises.find(e => e.name === name);
@@ -204,7 +205,7 @@ function creatExercisesBase() {
 
                 </div>
                 <span id="${'success' + x}" class="reset px-3 text-start text-success d-none" style="font-size: 10px;">
-                Perfeito, agora é só descansar 3m e fazer o próximo exercício
+                Perfeito, agora é só descansar <span id="cronometro"></span> e fazer o próximo exercício
                 </span> 
 
                 <span id="${'noInput' + x}" class="reset px-3 text-start text-danger d-none" style="font-size: 10px;">
@@ -291,7 +292,7 @@ function filter(id, name, category, type, nivel) {
   if (type) {
     filterType = filterType.filter(exercise => exercise.type === type);
   }
-  debugger
+  
 
   // Retira exercicios repetidos
   let filtered = filterType.filter((item, index, arr) => {
@@ -520,7 +521,7 @@ function subs(id, name, category, type, img, nivel) {
   var nameExer = exercises.filter(e => e.name == name)
   // Subistituir no array
   let indexExer = newExercisesBase.findIndex(e => e.name == Name.innerHTML)
-  if(indexExer != -1){
+  if (indexExer != -1) {
     newExercisesBase[indexExer] = nameExer[0]
   }
 
@@ -602,7 +603,7 @@ function openToggleExer(id, Title, Input, bool) {
       // Tempo da message de sucesso
       setTimeout(function () {
         success.classList.add("d-none");
-      }, 10000);
+      }, 180000);
       // }
       input.classList.remove('text-danger')
       input.classList.remove('input-danger')
@@ -612,6 +613,9 @@ function openToggleExer(id, Title, Input, bool) {
 
       btn.classList.add('d-none')
       btn.classList.remove('d-block')
+      
+      let card = parseInt(id)
+      desabilitCard(card)
       gerarTreino(Title, Input, id)
     }
     // Se o numero de repetição for 5 ou 6 mostra o modal
@@ -747,13 +751,17 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 3 && input.value < 16) {
+        
+        let card = parseInt(id)
+        desabilitCard(card)
+
         noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
           // Tempo da message de sucesso
           setTimeout(function () {
             success.classList.add("d-none");
-          }, 10000);
+          }, 180000);
         }
         input.classList.remove('text-danger')
         input.classList.remove('input-danger')
@@ -826,7 +834,9 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 5 && input.value < 16) {
-
+        
+        let card = parseInt(id)
+        desabilitCard(card)
         noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
@@ -834,7 +844,7 @@ function openToggleExer(id, Title, Input, bool) {
           // Tempo da message de sucesso
           setTimeout(function () {
             success.classList.add("d-none");
-          }, 10000);
+          }, 180000);
         }
 
 
@@ -904,7 +914,7 @@ function addColorError() {
 
       // setTimeout(function () {
       noInput.classList.remove('d-none')
-      // }, 10000);
+      // }, 180000);
     } else {
       // Se estiver preenchido
       noInput.classList.add('d-none')
@@ -1163,6 +1173,52 @@ function correctingArray(treino, exercicio) {
     });
   });
   return data_all
+}
+
+function desabilitCard(id) {
+  
+  // Monta o array de id sem o id que está sendo tratado
+  let cardAtual = numberInput.findIndex(e => e == id)
+  if (cardAtual != -1) {
+    numberInput.splice(cardAtual, 1);
+  }
+  // Desabilita todos os inpust e add uma class aos cards
+  numberInput.forEach(e => {
+    const inputDesabilit = document.getElementById('ValidExer' + e)
+    inputDesabilit.disabled = true;
+    const divExer = document.getElementById('exer' + e)
+    divExer.classList.add('desabilited')
+  })
+
+  let meuInput = document.getElementById('ValidExer' + id);
+  let cronometro = document.getElementById("cronometro");
+  let segundosRestantes = 180; // 3 minutos em segundos
+  let interval; // Declarando a variável fora da função para poder usar em outro escopo
+
+
+  clearInterval(interval); // Parar o cronômetro se ele já estiver rodando
+  segundosRestantes = 180; // Reiniciar o tempo
+
+  interval = setInterval(function () {
+    segundosRestantes--;
+    let minutos = Math.floor(segundosRestantes / 60);
+    let segundos = segundosRestantes % 60;
+    cronometro.innerHTML =  minutos + "m " + segundos + "s";
+
+    if (segundosRestantes <= 0) {
+      clearInterval(interval); // Parar o cronômetro
+      meuInput.disabled = false; // Habilitar input
+      cronometro.innerHTML = "Tempo esgotado";
+
+      numberInput.forEach(e => {
+        const inputDesabilit = document.getElementById('ValidExer' + e)
+        inputDesabilit.disabled = false;
+        const divExer = document.getElementById('exer' + e)
+        divExer.classList.remove('desabilited')
+      })
+    }
+  }, 1000); // Atualizar o cronômetro a cada segundo
+
 }
 
 // ----------------------------------------------------------- Page Home.html
