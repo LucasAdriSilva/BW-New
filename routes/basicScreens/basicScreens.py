@@ -9,7 +9,7 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
 @basicScreens.route("/")
 def index():
-  if session['ip'] is not None:
+  if 'ip' in session and session['ip'] is not None:
     data = {'nav': 'home'}
     return render_template("home.html", data = data)
   else:
