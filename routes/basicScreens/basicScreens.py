@@ -11,11 +11,10 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 def index():
   if 'ip' in session:
     ip_found = Db.get_ip(session['ip'])
-  else:
-    ip_found = None
-    
-  if ip_found.data is not None:
-    data = {'nav': 'home'}
+    if ip_found.data is not None:
+      data = {'nav': 'home', 'treino': ip_found.data}
+    else:
+       data = {'nav': 'home'}
     return render_template("firstAcess.html", data = data)
     # return render_template("home.html", data = data)
   else:
