@@ -32,10 +32,10 @@ class Db:
             return response
         return response
 
-    def get_name(name):
+    def get_ip(ip):
         response = Response()
         try:
-            response.data = db.user.find_one({"name": name})
+            response.data = db.user.find_one({"ip": ip})
         except Exception as e:
             response.message = f"Erro de banco de dados ---> {e}"
             response.ok = False

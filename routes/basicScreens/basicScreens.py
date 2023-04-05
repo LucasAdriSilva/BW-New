@@ -9,9 +9,12 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
 @basicScreens.route("/")
 def index():
-  if 'ip' in session and session['ip'] is not None:
+
+  ip_found = Db.get_ip(session['ip'])
+  if ip_found.data is not None:
     data = {'nav': 'home'}
-    return render_template("home.html", data = data)
+    return render_template("firstAcess.html", data = data)
+    # return render_template("home.html", data = data)
   else:
     ip = request.remote_addr
     session['ip'] = ip
@@ -157,21 +160,12 @@ def creatTraining():
           }
       return render_template("exercices.html", data=data)
 
-@basicScreens.route("/3")
-def index3():
-  data = {
-    'nav': 'user'
-  }
-  return render_template("user.html", data = data)
-
-
 @basicScreens.route("/creat")
 def creat():
   data = {
     'nav': 'home'
   }
   return render_template("firstAcess.html", data = data)
-
 
 @basicScreens.route("/download-pdf", methods=["POST"])
 def download_pdf():

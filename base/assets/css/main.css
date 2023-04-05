@@ -68,6 +68,10 @@ body {
   padding-left: 0;
 }
 
+.margin-content{
+  margin: 0px 20px;
+}
+
 .margin-Body {
   margin-right: 150px;
   margin-left: 150px;
@@ -325,4 +329,15 @@ input[type="radio"]:checked {
 .img-res {
   object-fit: cover;
   object-position: center;
+}
+
+.accordion-button:focus {
+  border-color: none !important;
+  box-shadow:  none !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: rgb(20, 20, 20);
+  background-color: rgb(219, 219, 219) !important;
+  box-shadow: none;
 }
