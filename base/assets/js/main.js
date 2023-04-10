@@ -175,8 +175,8 @@ function creatExercisesBase() {
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
               <p id="${'repts' + x}" class="reset text-uppercase text-gray1">${exer.segs ? 'SEGS' : 'REPS'}</p>
-              <input required="true" id="${'ValidExer' + x}" class="w-75 input-value text-center rounded-3"
-                type="text">
+              <input pattern="^-?\d*\.?\d+$" inputmode="numeric" required="true" id="${'ValidExer' + x}" class="w-75 input-value text-center rounded-3" type="number">
+
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
@@ -584,7 +584,7 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
   const noInput = document.getElementById('noInput' + id)
-  
+
   var exer = exercises.filter(e => e.name == Title.innerHTML)
   // Se for segs
   if (exer[0].segs) {
