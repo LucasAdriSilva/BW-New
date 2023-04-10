@@ -6,7 +6,7 @@ from routes.basicScreens.basicScreens import basicScreens
 # from routes.login.login import login_bp
 # from routes.payment.payment import payment
 # from routes.sales.sales import sales
-# from routes.user.user import user
+from routes.user.user import user
 from model.db import Db
 
 
@@ -18,8 +18,8 @@ app.register_blueprint(basicScreens)
 # app.register_blueprint(login_bp)
 # app.register_blueprint(payment)
 # app.register_blueprint(sales)
-# app.register_blueprint(user)
+app.register_blueprint(user)
 
 if __name__ == "__main__":
-  app.run(debug=True,port=8082)
+  app.run(debug=True,port=8083)
   #serve(app, host="0.0.0.0", port=8080)

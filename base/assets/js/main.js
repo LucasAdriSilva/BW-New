@@ -252,7 +252,7 @@ function filter(id, name, category, type, nivel) {
     if (repeticao == 5 || repeticao == 6) {
 
     }
-    if (repeticao > 6) {
+    if (repeticao > 6 || input <= 60) {
       nivel -= 1
     }
     if (repeticao < 2) {
@@ -584,7 +584,7 @@ function openToggleExer(id, Title, Input, bool) {
   const repts = document.getElementById('repts' + id)
   const success = document.getElementById('success' + id)
   const noInput = document.getElementById('noInput' + id)
-
+  
   var exer = exercises.filter(e => e.name == Title.innerHTML)
   // Se for segs
   if (exer[0].segs) {
@@ -1192,12 +1192,12 @@ function desabilitCard(id) {
 
   let meuInput = document.getElementById('ValidExer' + id);
   let cronometro = document.getElementById("cronometro");
-  let segundosRestantes = 180; // 3 minutos em segundos
+  let segundosRestantes = 1; // 3 minutos em segundos
   let interval; // Declarando a variável fora da função para poder usar em outro escopo
 
 
   clearInterval(interval); // Parar o cronômetro se ele já estiver rodando
-  segundosRestantes = 180; // Reiniciar o tempo
+  segundosRestantes = 1; // Reiniciar o tempo
 
   interval = setInterval(function () {
     segundosRestantes--;
