@@ -12,7 +12,8 @@ def userRoute():
     training = ip_found['Treino']['regularTraining']['fullbody']
     data = {
       'nav': 'user',
-      'treino': training
+      'treino': training,
+      'allTreino': ip_found['Treino']
     }
     return render_template("user.html", data = data)
   else:

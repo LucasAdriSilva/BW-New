@@ -38,10 +38,9 @@ def teste():
 @basicScreens.route("/creatTraining" , methods=["GET", "POST"])
 def creatTraining():
     res = request.args.get('data')
+    all = Exercicio.getAllExercicios()
     if res != None:
       treino = json.loads(res.replace("'", "\""))
-
-      all = Exercicio.getAllExercicios()
       
       # pega o valor de dias
       days = treino['treino'][-1]
@@ -70,7 +69,7 @@ def creatTraining():
           repeated_e = [e.copy() for _ in range(e['rept'])]  # cria uma cópia do dicionário e rept vezes
           for i, d in enumerate(repeated_e):
               d['rept_num'] = i + 1  # adiciona um novo campo 'rept_num' com o número de repetição
-              d['reset'] = '1:30'   # altera o campo 'reset' para '1:30'
+              d['rest'] = '1:30'   # altera o campo 'reset' para '1:30'
           new_order.extend(repeated_e)
 
         #-----------------------------------------------------------------------------------------------------Treino com Paired Sets 
@@ -137,7 +136,7 @@ def creatTraining():
       # Salvando uasndo IP
       if session['ip'] is not None:
         user = {'ip': session['ip'], 'Treino': allTreinos}
-        save = Db.save(user)
+        Db.save(user)
 
       # Tratando a resposta
       if pairedSets['value'] == 'true':
@@ -158,7 +157,8 @@ def creatTraining():
       return render_template("creatTraining.html", data=data)
     else: 
       data = {
-            'nav': 'creat'
+            'nav': 'creat',
+            'allTreino': all
           }
       return render_template("exercices.html", data=data)
 

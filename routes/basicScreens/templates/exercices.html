@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<di id="filter" class="row" style="margin-left: 20px; margin-right: 20px;">
+<div id="filterPage" class="row" style="margin-left: 20px; margin-right: 20px;">
     <div class="col-12 d-flex justify-content-center align-items-center my-4">
         <h1 class="reset">Filtro dos Exercícios</h1>
     </div>
@@ -45,165 +45,42 @@
 
     </div>
 
-</di>
+</div>
 
 <div id="listFilter" class="row mt-5" style="margin-left: 20px; margin-right: 20px; height: 60vh; overflow: auto;">
     <div class="col-12">
-        <div onclick="openDetailExer()" class="row my-2">
-            <div class="col-12 mt-3 reset-Padding-x">
-                <h2>Nome do exercicio</h2>
-            </div>
-
-            <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                    src="https://jmonline.com.br/userfiles/image/2022/05/01/interna_0001_8-10.jpg" alt="">
-            </div>
-
-            <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                <span class="reset text-start"> Informações</span>
-
-                <div class="d-flex  justify-content-center align-items-start gap-2">
-                    <span class="text-start">Equipamentos:</span>
-                    <span>Barra</span>
+        {% for e in data.allTreino %}
+            <div onclick="openDetailExer()" class="row my-2">
+                <div class="col-12 mt-3 reset-Padding-x">
+                    <h2>{{e.name}}</h2>
                 </div>
 
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Grupo Muscular:</span>
-                    <span>Core</span>
+                <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+                    <img class="rounded-4 img-res" id="img1" width="100" height="100"
+                        src="{{e.url}}" alt="">
                 </div>
 
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Nivel:</span>
-                    <span>3</span>
-                </div>
+                <div class="col-8 d-flex flex-column justify-content-around align-items-start">
+                    <span class="reset text-start"> Informações</span>
 
+                    <div class="d-flex  justify-content-center align-items-start gap-2">
+                        <span class="text-start">Equipamentos:</span>
+                        <span>{{e.required}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-start gap-2">
+                        <span class="text-start">Grupo Muscular:</span>
+                        <span>{{e.category}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-start gap-2">
+                        <span class="text-start">Nivel:</span>
+                        <span>{{e.nivel}}</span>
+                    </div>
+
+                </div>
             </div>
-        </div>
-
-        <div onclick="openDetailExer()" class="row my-2">
-            <div class="col-12 mt-3 reset-Padding-x">
-                <h2>Nome do exercicio</h2>
-            </div>
-
-            <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                    src="https://jmonline.com.br/userfiles/image/2022/05/01/interna_0001_8-10.jpg" alt="">
-            </div>
-
-            <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                <span class="reset text-start"> Informações</span>
-
-                <div class="d-flex  justify-content-center align-items-start gap-2">
-                    <span class="text-start">Equipamentos:</span>
-                    <span>Barra</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Grupo Muscular:</span>
-                    <span>Core</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Nivel:</span>
-                    <span>3</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div onclick="openDetailExer()" class="row my-2">
-            <div class="col-12 mt-3 reset-Padding-x">
-                <h2>Nome do exercicio</h2>
-            </div>
-
-            <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                    src="https://jmonline.com.br/userfiles/image/2022/05/01/interna_0001_8-10.jpg" alt="">
-            </div>
-
-            <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                <span class="reset text-start"> Informações</span>
-
-                <div class="d-flex  justify-content-center align-items-start gap-2">
-                    <span class="text-start">Equipamentos:</span>
-                    <span>Barra</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Grupo Muscular:</span>
-                    <span>Core</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Nivel:</span>
-                    <span>3</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div onclick="openDetailExer()" class="row my-2">
-            <div class="col-12 mt-3 reset-Padding-x">
-                <h2>Nome do exercicio</h2>
-            </div>
-
-            <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                    src="https://jmonline.com.br/userfiles/image/2022/05/01/interna_0001_8-10.jpg" alt="">
-            </div>
-
-            <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                <span class="reset text-start"> Informações</span>
-
-                <div class="d-flex  justify-content-center align-items-start gap-2">
-                    <span class="text-start">Equipamentos:</span>
-                    <span>Barra</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Grupo Muscular:</span>
-                    <span>Core</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Nivel:</span>
-                    <span>3</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div onclick="openDetailExer()" class="row my-2">
-            <div class="col-12 mt-3 reset-Padding-x">
-                <h2>Nome do exercicio</h2>
-            </div>
-
-            <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                    src="https://jmonline.com.br/userfiles/image/2022/05/01/interna_0001_8-10.jpg" alt="">
-            </div>
-
-            <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                <span class="reset text-start"> Informações</span>
-
-                <div class="d-flex  justify-content-center align-items-start gap-2">
-                    <span class="text-start">Equipamentos:</span>
-                    <span>Barra</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Grupo Muscular:</span>
-                    <span>Core</span>
-                </div>
-
-                <div class="d-flex justify-content-center align-items-start gap-2">
-                    <span class="text-start">Nivel:</span>
-                    <span>3</span>
-                </div>
-
-            </div>
-        </div>
-
+        {% endfor %}
     </div>
 </div>
 
@@ -310,6 +187,7 @@
 
 <script src="cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+    // Grafico
     function viewGraph() {
         $('.column').css('height', '0');
         $('table tr').each(function (index) {
@@ -320,21 +198,24 @@
     $(document).ready(function () {
         viewGraph();
     });
-    const filter = document.getElementById('filter')
+
+    const filterPage = document.getElementById('filterPage')
     const listFilter = document.getElementById('listFilter')
     const page = document.getElementById('page')
 
     function openDetailExer() {
-        filter.classList.add('d-none')
+        filterPage.classList.add('d-none')
         listFilter.classList.add('d-none')
         page.classList.remove('d-none')
     }
 
     function backPage() {
-        filter.classList.remove('d-none')
+        filterPage.classList.remove('d-none')
         listFilter.classList.remove('d-none')
         page.classList.add('d-none')
     }
+
+    
 </script>
 
 <style>

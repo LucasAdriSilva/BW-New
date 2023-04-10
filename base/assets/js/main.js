@@ -1500,6 +1500,9 @@ function chosenRoutine(rotina) {
 
 }
 
+// ----------------------------------------------------------- Page exercices.html
+
+
 // ------------------------------------------------------------- Ultima função
 function enviarTreino2() {
   if (treino.length == newExercisesBase.length) {
