@@ -116,7 +116,6 @@ const exercisesBase = exercises.filter(e => e.default == true)
 const div2 = document.getElementById('div2');
 
 window.addEventListener("load", function () {
-  loadExer()
 });
 
 var treino = []
