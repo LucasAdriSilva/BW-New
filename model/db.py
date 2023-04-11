@@ -2,7 +2,7 @@
 from pymongo import MongoClient
 from model.response import Response
 import os, datetime
-
+import time
 client = MongoClient(os.environ.get('MONGO_DB'))
 
 db = client.BW 
@@ -21,18 +21,20 @@ class Db:
             return response
     
     def save(data):
+        start_time = time.time()
         response = Response()
         try:
-            #Transforma o User em disct
-            # dict_data = vars(data)
             response.data = db.user.insert_one(data)
         except Exception as e:
             response.message = f"Erro no banco de dados ---> {e}"
             response.ok = False
             return response
+        end_time = time.time()
+        print(f"Tempo gasto em save(): {end_time - start_time} segundos")
         return response
 
     def get_ip(ip):
+        start_time = time.time()
         response = Response()
         try:
             response.data = db.user.find_one({"ip": ip})
@@ -40,6 +42,8 @@ class Db:
             response.message = f"Erro de banco de dados ---> {e}"
             response.ok = False
             return response
+        end_time = time.time()
+        print(f"Tempo gasto em get_ip(): {end_time - start_time} segundos")
         return response
       
     def get_emailPayment(email):
