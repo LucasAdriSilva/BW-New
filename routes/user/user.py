@@ -7,7 +7,9 @@ user = Blueprint('user', __name__, template_folder='templates')
 
 @user.route("/user")
 def userRoute():
-  ip_found = Db.get_ip(session['ip']).data
+  if session['ip'] is not None:
+    ip_found = Db.get_ip(session['ip']).data
+    
   if ip_found is not None:
     training = ip_found['Treino']['regularTraining']['fullbody']
     days = ip_found['days']
