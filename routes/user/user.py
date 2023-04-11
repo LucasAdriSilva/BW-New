@@ -9,14 +9,13 @@ user = Blueprint('user', __name__, template_folder='templates')
 def userRoute():
   if session['ip'] is not None:
     ip_found = Db.get_ip(session['ip']).data
-    
+
   if ip_found is not None:
-    training = ip_found['Treino']['regularTraining']['fullbody']
+
     days = ip_found['days']
     pairedSets = ip_found['pairedSets']
     data = {
       'nav': 'user',
-      'treino': training,
       'allTreino': ip_found['Treino'],
       'days': days,
       'pairedSets': pairedSets
@@ -24,8 +23,7 @@ def userRoute():
     return render_template("user.html", data = data)
   else:
     data = {
-      'nav': 'user',
-      'treino': None
+      'nav': 'user'
     }
     # data.setdefault('treino', [])
     return render_template("user.html", data = data)
