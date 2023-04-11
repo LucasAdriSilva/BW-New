@@ -132,14 +132,15 @@ def creatTraining():
         
       allTreinos = {'regularTraining': regularTraining, 'pairedSetsTraining': pairedSetsTraining}
       days = days['value']
+      pairedSets = pairedSets['value']
 
       # Salvando uasndo IP
       if session['ip'] is not None:
-        user = {'ip': session['ip'], 'Treino': allTreinos}
+        user = {'ip': session['ip'], 'Treino': allTreinos, 'days': days, 'pairedSets': pairedSets}
         Db.save(user)
 
       # Tratando a resposta
-      if pairedSets['value'] == 'true':
+      if pairedSets== 'true':
         data = {
             'nav': 'creat',
             'allTreinos': allTreinos,

@@ -615,7 +615,7 @@ function openToggleExer(id, Title, Input, bool) {
       btn.classList.remove('d-block')
       
       let card = parseInt(id)
-      desabilitCard(card)
+      // desabilitCard(card)
       gerarTreino(Title, Input, id)
     }
     // Se o numero de repetição for 5 ou 6 mostra o modal
@@ -753,7 +753,7 @@ function openToggleExer(id, Title, Input, bool) {
       if (input.value > 3 && input.value < 16) {
         
         let card = parseInt(id)
-        desabilitCard(card)
+        // desabilitCard(card)
 
         noInput.classList.add('d-none')
         if (bool) {
@@ -836,7 +836,7 @@ function openToggleExer(id, Title, Input, bool) {
       if (input.value > 5 && input.value < 16) {
         
         let card = parseInt(id)
-        desabilitCard(card)
+        // desabilitCard(card)
         noInput.classList.add('d-none')
         if (bool) {
           success.classList.remove('d-none')
@@ -1192,12 +1192,12 @@ function desabilitCard(id) {
 
   let meuInput = document.getElementById('ValidExer' + id);
   let cronometro = document.getElementById("cronometro");
-  let segundosRestantes = 1; // 3 minutos em segundos
+  let segundosRestantes = 180; // 3 minutos em segundos
   let interval; // Declarando a variável fora da função para poder usar em outro escopo
 
 
   clearInterval(interval); // Parar o cronômetro se ele já estiver rodando
-  segundosRestantes = 1; // Reiniciar o tempo
+  segundosRestantes = 180; // Reiniciar o tempo
 
   interval = setInterval(function () {
     segundosRestantes--;

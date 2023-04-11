@@ -10,10 +10,14 @@ def userRoute():
   ip_found = Db.get_ip(session['ip']).data
   if ip_found is not None:
     training = ip_found['Treino']['regularTraining']['fullbody']
+    days = ip_found['days']
+    pairedSets = ip_found['pairedSets']
     data = {
       'nav': 'user',
       'treino': training,
-      'allTreino': ip_found['Treino']
+      'allTreino': ip_found['Treino'],
+      'days': days,
+      'pairedSets': pairedSets
     }
     return render_template("user.html", data = data)
   else:
