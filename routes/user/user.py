@@ -10,8 +10,7 @@ def userRoute():
   if session['ip'] is not None:
     ip_found = Db.get_ip(session['ip']).data
 
-  if ip_found is not None:
-
+  if isinstance(ip_found, dict):
     days = ip_found['days']
     pairedSets = ip_found['pairedSets']
     data = {
@@ -25,7 +24,6 @@ def userRoute():
     data = {
       'nav': 'user'
     }
-    # data.setdefault('treino', [])
     return render_template("user.html", data = data)
 
 
