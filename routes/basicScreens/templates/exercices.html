@@ -2,18 +2,19 @@
 
 {% block content %}
 
-<div id="filterPage" class="row" style="margin-left: 20px; margin-right: 20px;">
+<div id="filterPage" class="row mx-20px">
     <div class="col-12 d-flex justify-content-center align-items-center my-4">
         <h1 class="reset">Filtro dos Exercícios</h1>
     </div>
 
     <div class="col-12 d-flex justify-content-center align-items-center">
-        <input class="form-control text-center" type="search" placeholder="Pesquisar por nome" aria-label="Search">
+        <input id="searchName" class="form-control text-center" type="search" placeholder="Pesquisar por nome"
+            aria-label="Search">
     </div>
 
     <div class="col-12 gap-1  d-flex justify-content-center align-items-center mt-2">
 
-        <select class="form-select" aria-label="Grupo Muscular">
+        <select id="GM" class="form-select" aria-label="Grupo Muscular">
             <option selected>Grupo Muscular</option>
             <option value="Core" class="text-center">Core</option>
             <option value="Legs" class="text-center">Legs</option>
@@ -21,7 +22,7 @@
             <option value="Pull" class="text-center">Pull</option>
         </select>
 
-        <select class="form-select" aria-label="Nivel">
+        <select id="N" class="form-select" aria-label="Nivel">
             <option selected>Nivel</option>
             <option value="1" class="text-center">1</option>
             <option value="2" class="text-center">2</option>
@@ -31,7 +32,7 @@
             <option value="6" class="text-center">6</option>
         </select>
 
-        <select class="form-select" aria-label="Equipamentos">
+        <select id="E" class="form-select" aria-label="Equipamentos">
             <option selected>Equipamentos</option>
             <option value="1" class="text-center">Barra Fixa</option>
             <option value="2" class="text-center">Argolas</option>
@@ -47,44 +48,11 @@
 
 </div>
 
-<div id="listFilter" class="row mt-5" style="margin-left: 20px; margin-right: 20px; height: 60vh; overflow: auto;">
-    <div class="col-12">
-        {% for e in data.allTreino %}
-            <div onclick="openDetailExer()" class="row my-2">
-                <div class="col-12 mt-3 reset-Padding-x">
-                    <h2>{{e.name}}</h2>
-                </div>
+<div id="listFilter" class="row mt-5 mx-5 listFilter mx-20px">
 
-                <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                    <img class="rounded-4 img-res" id="img1" width="100" height="100"
-                        src="{{e.url}}" alt="">
-                </div>
-
-                <div class="col-8 d-flex flex-column justify-content-around align-items-start">
-                    <span class="reset text-start"> Informações</span>
-
-                    <div class="d-flex  justify-content-center align-items-start gap-2">
-                        <span class="text-start">Equipamentos:</span>
-                        <span>{{e.required}}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-center align-items-start gap-2">
-                        <span class="text-start">Grupo Muscular:</span>
-                        <span>{{e.category}}</span>
-                    </div>
-
-                    <div class="d-flex justify-content-center align-items-start gap-2">
-                        <span class="text-start">Nivel:</span>
-                        <span>{{e.nivel}}</span>
-                    </div>
-
-                </div>
-            </div>
-        {% endfor %}
-    </div>
 </div>
 
-<div id="page" class="row d-none" style="margin-left: 20px; margin-right: 20px;">
+<div id="page" class="row d-none mx-20px">
     <div class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
         <h1>Nome do exercicio</h1>
     </div>
@@ -199,23 +167,103 @@
         viewGraph();
     });
 
-    const filterPage = document.getElementById('filterPage')
-    const listFilter = document.getElementById('listFilter')
-    const page = document.getElementById('page')
+    let exer = giveExer()
+    let aux = []
 
-    function openDetailExer() {
-        filterPage.classList.add('d-none')
-        listFilter.classList.add('d-none')
-        page.classList.remove('d-none')
-    }
+    const searchName = document.getElementById('searchName');
+    searchName.addEventListener('input', function () {
+        const regex = new RegExp(searchName.value, 'i');
+        aux = exer.filter(e => regex.test(e.name));
 
-    function backPage() {
-        filterPage.classList.remove('d-none')
-        listFilter.classList.remove('d-none')
-        page.classList.add('d-none')
-    }
+        if (GM.value != 'Grupo Muscular'){
+            aux = aux.filter(e => e.category == GM.value)
+        }
+        if (N.value != 'Nivel'){
+            aux = aux.filter(e => e.nivel == parseInt(N.value))
+        }
+        if (E.value != 'Equipamentos'){
+            aux = aux.filter(e => e.required == E.value)
+        }
+        filterPage(aux);
+    });
 
-    
+    const GM = document.getElementById('GM')
+    GM.addEventListener('change', function () {
+        if (GM.value != 'Grupo Muscular') {
+            aux = exer.filter(e => e.category == GM.value)
+
+            if (E.value != 'Equipamentos') {
+                aux = aux.filter(e => e.required == E.value)
+            }
+            if (N.value != 'Nivel') {
+                aux = aux.filter(e => e.nivel == parseInt(N.value))
+            }
+            filterPage(aux)
+        }
+        else {
+            aux = exer
+            if (E.value != 'Equipamentos') {
+                aux = exer.filter(e => e.required == E.value)
+            }
+            if (N.value != 'Nivel') {
+                aux = aux.filter(e => e.nivel == parseInt(N.value))
+            }
+            filterPage(aux)
+        }
+    })
+
+    const N = document.getElementById('N')
+    N.addEventListener('change', function () {
+        if (N.value != 'Nivel') {
+            aux = exer.filter(e => e.nivel == parseInt(N.value))
+
+            if (E.value != 'Equipamentos') {
+                aux = aux.filter(e => e.required == E.value)
+            }
+            if (GM.value != 'Grupo Muscular') {
+                aux = aux.filter(e => e.category == GM.value)
+            }
+
+            filterPage(aux)
+        }
+        else {
+            aux = exer
+            if (E.value != 'Equipamentos') {
+                aux = exer.filter(e => e.required == E.value)
+            }
+            if (GM.value != 'Grupo Muscular') {
+                aux = aux.filter(e => e.category == GM.value)
+            }
+            filterPage(aux)
+        }
+    })
+
+    const E = document.getElementById('E')
+    E.addEventListener('change', function () {
+        if (E.value != 'Equipamentos') {
+            aux = exer.filter(e => e.required == E.value)
+
+            if (N.value != 'Nivel') {
+                aux = aux.filter(e => e.nivel == parseInt(N.value))
+            }
+            if (GM.value != 'Grupo Muscular') {
+                aux = aux.filter(e => e.category == GM.value)
+            }
+
+            filterPage(aux)
+        }
+        else {
+            aux = exer
+            if (N.value != 'Nivel') {
+                aux = exer.filter(e => e.nivel == parseInt(N.value))
+            }
+            if (GM.value != 'Grupo Muscular') {
+                aux = aux.filter(e => e.category == GM.value)
+            }
+            filterPage(aux)
+        }
+    })
+
 </script>
 
 <style>

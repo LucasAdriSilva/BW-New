@@ -68,7 +68,7 @@ body {
   padding-left: 0;
 }
 
-.margin-content{
+.margin-content {
   margin: 0px 20px;
 }
 
@@ -329,11 +329,12 @@ input[type="radio"]:checked {
 .img-res {
   object-fit: cover;
   object-position: center;
+  /* aspect-ratio: 16/9; */
 }
 
 .accordion-button:focus {
   border-color: none !important;
-  box-shadow:  none !important;
+  box-shadow: none !important;
 }
 
 .accordion-button:not(.collapsed) {
@@ -342,6 +343,22 @@ input[type="radio"]:checked {
   box-shadow: none;
 }
 
-.border-orange{
+.border-orange {
   border: 1px solid #ffc700 !important;
+}
+
+.listFilter {
+  width: 80vw;
+  height: 60vh;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.mx-20px{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.max-height{
+  max-height: 154px;
 }

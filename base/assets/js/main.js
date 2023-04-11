@@ -108,11 +108,15 @@ const exercises = [
 
 ]
 
+function giveExer(){
+    return exercises
+}
 const exercisesBase = exercises.filter(e => e.default == true)
 
 const div2 = document.getElementById('div2');
 
 window.addEventListener("load", function () {
+  loadExer()
 });
 
 var treino = []
@@ -292,7 +296,7 @@ function filter(id, name, category, type, nivel) {
   if (type) {
     filterType = filterType.filter(exercise => exercise.type === type);
   }
-  
+
 
   // Retira exercicios repetidos
   let filtered = filterType.filter((item, index, arr) => {
@@ -613,7 +617,7 @@ function openToggleExer(id, Title, Input, bool) {
 
       btn.classList.add('d-none')
       btn.classList.remove('d-block')
-      
+
       let card = parseInt(id)
       // desabilitCard(card)
       gerarTreino(Title, Input, id)
@@ -751,7 +755,7 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 3 && input.value < 16) {
-        
+
         let card = parseInt(id)
         // desabilitCard(card)
 
@@ -834,7 +838,7 @@ function openToggleExer(id, Title, Input, bool) {
 
       }
       if (input.value > 5 && input.value < 16) {
-        
+
         let card = parseInt(id)
         // desabilitCard(card)
         noInput.classList.add('d-none')
@@ -1176,7 +1180,7 @@ function correctingArray(treino, exercicio) {
 }
 
 function desabilitCard(id) {
-  
+
   // Monta o array de id sem o id que está sendo tratado
   let cardAtual = numberInput.findIndex(e => e == id)
   if (cardAtual != -1) {
@@ -1203,7 +1207,7 @@ function desabilitCard(id) {
     segundosRestantes--;
     let minutos = Math.floor(segundosRestantes / 60);
     let segundos = segundosRestantes % 60;
-    cronometro.innerHTML =  minutos + "m " + segundos + "s";
+    cronometro.innerHTML = minutos + "m " + segundos + "s";
 
     if (segundosRestantes <= 0) {
       clearInterval(interval); // Parar o cronômetro
@@ -1501,7 +1505,104 @@ function chosenRoutine(rotina) {
 }
 
 // ----------------------------------------------------------- Page exercices.html
+function loadExer() {
+  const listFilter = document.getElementById('listFilter')
+  let div = listFilter.innerHTML
+  exercises.forEach(e => {
+    div += `
+    <div onclick="openDetailExer()" class="row my-2">
+    <div class="col-12 mt-3 reset-Padding-x">
+        <h2>${e.name}</h2>
+    </div>
 
+    <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+        <img class="rounded-4 img-res" id="img1" width="100" height="100"
+            src="${e.url}" alt="">
+    </div>
+
+    <div class="col-8 d-flex flex-column justify-content-around align-items-start">
+        <span class="reset text-start"> Informações</span>
+
+        <div class="d-flex  justify-content-center align-items-start gap-2">
+            <span class="text-start">Equipamentos:</span>
+            <span>${e.required}</span>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-start gap-2">
+            <span class="text-start">Grupo Muscular:</span>
+            <span>${e.category}</span>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-start gap-2">
+            <span class="text-start">Nivel:</span>
+            <span>${e.nivel}</span>
+        </div>
+
+    </div>
+</div>
+    `
+  })
+  listFilter.innerHTML += div
+}
+
+function openDetailExer() {
+  const filterPage = document.getElementById('filterPage')
+  const listFilter = document.getElementById('listFilter')
+  const page = document.getElementById('page')
+  filterPage.classList.add('d-none')
+  listFilter.classList.add('d-none')
+  page.classList.remove('d-none')
+}
+
+function backPage() {
+  const filterPage = document.getElementById('filterPage')
+  const listFilter = document.getElementById('listFilter')
+  const page = document.getElementById('page')
+  filterPage.classList.remove('d-none')
+  listFilter.classList.remove('d-none')
+  page.classList.add('d-none')
+}
+
+function filterPage(data) {
+  const listFilter = document.getElementById('listFilter')
+  listFilter.innerHTML = ''
+  let div = listFilter.innerHTML
+  data.forEach(e => {
+    div += `
+    <div onclick="openDetailExer()" class="row my-2 max-height">
+    <div class="col-12 mt-3 reset-Padding-x">
+        <h2>${e.name}</h2>
+    </div>
+
+    <div class="col-4 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+        <img class="rounded-4 img-res" id="img1" width="100" height="100"
+            src="${e.url}" alt="">
+    </div>
+
+    <div class="col-8 d-flex flex-column justify-content-around align-items-start">
+        <span class="reset text-start"> Informações</span>
+
+        <div class="d-flex  justify-content-center align-items-start gap-2">
+            <span class="text-start">Equipamentos:</span>
+            <span>${e.required}</span>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-start gap-2">
+            <span class="text-start">Grupo Muscular:</span>
+            <span>${e.category}</span>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-start gap-2">
+            <span class="text-start">Nivel:</span>
+            <span>${e.nivel}</span>
+        </div>
+
+    </div>
+</div>
+    `
+  })
+  listFilter.innerHTML += div 
+}
 
 // ------------------------------------------------------------- Ultima função
 function enviarTreino2() {
