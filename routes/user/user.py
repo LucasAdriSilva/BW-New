@@ -1,7 +1,5 @@
 from flask import Flask, Blueprint, session, request, flash, jsonify, render_template
-from methods import random_generator, send_email, getUrl
 from model.db import Db
-import bcrypt
 
 user = Blueprint('user', __name__, template_folder='templates')
 
