@@ -8,14 +8,38 @@ def userRoute():
   if session['ip'] is not None:
     ip_found = Db.get_ip(session['ip']).data
 
+
   if isinstance(ip_found, dict):
     days = ip_found['days']
     pairedSets = ip_found['pairedSets']
+    chosen = ip_found['chosenTraining']
+
+    if pairedSets == 'true':
+      if chosen == 'Fullbody':
+        chosenTraining = ip_found['Treino']['pairedSetsTraining']['fullbodyPS']
+
+      if chosen == 'PushPull':
+        chosenTraining = ip_found['Treino']['pairedSetsTraining']['pushPullPS']
+  
+      if chosen == 'UpperLower':
+        chosenTraining = ip_found['Treino']['pairedSetsTraining']['upperLowerPS']
+    else:
+      if chosen == 'Fullbody':
+        chosenTraining = ip_found['Treino']['regularTraining']['fullbody']
+
+      if chosen == 'PushPull':
+        chosenTraining = ip_found['Treino']['regularTraining']['pushPull']
+  
+      if chosen == 'UpperLower':
+        chosenTraining = ip_found['Treino']['regularTraining']['upperLower']
+
+
     data = {
       'nav': 'user',
-      'allTreino': ip_found['Treino'],
+      'training': chosenTraining,
       'days': days,
-      'pairedSets': pairedSets
+      'pairedSets': pairedSets,
+      'chosenTraining': chosen
     }
     return render_template("user.html", data = data)
   else:

@@ -137,7 +137,10 @@ def creatTraining():
       # Salvando uasndo IP
       if session['ip'] is not None:
         user = {'ip': session['ip'], 'Treino': allTreinos, 'days': days, 'pairedSets': pairedSets}
-        Db.save(user)
+        if Db.get_ip(session['ip']).data == None:
+          Db.save(user)
+        else:
+          Db.update_user(session['ip'], user)
 
       # Tratando a resposta
       if pairedSets== 'true':

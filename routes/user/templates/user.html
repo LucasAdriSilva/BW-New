@@ -37,460 +37,260 @@
 
 
 
-{% if data.allTreino %}
-    <div class="row reset-Padding-x mt-5 margin-content">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <h1>Meus Treinos</h1>
-        </div>
-
-        <!-- <div class="col-12 d-flex justify-content-center align-items-center gap-1">
-            <div class="form-check form-switch">
-                <input class="form-check-input border-switch" type="checkbox" role="switch" id="pairedSetsValue">
-                <label class="form-check-label" for="pairedSetsValue">Paired Sets</label>
+{% if data.training %}
+    {% if data.training.d1%}
+        <div class="row mt-5">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                <h3>Seu treino</h3>
+                <h4>{{data.chosenTraining}}</h4>
             </div>
-            <img src="assets/img/interrog.jpg" onclick="openModal('pairedSets')" width="20" height="20">
-        </div> -->
-    </div>
 
-    <div class="row mt-4">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="card w-100" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">FullBody</h5>
-                    <p class="card-text">3x na semana </p>
-                    <p class="card-text">Duração 1h30 à 2h</p>
-                    <p class="card-text">Com paired Sets: 50 min à 1h20</p>
-                    <a onclick="creatModal('FullBody')" class="btn btn-primary">Ver mais</a>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
 
-    {% if data.days == 4 %}
-    <div class="row mt-1">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="card w-100" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Push/Pull</h5>
-                    <p class="card-text">4x na semana</p>
-                    <p class="card-text">Duração 1h à 1h30</p>
-                    <p class="card-text">Com paired Sets: 35 min à 1h</p>
-                    <a onclick="creatModal('Push/Pull')" class="btn btn-primary">Ver mais</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                <div class="accordion-item ">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-gray" type="button" data-bs-toggle="collapse" data-bs-target="#D1"
+                            aria-expanded="false" aria-controls="D1">
+                            Segunda e Quinta
+                        </button>
+                    </h2>
+                    <div id="D1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            {% for e in data.training.d1 %}
+                            <div class="row regularTraining reset-Padding-x">
+                                <div class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
+                                    <h1>{{e.name}}</h1>
+                                </div>
 
-    <div class="row mt-1 mb-5">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="card w-100" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Upper/Lower</h5>
-                    <p class="card-text">4x na semana</p>
-                    <p class="card-text">Duração 1h à 1h30</p>
-                    <p class="card-text">Com paired Sets: 35 min à 1h</p>
-                    <a onclick="creatModal('Upper/Lower')" class="btn btn-primary">Ver mais</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
+                                <div class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+                                    <img class="rounded-4 img-res" id="img1" width="120" height="120" src="{{e.url}}" alt="">
+                                </div>
 
+                                <div class="col-7 d-flex flex-column justify-content-around align-items-start">
+                                    <span class="reset text-start"> Informações</span>
 
-    <!-- Modal Paired Sets
-    <div class="modal fade" id="pairedSets" tabindex="-1" aria-labelledby="pairedSetsLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="pairedSetsLabel">O que é Paired Sets?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <span>
-                        Os paired sets é uma técnica de treinamento em que realizamos exercícios de grupos musculares
-                        diferentes em sequência, com um descanso mais curto entre eles do que o usual. Por exemplo, se você
-                        fizer um exercício para o peito, seguido de um exercício para as costas, em vez de descansar
-                        completamente entre os dois, você descansaria apenas metade do tempo usual. Essa técnica ajuda a
-                        aumentar a intensidade do treino e pode ser uma ótima maneira de otimizar o tempo.
-                    </span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
-    <!-- Modal das rotinas-->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRotina">
-        Launch static backdrop modal
-    </button> -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalRotina" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="modalRotinaLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h1 id="TitleModal" class="modal-title fs-5" id="modalRotinaLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="accordion accordion-flush margin-content mt-3 mx-0" id="accordionFlushExample">
-                        <div id="FullBody" class="d-none accordion-item border rounded-2 mt-2">
-                            <h2 class="accordion-header">
-                                <button id="TitleAcordion" class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#Rotina" aria-expanded="false"
-                                    aria-controls="Rotina">
-                                    Exercicios
-                                </button>
-                            </h2>
-                            <div id="Rotina" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    {% for i in data.allTreino.regularTraining.fullbody %}
-                                    <div class="row regularTraining reset-Padding-x">
-                                        <div
-                                            class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
-                                            <h1>{{i.name}}</h1>
-                                        </div>
-
-                                        <div
-                                            class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                                            <img class="rounded-4 img-res" id="img1" width="120" height="120"
-                                                src="{{i.url}}" alt="">
-                                        </div>
-
-                                        <div class="col-7 d-flex flex-column justify-content-around align-items-start">
-                                            <span class="reset text-start"> Informações</span>
-
-                                            <div class="d-flex  justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Equipamentos:</span>
-                                                {% if i.required is not none %}
-                                                <span>{{i.required}}</span>
-                                                {% else %}
-                                                <span>Sem equipamento</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Grupo Muscular:</span>
-                                                <span>{{i.category}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Nivel:</span>
-                                                <span>{{i.nivel}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Série</span>
-                                                <span>{{i.rept}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Descanso</span>
-                                                <span>{{i.rest}}m</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Repetição:</span>
-                                                <span>{{i.count}}</span>
-                                            </div>
-
-                                        </div>
+                                    <div class="d-flex  justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Equip. :</span>
+                                        {% if e.required != '' %}
+                                            {% if e.required is string %}
+                                                <span>{{ e.required }}</span>
+                                            {% else %}
+                                                <span>
+                                                    {% for item in e.required %}
+                                                        {{ item }}
+                                                        {% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            {% endif %}
+                                        {% else %}
+                                            <small>Sem equipamento</small>
+                                        {% endif %}
                                     </div>
-                                    {% endfor %}
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Grupo Muscular:</span>
+                                        <span>{{e.category}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Nivel:</span>
+                                        <span>{{e.nivel}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Série</span>
+                                        <span>{{e.rept}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Descanso</span>
+                                        <span>{{e.rest}}m</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        {% if e.segs %}
+                                        <span class="text-start">Segundos:</span>
+                                        {% else %}
+                                        <span class="text-start">Repetição:</span>
+                                        {% endif %}
+                                        <span>{{e.count}}</span>
+                                    </div>
+
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-
-                        <div id="Push/Pull" class="d-none accordion-item border rounded-2 mt-2">
-                            <h2 class="accordion-header">
-                                <button id="TitleAcordion" class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#Rotina2" aria-expanded="false"
-                                    aria-controls="Rotina2">
-                                    Exercicios
-                                </button>
-                            </h2>
-                            <div id="Rotina2" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-
-                                <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col-12 bg-gray d-flex justify-content-center py-2">
-                                            <h1 class="reset">Dia 1</h1>
-                                        </div>
-                                    </div>
-
-                                    {% for i in data.allTreino.regularTraining.pushPull.d1 %}
-                                    <div class="row regularTraining reset-Padding-x">
-                                        <div
-                                            class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
-                                            <h1>{{i.name}}</h1>
-                                        </div>
-
-                                        <div
-                                            class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                                            <img class="rounded-4 img-res" id="img1" width="120" height="120"
-                                                src="{{i.url}}" alt="">
-                                        </div>
-
-                                        <div class="col-7 d-flex flex-column justify-content-around align-items-start">
-                                            <span class="reset text-start"> Informações</span>
-
-                                            <div class="d-flex  justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Equipamentos:</span>
-                                                {% if i.required is not none %}
-                                                <span>{{i.required}}</span>
-                                                {% else %}
-                                                <span>Sem equipamento</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Grupo Muscular:</span>
-                                                <span>{{i.category}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Nivel:</span>
-                                                <span>{{i.nivel}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Série</span>
-                                                <span>{{i.rept}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Descanso</span>
-                                                <span>{{i.rest}}m</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Repetição:</span>
-                                                <span>{{i.count}}</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                    <div class="row">
-                                        <div class="col-12 bg-gray d-flex justify-content-center mt-5 py-2">
-                                            <h1 class="reset">Dia 2</h1>
-                                        </div>
-                                    </div>
-                                    {% for i in data.allTreino.regularTraining.pushPull.d2 %}
-                                    <div class="row regularTraining reset-Padding-x">
-                                        <div
-                                            class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
-                                            <h1>{{i.name}}</h1>
-                                        </div>
-
-                                        <div
-                                            class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                                            <img class="rounded-4 img-res" id="img1" width="120" height="120"
-                                                src="{{i.url}}" alt="">
-                                        </div>
-
-                                        <div class="col-7 d-flex flex-column justify-content-around align-items-start">
-                                            <span class="reset text-start"> Informações</span>
-
-                                            <div class="d-flex  justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Equipamentos:</span>
-                                                {% if i.required is not none %}
-                                                <span>{{i.required}}</span>
-                                                {% else %}
-                                                <span>Sem equipamento</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Grupo Muscular:</span>
-                                                <span>{{i.category}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Nivel:</span>
-                                                <span>{{i.nivel}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Série</span>
-                                                <span>{{i.rept}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Descanso</span>
-                                                <span>{{i.rest}}m</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Repetição:</span>
-                                                <span>{{i.count}}</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="Upper/Lower" class="d-none accordion-item border rounded-2 mt-2">
-                            <h2 class="accordion-header">
-                                <button id="TitleAcordion" class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#Rotina3" aria-expanded="false"
-                                    aria-controls="Rotina3">
-                                    Exercicios
-                                </button>
-                            </h2>
-                            <div id="Rotina3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col-12 bg-gray d-flex justify-content-center py-2">
-                                            <h1 class="reset">Dia 1</h1>
-                                        </div>
-                                    </div>
-
-                                    {% for i in data.allTreino.regularTraining.upperLower.d1 %}
-                                    <div class="row regularTraining reset-Padding-x">
-                                        <div
-                                            class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
-                                            <h1>{{i.name}}</h1>
-                                        </div>
-
-                                        <div
-                                            class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                                            <img class="rounded-4 img-res" id="img1" width="120" height="120"
-                                                src="{{i.url}}" alt="">
-                                        </div>
-
-                                        <div class="col-7 d-flex flex-column justify-content-around align-items-start">
-                                            <span class="reset text-start"> Informações</span>
-
-                                            <div class="d-flex  justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Equipamentos:</span>
-                                                {% if i.required is not none %}
-                                                <span>{{i.required}}</span>
-                                                {% else %}
-                                                <span>Sem equipamento</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Grupo Muscular:</span>
-                                                <span>{{i.category}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Nivel:</span>
-                                                <span>{{i.nivel}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Série</span>
-                                                <span>{{i.rept}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Descanso</span>
-                                                <span>{{i.rest}}m</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Repetição:</span>
-                                                <span>{{i.count}}</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-
-                                    <div class="row">
-                                        <div class="col-12 bg-gray d-flex justify-content-center mt-5 py-2">
-                                            <h1 class="reset">Dia 2</h1>
-                                        </div>
-                                    </div>
-                                    {% for i in data.allTreino.regularTraining.upperLower.d2 %}
-                                    <div class="row regularTraining reset-Padding-x">
-                                        <div
-                                            class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
-                                            <h1>{{i.name}}</h1>
-                                        </div>
-
-                                        <div
-                                            class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
-                                            <img class="rounded-4 img-res" id="img1" width="120" height="120"
-                                                src="{{i.url}}" alt="">
-                                        </div>
-
-                                        <div class="col-7 d-flex flex-column justify-content-around align-items-start">
-                                            <span class="reset text-start"> Informações</span>
-
-                                            <div class="d-flex  justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Equipamentos:</span>
-                                                {% if i.required is not none %}
-                                                <span>{{i.required}}</span>
-                                                {% else %}
-                                                <span>Sem equipamento</span>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Grupo Muscular:</span>
-                                                <span>{{i.category}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Nivel:</span>
-                                                <span>{{i.nivel}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Série</span>
-                                                <span>{{i.rept}}</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Descanso</span>
-                                                <span>{{i.rest}}m</span>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-start gap-2">
-                                                <span class="text-start">Repetição:</span>
-                                                <span>{{i.count}}</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <p class="reset mt-3 text-success">Prós</p>
-                    <div id="Pros" class="d-flex flex-column justify-content-start"></div>
-                    <p class="reset mt text-danger mt-2">Contras</p>
-                    <div id="Contras" class="d-flex flex-column justify-content-start"></div>
-
-
                 </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <button data-bs-dismiss="modal" type="button" class="btn btn-primary">Escolher rotina</button>
+
+                <div class="accordion-item mt-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-gray" type="button" data-bs-toggle="collapse" data-bs-target="#D2"
+                            aria-expanded="false" aria-controls="D2">
+                            Terça e Sexta
+                        </button>
+                    </h2>
+                    <div id="D2" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            {% for e in data.training.d2 %}
+                            <div class="row regularTraining reset-Padding-x">
+                                <div class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
+                                    <h1>{{e.name}}</h1>
+                                </div>
+
+                                <div class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+                                    <img class="rounded-4 img-res" id="img1" width="120" height="120" src="{{e.url}}" alt="">
+                                </div>
+
+                                <div class="col-7 d-flex flex-column justify-content-around align-items-start">
+                                    <span class="reset text-start"> Informações</span>
+
+                                    <div class="d-flex  justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Equip. :</span>
+                                        {% if e.required != '' %}
+                                            {% if e.required is string %}
+                                                <span>{{ e.required }}</span>
+                                            {% else %}
+                                                <span>
+                                                    {% for item in e.required %}
+                                                        {{ item }}
+                                                        {% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            {% endif %}
+                                        {% else %}
+                                            <small>Sem equipamento</small>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Grupo Muscular:</span>
+                                        <span>{{e.category}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Nivel:</span>
+                                        <span>{{e.nivel}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Série</span>
+                                        <span>{{e.rept}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Descanso</span>
+                                        <span>{{e.rest}}m</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        {% if e.segs %}
+                                        <span class="text-start">Segundos:</span>
+                                        {% else %}
+                                        <span class="text-start">Repetição:</span>
+                                        {% endif %}
+                                        <span>{{e.count}}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% else%}
+        <div class="row mt-5">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <h3>Seu treino</h3>
+            </div>
 
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                <div class="accordion-item ">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#D1"
+                            aria-expanded="false" aria-controls="D1">
+                            Segunda, Quarta e Sexta
+                        </button>
+                    </h2>
+                    <div id="D1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            {% for e in data.training %}
+                            <div class="row regularTraining reset-Padding-x">
+                                <div class="col-12 d-flex justify-content-center align-items-center mt-5 mb-3 reset-Padding-x">
+                                    <h1>{{e.name}}</h1>
+                                </div>
+
+                                <div class="col-5 d-flex justify-content-start align-items-center rounded-4 reset-Padding-x">
+                                    <img class="rounded-4 img-res" id="img1" width="120" height="120" src="{{e.url}}" alt="">
+                                </div>
+
+                                <div class="col-7 d-flex flex-column justify-content-around align-items-start">
+                                    <span class="reset text-start"> Informações</span>
+
+                                    <div class="d-flex  justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Equip. :</span>
+                                        {% if e.required != '' %}
+                                            {% if e.required is string %}
+                                                <span>{{ e.required }}</span>
+                                            {% else %}
+                                                <span>
+                                                    {% for item in e.required %}
+                                                        {{ item }}
+                                                        {% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            {% endif %}
+                                        {% else %}
+                                            <small>Sem equipamento</small>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Grupo Muscular:</span>
+                                        <span>{{e.category}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Nivel:</span>
+                                        <span>{{e.nivel}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Série</span>
+                                        <span>{{e.rept}}</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        <span class="text-start">Descanso</span>
+                                        <span>{{e.rest}}m</span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-start gap-2">
+                                        {% if e.segs %}
+                                        <span class="text-start">Segundos:</span>
+                                        {% else %}
+                                        <span class="text-start">Repetição:</span>
+                                        {% endif %}
+                                        <span>{{e.count}}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
 {% else%}
-
     <div class="row mt-5">
         <div class="col-12 flex-column d-flex justify-content-center align-items-center">
-            <p class="reset fs-4">Você ainda não criou um treino</p> 
+            <p class="reset fs-4">Você ainda não criou um treino</p>
             <button onclick="window.location.href='/'" class="btn btn-success">Criar Treino</button>
         </div>
     </div>

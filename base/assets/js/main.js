@@ -108,9 +108,6 @@ const exercises = [
 
 ]
 
-function giveExer(){
-    return exercises
-}
 const exercisesBase = exercises.filter(e => e.default == true)
 
 const div2 = document.getElementById('div2');
@@ -1480,17 +1477,17 @@ quizCarousel.setAttribute('data-bs-interval', 'false');
 // ----------------------------------------------------------- Page Home2.html
 
 function chosenRoutine(rotina) {
-  if (rotina == 'RegularFullbody') {
-    const RegularFullbody = document.getElementById('RegularFullbody')
-    RegularFullbody.classList.remove('d-none')
+  if (rotina == 'Fullbody') {
+    const Fullbody = document.getElementById('Fullbody')
+    Fullbody.classList.remove('d-none')
   }
-  if (rotina == 'RegularPushPull') {
-    const RegularPushPull = document.getElementById('RegularPushPull')
-    RegularPushPull.classList.remove('d-none')
+  if (rotina == 'PushPull') {
+    const PushPull = document.getElementById('PushPull')
+    PushPull.classList.remove('d-none')
   }
-  if (rotina == 'RegularUpperLower') {
-    const RegularUpperLower = document.getElementById('RegularUpperLower')
-    RegularUpperLower.classList.remove('d-none')
+  if (rotina == 'UpperLower') {
+    const UpperLower = document.getElementById('UpperLower')
+    UpperLower.classList.remove('d-none')
   }
 
   const text1 = document.getElementById('text1')
@@ -1501,6 +1498,27 @@ function chosenRoutine(rotina) {
   const bntPdf = document.getElementById('bntPdf')
   bntPdf.classList.remove('d-none')
 
+  fetch('/saveTraining', {
+    method: 'POST',
+    body: rotina,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      console.log(response)
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Erro na requisição:', response.status);
+      }
+    })
+    .then(data => {
+      console.log(data.message);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 // ----------------------------------------------------------- Page exercices.html
@@ -1600,7 +1618,7 @@ function filterPage(data) {
 </div>
     `
   })
-  listFilter.innerHTML += div 
+  listFilter.innerHTML += div
 }
 
 // ------------------------------------------------------------- Ultima função

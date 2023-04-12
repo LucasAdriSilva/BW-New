@@ -9,17 +9,6 @@ db = client.BW
 
 
 class Db:
-    def ping():
-        response = Response()
-        try:
-            # testa a conexão ao cluster
-            client.admin.command('ping')
-            return response
-        except Exception as e:
-            response.ok = False
-            response.message = f"Erro no banco de dados --> {e}"
-            return response
-    
     def save(data):
         start_time = time.time()
         response = Response()
@@ -46,38 +35,28 @@ class Db:
         print(f"Tempo gasto em get_ip(): {end_time - start_time} segundos")
         return response
       
-    def get_emailPayment(email):
+    def get(param, value):
+        start_time = time.time()
         response = Response()
         try:
-            response.data = db.user.find_one({"paymentEmail": email})
+            response.data = db.user.find_one({param: value})
         except Exception as e:
             response.message = f"Erro de banco de dados ---> {e}"
             response.ok = False
             return response
-        return response
-      
-    def get_email(email):
-        response = Response()
-        try:
-            response.data = db.user.find_one({"email": email})
-        except Exception as e:
-            response.message = f"Erro de banco de dados ---> {e}"
-            response.ok = False
-            return response
+        end_time = time.time()
+        print(f"Tempo gasto em get(): {end_time - start_time} segundos")
         return response
 
-    def update_user(user, newUser):
+    def update_user(ip, newUser):
         #instancia uma classe de resposta
         response = Response()
         try:
-            verification_user = Db.get_name(user)
+            verification_ip = Db.get_ip(ip).data
 
-            if verification_user.data == None:
-                verification_user = Db.get_email(user)
-
-            if verification_user.data != None:
+            if verification_ip != None:
                 response.data = db.user.find_one_and_update(
-                    {'_id': verification_user.data['_id']}, 
+                    {'ip': verification_ip['ip']}, 
                     {"$set": newUser}
                 )
         except Exception as e:
@@ -87,18 +66,6 @@ class Db:
             return response
         return response
     
-    def save_vsl(vsl_list):
-        response = Response()
-        try:
-            dict_data = {"data": vsl_list, "Date": datetime.datetime.now()}
-            response.data = db.vsl.insert_one(dict_data)
-            print('salvo', dict_data)
-        except Exception as e:
-            response.message = f"Erro no banco de dados ---> {e}"
-            response.ok = False
-            return response
-        return response
-
 
 
 
