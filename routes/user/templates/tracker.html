@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+        <h1>{{data.nameRotina}}</h1>
+        <small>Lembre de fazer os alogamentos par evitar <span class="reset text-danger text-uppercase">lesões</small>
+    </div>
+</div>
+
+
+{% for exer in data.training%}
+{% set contador = loop.index %}
+<div class="row position-relative py-4">
+    <div class="col-3 d-flex justify-content-center align-items-center">
+        <img class="rounded-4" id="exer{{contador}}" width="68" height="68" src="{{exer.url}}" alt="">
+    </div>
+
+    <div class="col-9 d-flex align-items-center ps-3 pe-5">
+        <div class="row">
+            <div class="col-12 reset-Padding">
+                <input type="hidden" name="nivel">
+                <span class="reset text-uppercase" style="font-size: 18px;">{{contador}}º{{exer.name}}</span>
+                <span class="d-none" id="name{{contador}}">{{exer}}</span>
+            </div>
+
+            {% for e in range(exer.rept)%}
+            {% set contadorSerie = loop.index %}
+
+            <div class="col-4 d-flex flex-column justify-content-center align-items-start my-2 reset-Padding">
+                <p class="reset text-uppercase text-gray1">SÉRIE</p>
+                <input class="w-75 text-center rounded-3" type="text" placeholder="{{contadorSerie}}" disabled>
+            </div>
+
+            <div class="col-4 d-flex flex-column justify-content-center align-items-center reset-Padding">
+                {% if exer.segs %}
+                <p class="reset text-uppercase text-gray1">SEGS</p>
+                {% else %}
+                <p class="reset text-uppercase text-gray1">REPS</p>
+                {% endif %}
+                <input pattern="^-?\d*\.?\d+$" inputmode="numeric" required="true"
+                    id="ValidExer{{contador}}Serie{{contadorSerie}}" class="w-75 input-value text-center rounded-3"
+                    type="number">
+
+            </div>
+
+            <div class="col-4 d-flex flex-column justify-content-center align-items-end reset-Padding">
+                <p class="reset text-uppercase text-gray1">PAUSA</p>
+                <input id="reset{{contador}}Serie{{contadorSerie}}" required="true" disabled placeholder="3min"
+                    class="w-75 input-value text-center rounded-3" type="text">
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <audio id="myAudio">
+        <source src="assets/audio/not.mp3" type="audio/mp3">
+    </audio>
+</div>
+{% endfor %}
+
+<div class="row mb-5 mt-2">
+    <div class="col-12 d-flex justify-content-center align-itemns-center">
+        <button onclick="finishedTraining()" class="btn btn-success text-uppercase">Finalizar treino</button>
+    </div>
+</div>
+<script>
+    var newTraining = []
+    let exer = giveExer()
+    window.addEventListener("load", function () {
+        for (let i = 1; i < 9; i++) {
+            for (let e = 1; e < 4; e++) {
+                validationInpt(i, e)
+            }
+        }
+    });
+
+    function validationInpt(id, serie) {
+        const input = document.getElementById(`ValidExer${id}Serie${serie}`)
+        input.addEventListener('blur', function () {
+            //Pega o dados do exercicio
+            const exerBack = document.getElementById(`name${id}`);
+            let exer = exerBack.innerHTML.replace(/'/g, "\"");
+            let Exer = JSON.parse(exer);
+
+            if (Exer.segs) {
+                let segundos = parseInt(input.value) / 2 //Resposta em segundos
+                let repeticao = 60 / Math.round(segundos) // Repostas em repetição
+                repeticao = Math.round(repeticao)
+                let sugundosTotais = segundos * repeticao
+
+                if (repeticao <= 4 && input.value < 60) {
+                    desabilitCardTracker(id, serie)
+                    addTraining(id, serie)
+                }
+
+                if (repeticao > 6 || input.value >= 60) {
+                    console.log('Muito pesado')
+                }
+                if (repeticao < 2) {
+                    console.log('Muito leve')
+                }
+            }
+            else {
+                if (input.value <= 6) {
+                    console.log('Muito Pesado')
+                }
+
+                if (input.value >= 6 && input.value <= 15) {
+                    desabilitCardTracker(id, serie)
+                    addTraining(id, serie)
+                }
+
+
+                if (input.value >= 15 && input.value <= 31) {
+                    console.log('Muito Leve')
+                }
+
+                if (input.value >= 31) {
+                    console.log('Extremamente Leve')
+                }
+            }
+
+
+        })
+    }
+
+    function desabilitCardTracker(id, serie) {
+        const audio = document.getElementById("myAudio");
+
+        let numberInput = [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+        // Monta o array de id sem o id que está sendo tratado
+        let indexinput = numberInput[id - 1]
+        let input = indexinput.findIndex(e => e == serie)
+
+        if (input != -1) {
+            indexinput.splice(input, 1);
+            numberInput[id - 1] = indexinput
+        }
+
+
+        // Desabilita todos os inpust e add uma class aos cards
+        let x = 1
+        numberInput.forEach(e => {
+            e.forEach(i => {
+                const inputDesabilit = document.getElementById(`ValidExer${x}Serie${i}`)
+                inputDesabilit.disabled = true;
+            })
+
+            const divExer = document.getElementById('exer' + x)
+            divExer.classList.add('desabilited')
+            x++
+        })
+
+        let cronometro = document.getElementById(`reset${id}Serie${serie}`);
+        let segundosRestantes = 10; // 3 minutos em segundos
+        let interval; // Declarando a variável fora da função para poder usar em outro escopo
+        cronometro.placeholder = ''
+
+        clearInterval(interval); // Parar o cronômetro se ele já estiver rodando
+        segundosRestantes = 10; // Reiniciar o tempo
+
+        interval = setInterval(function () {
+            segundosRestantes--;
+            let minutos = Math.floor(segundosRestantes / 60);
+            let segundos = segundosRestantes % 60;
+            cronometro.placeholder = minutos + ":" + segundos + "";
+
+            if (segundosRestantes <= 0) {
+                audio.play();
+                clearInterval(interval); // Parar o cronômetro
+                // Habilitar input
+                cronometro.placeholder = "FIM";
+                let x = 1
+                numberInput.forEach(e => {
+                    e.forEach(i => {
+                        const inputDesabilit = document.getElementById(`ValidExer${x}Serie${i}`)
+                        inputDesabilit.disabled = false;
+                    })
+
+                    const divExer = document.getElementById('exer' + x)
+                    divExer.classList.remove('desabilited')
+                    x++
+                })
+            }
+        }, 1000); // Atualizar o cronômetro a cada segundo
+
+    }
+
+    function addTraining(id, serie) {
+        const name = document.getElementById(`name${id}`);
+        let Name = name.innerHTML.replace(/'/g, "\"");
+        let newData = JSON.parse(Name);
+
+        const input = document.getElementById(`ValidExer${id}Serie${serie}`)
+
+        let index = newTraining.findIndex(e => e.name === newData.name)
+
+        if (index == -1) {
+            newData[`rept${serie}`] = parseInt(input.value);
+            newTraining.push(newData);
+        } else {
+            newTraining[index][`rept${serie}`] = parseInt(input.value);
+        }
+        console.log(newTraining)
+    }
+
+    function finishedTraining() {
+        if (newTraining.length >= 8) {
+            fetch('/saveTrainingTracker', {
+                method: 'POST',
+                body: JSON.stringify(newTraining),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log(response)
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Erro na requisição:', response.status);
+                    }
+                })
+                .then(data => {
+                    console.log(data.message);
+                    window.location.href = '/user'
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+        
+    }
+</script>
+{% endblock %}

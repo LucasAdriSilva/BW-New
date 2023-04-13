@@ -3,10 +3,46 @@
 
 {% block content %}
 <div class="row reset-Padding-x mt-5">
-    <div class="col-12 d-flex flex-column justify-content-center align-items-center">    
-        <h1 class="reset text-center">Verificamos que você já possui um treino</h1>
-        <button class="btn btn-success text-uppercase mt-2" onclick="window.location.href='/creat'">Gerar Outro Treino</button>
-
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="reset text-center">Bora treinar</h1>
+        <h2 class="reset text-center">Qual treino vai ser hoje?</h2>
     </div>
+    {% if data.dayTraining == 3 %}
+    <div class="col-12 mt-3">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title">{{data.nameRotina}}</h5>
+                <p class="card-text">Descrição da rotina</p>
+                <!-- target="_blank" -->
+                <form method="POST" action="{{ url_for('user.tracker') }}">
+                    <input type="hidden" name="data" value="{{ data }}">
+                    <button class="btn btn-success  w-100 text-uppercase" type="submit">Treinar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12 mt-3">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title">{{data.nameRotina}} primeiro dia</h5>
+                <p class="card-text">Descrição da rotina</p>
+                <a href="#" class="btn btn-primary text-uppercase">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-3">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title">{{data.nameRotina}} segundo dia</h5>
+                <p class="card-text">Descrição da rotina</p>
+                <a href="#" class="btn btn-primary text-uppercase">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
+
+
+
 {% endblock %}

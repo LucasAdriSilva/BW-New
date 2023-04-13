@@ -10,9 +10,25 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 @basicScreens.route("/")
 def index():
   if 'ip' in session:
-    ip_found = Db.get_ip(session['ip'])
-    if ip_found.data is not None:
-      data = {'nav': 'home', 'treino': ip_found.data}
+    ip_found = Db.get_ip(session['ip']).data
+    if ip_found is not None:
+
+      if ip_found['chosenTraining'] == 'Fullbody':
+        data = {
+          'nav': 'home', 
+          'dayTraining': 3,
+          'nameRotina': ip_found['chosenTraining'],
+          'training': ip_found['Training']
+        }
+      else:
+        data = {
+          'nav': 'home', 
+          'dayTraining': 4,
+          'nameRotina': ip_found['chosenTraining'],
+          'trainingD1': ip_found['Training']['d1'],
+          'trainingD2': ip_found['Training']['d2']
+        }
+      return render_template("home.html", data = data)
     else:
        data = {'nav': 'home'}
     return render_template("firstAcess.html", data = data)
@@ -23,8 +39,6 @@ def index():
     data = {'nav': 'home'}
     return render_template("firstAcess.html", data = data)
 
-
-
 @basicScreens.route("/sendTraining", methods=["GET", "POST"])
 def teste():
     if request.method == "POST":
@@ -33,7 +47,6 @@ def teste():
         return redirect(url_for('basicScreens.creatTraining', data=data))
 
     return render_template("home.html")
-
 
 @basicScreens.route("/creatTraining" , methods=["GET", "POST"])
 def creatTraining():

@@ -1221,7 +1221,7 @@ function desabilitCard(id) {
 
 }
 
-// ----------------------------------------------------------- Page Home.html
+// ----------------------------------------------------------- Page firstAcess.html
 // Obtém o elemento do carrossel e seus itens internos
 const quizCarousel = document.querySelector('#quiz');
 const quizItems = quizCarousel.querySelectorAll('.carousel-item');
