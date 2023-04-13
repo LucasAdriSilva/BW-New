@@ -92,7 +92,7 @@
                 let sugundosTotais = segundos * repeticao
 
                 if (repeticao <= 4 && input.value < 60) {
-                    desabilitCardTracker(id, serie)
+                   desabilitCardTracker(id, serie)
                     addTraining(id, serie)
                 }
 
@@ -109,7 +109,7 @@
                 }
 
                 if (input.value >= 6 && input.value <= 15) {
-                    desabilitCardTracker(id, serie)
+                   desabilitCardTracker(id, serie)
                     addTraining(id, serie)
                 }
 
@@ -155,12 +155,14 @@
         })
 
         let cronometro = document.getElementById(`reset${id}Serie${serie}`);
-        let segundosRestantes = 10; // 3 minutos em segundos
+        let segundosRestantes = 3; // 3 minutos em segundos
         let interval; // Declarando a variável fora da função para poder usar em outro escopo
         cronometro.placeholder = ''
+        cronometro.placeholder = '0:4'
+
 
         clearInterval(interval); // Parar o cronômetro se ele já estiver rodando
-        segundosRestantes = 10; // Reiniciar o tempo
+        segundosRestantes = 3; // Reiniciar o tempo
 
         interval = setInterval(function () {
             segundosRestantes--;

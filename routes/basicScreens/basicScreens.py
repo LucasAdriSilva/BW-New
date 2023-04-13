@@ -12,22 +12,22 @@ def index():
   if 'ip' in session:
     ip_found = Db.get_ip(session['ip']).data
     if ip_found is not None:
-
-      if ip_found['chosenTraining'] == 'Fullbody':
-        data = {
-          'nav': 'home', 
-          'dayTraining': 3,
-          'nameRotina': ip_found['chosenTraining'],
-          'training': ip_found['Training']
-        }
-      else:
-        data = {
-          'nav': 'home', 
-          'dayTraining': 4,
-          'nameRotina': ip_found['chosenTraining'],
-          'trainingD1': ip_found['Training']['d1'],
-          'trainingD2': ip_found['Training']['d2']
-        }
+      if ip_found['Training'] is not None:
+        if ip_found['chosenTraining'] == 'Fullbody':
+          data = {
+            'nav': 'home', 
+            'dayTraining': 3,
+            'nameRotina': ip_found['chosenTraining'],
+            'training': ip_found['Training']
+          }
+        else:
+          data = {
+            'nav': 'home', 
+            'dayTraining': 4,
+            'nameRotina': ip_found['chosenTraining'],
+            'trainingD1': ip_found['Training']['d1'],
+            'trainingD2': ip_found['Training']['d2']
+          }
       return render_template("home.html", data = data)
     else:
        data = {'nav': 'home'}

@@ -29,6 +29,7 @@ def saveTraining():
     if isinstance(ip_found, dict):
       days = ip_found['days']
       pairedSets = ip_found['pairedSets']
+      ip_found['chosenTraining'] = data
       chosen = ip_found['chosenTraining']
 
       if pairedSets == 'true':
@@ -50,7 +51,7 @@ def saveTraining():
         if chosen == 'UpperLower':
           chosenTraining = ip_found['Treino']['regularTraining']['upperLower']
         
-        Db.update_user(session['ip'], {'Training': chosenTraining})
+        Db.update_user(session['ip'], {'Training': chosenTraining, 'chosenTraining': data})
     else:
       Db.update_user(session['ip'], {'chosenTraining': data})
 
