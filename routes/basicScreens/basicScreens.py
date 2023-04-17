@@ -9,25 +9,50 @@ basicScreens = Blueprint('basicScreens', __name__, template_folder='templates')
 
 @basicScreens.route("/")
 def index():
+  # Verifica se tem o ip na sessão
   if 'ip' in session:
     ip_found = Db.get_ip(session['ip']).data
+    # Verifica o retorno do banco nao é null
     if ip_found is not None:
+      if ip_found.get('historyTraining') is not None:
+        last_training = ip_found['historyTraining'][-1]  
+        
+        if len(last_training) > 1:
+          trainingD1 = list(last_training.values())[0]
+          trainingD2 = list(last_training.values())[1]
 
-      if ip_found['chosenTraining'] == 'Fullbody':
-        data = {
-          'nav': 'home', 
-          'dayTraining': 3,
-          'nameRotina': ip_found['chosenTraining'],
-          'training': ip_found['Training']
-        }
-      else:
-        data = {
-          'nav': 'home', 
-          'dayTraining': 4,
-          'nameRotina': ip_found['chosenTraining'],
-          'trainingD1': ip_found['Training']['d1'],
-          'trainingD2': ip_found['Training']['d2']
-        }
+          data= {
+            'nav': 'home', 
+            'dayTraining': 3,
+            'nameRotina': ip_found['chosenTraining'],
+            'trainingD1': trainingD1,
+            'trainingD2': trainingD2
+          }
+        else:
+          training = list(last_training.values())[0]
+
+          data= {
+            'nav': 'home', 
+            'dayTraining': 3,
+            'nameRotina': ip_found['chosenTraining'],
+            'training': training
+          }
+      else:  
+        if ip_found['chosenTraining'] == 'Fullbody':
+          data = {
+            'nav': 'home', 
+            'dayTraining': 3,
+            'nameRotina': ip_found['chosenTraining'],
+            'training': ip_found['Training']
+          }
+        else:
+          data = {
+            'nav': 'home', 
+            'dayTraining': 4,
+            'nameRotina': ip_found['chosenTraining'],
+            'trainingD1': ip_found['Training']['d1'],
+            'trainingD2': ip_found['Training']['d2']
+          }
       return render_template("home.html", data = data)
     else:
        data = {'nav': 'home'}
@@ -179,12 +204,6 @@ def creatTraining():
           }
       return render_template("exercices.html", data=data)
 
-@basicScreens.route("/creat")
-def creat():
-  data = {
-    'nav': 'home'
-  }
-  return render_template("firstAcess.html", data = data)
 
 @basicScreens.route("/download-pdf", methods=["POST"])
 def download_pdf():

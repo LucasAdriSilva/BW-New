@@ -114,4 +114,45 @@ class Exercicio:
         { 'name': 'HR com 1 Perna', 'url': 'https://cdn-0.weighttraining.guide/wp-content/uploads/2022/01/Flat-bench-reverse-hyperextension-1.png?ezimgfmt=ng%3Awebp%2Fngcb4', 'category': 'Core', 'nivel': 3, 'type': 'Lombar', 'division': 'Hiperextensão Reversa (HR) - Lombar', 'required': '' },
         { 'name': 'Hiperextensão Reversa (Full)', 'url': 'https://i.4playercamp.cz/img/e8f1f106582bff976ac2dc1cc8009f.jpg', 'category': 'Core', 'nivel': 4, 'type': 'Lombar', 'division': 'Hiperextensão Reversa (HR) - Lombar', 'required': '' },{ 'name': 'Hiperextensão Reversa com Peso', 'url': 'https://sc02.alicdn.com/kf/HTB1zoEQRVXXXXX8XVXXq6xXFXXXi/222228634/HTB1zoEQRVXXXXX8XVXXq6xXFXXXi.jpg_.webp', 'category': 'Core', 'nivel': 6, 'type': 'Lombar', 'division': 'Hiperextensão Reversa (HR) - Lombar', 'required': '' },
         { 'name': 'Abdominal Remador', 'url': 'https://grandeatleta.com.br/wp-content/uploads/2021/02/abdominal-remador.jpg', 'nivel': 1, 'category': 'Core', 'type': 'Lombar', 'default': 'true', 'required': ''} ] 
-        return exercises       
+        return exercises     
+
+    def get_Name(name):
+        filtered_data = list(filter(lambda e: e.get('name') == name , Exercicio.getAllExercicios()))
+        if filtered_data:
+            return filtered_data[0]
+        else:
+            return None
+        
+    def getAllCategory(category,array):
+        filtered_data = list(filter(lambda e: e.get('category') == category , array)) 
+        if filtered_data:
+            return filtered_data
+        else:
+            return None    
+
+    def getAllNivel(nivel,array):
+        filtered_data = list(filter(lambda e: e.get('nivel') == nivel , array)) 
+        if filtered_data:
+            return filtered_data
+        else:
+            return None  
+
+    def getSuggestionExerLight(name): 
+    # nivel -1
+        exer = Exercicio.get_Name(name)
+        
+        arrayCategory = Exercicio.getAllCategory(exer['category'], Exercicio.getAllExercicios())
+        
+        if isinstance(exer['nivel'], int):
+            # Se for um número inteiro, use o valor diretamente
+            filter = Exercicio.getAllNivel((exer['nivel'] + 1), arrayCategory)
+            print(filter)
+            return filter
+        elif isinstance(exer['nivel'], list):
+            # Se for uma lista, pegue o menor valor
+            min_value = min(exer['nivel'])
+            filter = Exercicio.getAllNivel((min_value + 1), arrayCategory)
+            print(filter)
+            return filter
+
+   
