@@ -22,61 +22,67 @@ def training():
 @training_bp.route('/saveTraining', methods=["POST"])
 def saveTraining():
   data = request.get_data().decode()
-  
+
   if session['ip'] is not None:
     ip_found = Db.get_ip(session['ip']).data
 
     if isinstance(ip_found, dict):
       days = ip_found['days']
       pairedSets = ip_found['pairedSets']
-      ip_found['chosenTraining'] = data
-      chosen = ip_found['chosenTraining']
+      
+      chosen = data
 
       if pairedSets == 'true':
         if chosen == 'Fullbody':
-          chosenTraining = ip_found['Treino']['pairedSetsTraining']['fullbodyPS']
+          chosenTraining = ip_found['Treino']['pairedSetsTraining'][
+            'fullbodyPS']
 
         if chosen == 'PushPull':
-          chosenTraining = ip_found['Treino']['pairedSetsTraining']['pushPullPS']
-    
+          chosenTraining = ip_found['Treino']['pairedSetsTraining'][
+            'pushPullPS']
+
         if chosen == 'UpperLower':
-          chosenTraining = ip_found['Treino']['pairedSetsTraining']['upperLowerPS']
+          chosenTraining = ip_found['Treino']['pairedSetsTraining'][
+            'upperLowerPS']
       else:
         if chosen == 'Fullbody':
           chosenTraining = ip_found['Treino']['regularTraining']['fullbody']
 
         if chosen == 'PushPull':
           chosenTraining = ip_found['Treino']['regularTraining']['pushPull']
-    
+
         if chosen == 'UpperLower':
           chosenTraining = ip_found['Treino']['regularTraining']['upperLower']
-        
-        Db.update_user(session['ip'], {'Training': chosenTraining, 'chosenTraining': data})
+
+        Db.update_user(session['ip'], {
+          'Training': chosenTraining,
+          'chosenTraining': data
+        })
     else:
       Db.update_user(session['ip'], {'chosenTraining': data})
 
     response_data = {"message": "Training saved successfully."}
     return jsonify(response_data), 200
-  
+
 
 @training_bp.route('/saveTrainingTracker', methods=["POST"])
 def saveTrainingTracker():
-    data = request.get_data().decode()
-    data = json.loads(data.replace("'", "\""))
+  data = request.get_data().decode()
+  data = json.loads(data.replace("'", "\""))
 
-    now = datetime.datetime.now()
-    date_str = now.strftime("%d/%m/%Y")
+  now = datetime.datetime.now()
+  date_str = now.strftime("%d/%m/%Y")
 
-    ip_found = Db.get_ip(session['ip']).data
+  ip_found = Db.get_ip(session['ip']).data
 
-    if 'historyTraining' in ip_found:
-        ip_found['historyTraining'].append({date_str : data})
-    else:
-        historyTraining = [{date_str : data}]
-        ip_found['historyTraining'] = historyTraining
+  if 'historyTraining' in ip_found:
+    ip_found['historyTraining'].append({date_str: data})
+  else:
+    historyTraining = [{date_str: data}]
+    ip_found['historyTraining'] = historyTraining
 
-    Db.update_user(session['ip'], {'historyTraining': ip_found['historyTraining']})
+  Db.update_user(session['ip'],
+                 {'historyTraining': ip_found['historyTraining']})
 
-    response_data = {"message": "Training saved successfully."}
-    return jsonify(response_data), 200
- 
+  response_data = {"message": "Training saved successfully."}
+  return jsonify(response_data), 200

@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, session, request, flash, jsonify, render_template
 from model.db import Db
 import json
+from model.exercicio import Exercicio
 user = Blueprint('user', __name__, template_folder='templates')
 
 @user.route("/user")
@@ -58,5 +59,32 @@ def pageUser():
 @user.route('/tracker',  methods=["POST"])
 def tracker():
   data = request.form['data']
-  data = json.loads(data.replace("'", "\""))
+  # data = json.loads(data.replace("'", "\""))
+  data = eval(data)
+  
+  toggleExer = []
+#   for d in data:
+#     if d.get('newExer') == True: 
+#       print( d.get('newExer')) # Verifica se o dicionário tem o valor 'newExer' igual a True
+#  # Verifica se o dicionário tem o valor 'newExer' igual a True
+#       last_key = list(d.keys())[-1]  # Obtém a última chave do dicionário
+#       last_value = d[last_key]  # Obtém o valor da última chave do dicionário
+#       listExer = Exercicio.getSuggestionExerLight(d['name'])
+#       toggleExer.append({'sugestToggleExer':  listExer})
+
+#       print(toggleExer)
+ 
+  for d in data:
+    if 'newExer' in d and d['newExer']:
+      if d['newExer'] == True:
+        name = d['name']
+        listExer = Exercicio.getSuggestionExerLight(name)
+        d['newExer'] =  listExer
+
+  print(toggleExer)
+      
+      
+      
+
+
   return render_template('tracker.html', data=data)
